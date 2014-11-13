@@ -20,9 +20,22 @@ public interface AsteroidInterface {
      */
     public void setPosition(double x, double y);
 
+    /**
+     * setVelocity --sets velocity of asteroid
+     * @param x New x velocity
+     * @param y New y velocity
+     */
     public void setVelocity(double vx, double vy);
 
+    /**
+     * getVelocity -- gets velocity of asteroid
+     * @return Point2D of velocity
+     */
     public Point2D getVelocity();
 
+    /**
+     * vanish -- makes the asteroid disappear from screen
+     * (so like when it smashes into  the spaceship)
+     */
     public void vanish();
 }
