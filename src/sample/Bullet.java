@@ -3,9 +3,6 @@ package sample;
 
 import javafx.geometry.Point2D;
 
-/**
- * Created by chetaldrich on 11/12/14.
- */
 
 public class Bullet implements BulletInterface {
     public Point2D getPosition() {

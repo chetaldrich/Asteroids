@@ -2,9 +2,6 @@ package sample;
 
 import javafx.geometry.Point2D;
 
-/**
- * Created by josiebealle on 12/11/14.
- */
 public interface BulletInterface {
     public Point2D getPosition();
     public Point2D setPosition(double x, double y);
