@@ -18,6 +18,10 @@ public class Asteroid implements AsteroidInterface{
 
     }
 
+    /**
+     * getPosition -- gets position of asteroid
+     * @return Point2D of position
+     */
     public Point2D getPosition() {
         return new Point2D(0,0);
     }
