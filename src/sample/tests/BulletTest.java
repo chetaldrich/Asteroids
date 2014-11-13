@@ -1,31 +1,38 @@
-package sample;
+package sample.tests;
 
+
+import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class AsteroidTest {
+public class BulletTest {
 
-    @org.junit.Test
+    @Test
     public void testGetPosition() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void testSetPosition() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void testVanish() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void testGetVelocity() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void testSetVelocity() throws Exception {
+
+    }
+
+    @Test
+    public void testStep() throws Exception {
 
     }
 }
