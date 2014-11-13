@@ -9,8 +9,6 @@ public interface SpaceshipInterface {
     public void explode();
     public Point2D getVelocity();
     public void setVelocity(double x, double y);
-    public void step(String direction);
-    public int getLives();
-
+    public void step();
 
 }

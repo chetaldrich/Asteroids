@@ -26,18 +26,36 @@ public class Asteroid implements AsteroidInterface{
         return new Point2D(0,0);
     }
 
+     /** setPosition -- sets position of asteroid
+      * @param x  New x value
+      * @param y  New y value
+      */
     public void setPosition(double x, double y){
         // stub. :)
     }
 
+    /**
+     * vanish -- makes the asteroid disappear from screen
+     * (so like when it smashes into  the spaceship)
+     */
     public void vanish() {
         return;
     }
 
+    /**
+     * getVelocity -- gets velocity of asteroid
+     * @return Point2D of velocity
+     */
     public Point2D getVelocity(){
         return this.velocity;
     }
 
+
+    /**
+     * setVelocity --sets velocity of asteroid
+     * @param x New x velocity
+     * @param y New y velocity
+     */
     public void setVelocity(double vx, double vy) {
         this.velocity = new Point2D(vx, vy);
     }
