@@ -3,10 +3,12 @@ package sample;
 import javafx.geometry.Point2D;
 
 /**
- * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, and step
+ * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, vanish and step
  */
 public class Spaceship implements SpaceshipInterface {
 
+    private Point2D velocity;
+    private Point2D position;
     /**
      * Constructor
      */

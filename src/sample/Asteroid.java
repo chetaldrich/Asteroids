@@ -1,7 +1,7 @@
 package sample;
 
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
+
 
 /**
  * Asteroid class. Constructs an asteroid for our game. Methods include get/setPosition, get/setVelocity, and vanish
@@ -23,7 +23,7 @@ public class Asteroid implements AsteroidInterface{
      * @return Point2D of position
      */
     public Point2D getPosition() {
-        return new Point2D(0,0);
+        return this.position
     }
 
      /** setPosition -- sets position of asteroid
@@ -31,7 +31,7 @@ public class Asteroid implements AsteroidInterface{
       * @param y  New y value
       */
     public void setPosition(double x, double y){
-        // stub. :)
+        this.position = new Point2D(x, y);
     }
 
     /**
@@ -39,7 +39,8 @@ public class Asteroid implements AsteroidInterface{
      * (so like when it smashes into  the spaceship)
      */
     public void vanish() {
-        return;
+
+       //stub :)
     }
 
     /**

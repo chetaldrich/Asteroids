@@ -10,7 +10,8 @@ import javafx.geometry.Point2D;
  */
 public class Bullet implements BulletInterface {
 
-
+    private Point2D velocity;
+    private Point2D position;
     /**
      * Constructor
      */
