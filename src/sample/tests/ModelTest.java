@@ -93,9 +93,9 @@ public class ModelTest {
         Model model = new Model();
         model.createScoreboard();
         Scoreboard scoreboard = model.getScoreboard();
-
-        model.updateLives(2);
-        assertTrue("Model updateLives Fail", (scoreboard.getLives()==2));
+        int oldLives = scoreboard.getLives();
+        model.updateLives(1);
+        assertTrue("Model updateLives Fail", (scoreboard.getLives()==oldLives+1));
 
 
     }
@@ -105,9 +105,9 @@ public class ModelTest {
         Model model = new Model();
         model.createScoreboard();
         Scoreboard scoreboard = model.getScoreboard();
-
+        int oldScore = scoreboard.getScore();
         model.updateScore(3);
-        assertTrue("Model updateScore Fail", (scoreboard.getScore()==3));
+        assertTrue("Model updateScore Fail", (scoreboard.getScore()==oldScore+3));
 
     }
 

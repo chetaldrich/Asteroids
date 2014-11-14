@@ -105,6 +105,7 @@ public class Model {
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.
+     * @param lives number of lives to add (negative values mean fewer lives)
      */
     public void updateLives(int lives){
         //stub :)
@@ -112,8 +113,9 @@ public class Model {
 
     /**
      * updateScore -- updates current Score based on method triggers (survival time, bullet Asteroid collision)
+     * @param points number of points to add (negative values mean lower score)
      */
-    public void updateScore(int scoreAddition){
+    public void updateScore(int points){
         //stub :)
     }
 

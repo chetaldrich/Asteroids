@@ -68,13 +68,13 @@ d     */
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.
-     * @param lives number of lives to add or deduct
+     * @param lives number of lives to add (negative values mean fewer lives)
      */
     public void updateLives(int lives);
 
     /**
      * updateScore -- updates current Score based on method triggers (survival time, bullet Asteroid collision)
-     * @param points number of points to add or deduct
+     * @param points number of points to add (negative values mean lower score)
      */
     public void updateScore(int points);
 
