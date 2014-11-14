@@ -36,7 +36,7 @@ public class ModelTest {
         Model model = new Model();
         model.generateAsteroid();
         model.generateBullet();
-        List<Bullet> bullets = model.getBullets();
+        List<Bullet> bullets = model.getBulletList();
         List<Asteroid> asteroids = model.getAsteroidList();
         Point2D firstBulletLocation = bullets.get(0).getPosition();
         double firstBulletLocationX = firstBulletLocation.getX();

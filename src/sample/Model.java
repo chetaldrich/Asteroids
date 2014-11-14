@@ -20,23 +20,23 @@ public class Model {
 
     /**
      * checkShipAsteroidCollision -- checks for a Ship and Asteroid collision, updates Lives on collision.
-     * @return void
+     * @return boolean if there is a collision
      */
-    public void checkShipAsteroidCollision(){
-        //stub :)
+    public boolean checkShipAsteroidCollision(){
+        return false;
+
     }
 
     /**
      * checkAsteroidBulletCollision -- checks for a Ship and Asteroid collision, removes both objects from lists on collision.
-     * @return void
+     * @return boolean if there is a collision
      */
-    public void checkAsteroidBulletCollision(){
-        // stub :)
+    public boolean checkAsteroidBulletCollision(){
+        return false;
     }
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
-     * @return void
      */
     public void generateAsteroid(){
         // add asteroid to list
@@ -44,7 +44,6 @@ public class Model {
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
-     * @return void
      */
     public void generateBullet(){
         //stub :)
@@ -53,7 +52,6 @@ public class Model {
 
     /**
      * createNewShip -- creates a new Spaceship instance in the event of destruction due to collision or game initialization.
-     * @return void
      */
     public void createNewShip(){
         //stub :)
@@ -61,7 +59,6 @@ public class Model {
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
-     * @return void
      */
     public void moveShip(){
         //stub :)
@@ -101,7 +98,6 @@ public class Model {
 
     /**
      * createScoreboard --  creates the Scoreboard.
-     * @return void
      */
     public void createScoreboard(){
         //stub :)
@@ -109,7 +105,6 @@ public class Model {
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.
-     * @return void
      */
     public void updateLives(int lives){
         //stub :)
@@ -117,7 +112,6 @@ public class Model {
 
     /**
      * updateScore -- updates current Score based on method triggers (survival time, bullet Asteroid collision)
-     * @return void
      */
     public void updateScore(int scoreAddition){
         //stub :)

@@ -6,39 +6,35 @@ public interface ModelInterface {
 
     /**
      * checkShipAsteroidCollision -- checks for a Ship and Asteroid collision, updates Lives on collision.
-     * @return void
+     * @return boolean if there is a collision
      */
-    public void checkShipAsteroidCollision();
+    public boolean checkShipAsteroidCollision();
 
     /**
      * checkAsteroidBulletCollision -- checks for a Ship and Asteroid collision, removes both objects from lists on collision.
-     * @return void
+     * @return boolean if there is a collision
      */
-    public void checkAsteroidBulletCollision();
+    public boolean checkAsteroidBulletCollision();
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
-     * @return void
-     */
+d     */
     public void generateAsteroid();
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
-     * @return void
-     */
+d     */
     public void generateBullet();
 
 
     /**
      * createNewShip -- creates a new Spaceship instance in the event of destruction due to collision or game initialization.
-     * @return void
-     */
+d     */
     public void createNewShip();
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
-     * @return void
-     */
+d     */
     public void moveShip();
 
     /**
@@ -67,24 +63,21 @@ public interface ModelInterface {
 
     /**
      * createScoreboard --  creates the Scoreboard.
-     * @return void
      */
     public void createScoreboard();
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.
      * @param lives number of lives to add or deduct
-     * @return void
      */
     public void updateLives(int lives);
 
     /**
      * updateScore -- updates current Score based on method triggers (survival time, bullet Asteroid collision)
      * @param points number of points to add or deduct
-     * @return void
      */
     public void updateScore(int points);
 
-    p
+
 
 }
