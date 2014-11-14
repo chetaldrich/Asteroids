@@ -8,7 +8,7 @@ Bullet
 Scoreboard
 
 
-We also have a model and controller and main(which will be our view) class.
+We also have a model and controller and main class.
 Here is some ascii art have a nice weekend Jeff.
 
 				

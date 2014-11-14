@@ -14,11 +14,7 @@ public class AsteroidTest {
 
     }
 
-    @Test
-    public void testConstructor() throws Exception {
-        Asteroid asteroid = new Asteroid();
-        assertTrue("Asteroid Constructor Fail", (asteroid instanceof Asteroid));
-    }
+
 
     @Test
     public void testGetPosition() throws Exception {

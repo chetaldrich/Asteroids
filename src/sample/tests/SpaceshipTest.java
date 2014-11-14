@@ -13,11 +13,7 @@ public class SpaceshipTest {
 
     }
 
-    @Test
-    public void testConstructor() throws Exception {
-        Spaceship spaceship = new Spaceship();
-        assertTrue("Spaceship Constructor Fail", (spaceship instanceof Spaceship));
-    }
+    
 
     @Test
     public void testGetPosition() throws Exception {

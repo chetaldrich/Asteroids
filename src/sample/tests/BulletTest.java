@@ -15,11 +15,7 @@ public class BulletTest {
 
     }
 
-    @Test
-    public void testConstructor() throws Exception {
-        Bullet bullet = new Bullet();
-        assertTrue("Bullet Constructor Fail", (bullet instanceof Bullet));
-    }
+
 
 
     @Test
