@@ -23,7 +23,7 @@ public class Asteroid implements AsteroidInterface{
      * @return Point2D of position
      */
     public Point2D getPosition() {
-        return this.position;
+        return new Point2D(0, 0);
     }
 
      /** setPosition -- sets position of asteroid
@@ -31,7 +31,7 @@ public class Asteroid implements AsteroidInterface{
       * @param y  New y value
       */
     public void setPosition(double x, double y){
-        this.position = new Point2D(x, y);
+
     }
 
     /**
@@ -48,7 +48,7 @@ public class Asteroid implements AsteroidInterface{
      * @return Point2D of velocity
      */
     public Point2D getVelocity(){
-        return this.velocity;
+        return new Point2D(0, 0);
     }
 
 
@@ -58,7 +58,7 @@ public class Asteroid implements AsteroidInterface{
      * @param vy New y velocity
      */
     public void setVelocity(double vx, double vy) {
-        this.velocity = new Point2D(vx, vy);
+
     }
 
     /**

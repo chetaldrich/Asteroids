@@ -13,7 +13,7 @@ public class SpaceshipTest {
 
     }
 
-    
+
 
     @Test
     public void testGetPosition() throws Exception {

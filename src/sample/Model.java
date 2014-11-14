@@ -1,6 +1,7 @@
 package sample;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -15,7 +16,8 @@ public class Model {
      * Will create a beginning game state in the absence of one.
      */
     public Model() {
-        //stub :)
+        bullets = new ArrayList<Bullet>();
+        asteroids= new ArrayList<Asteroid>();
     }
 
     /**
@@ -39,14 +41,17 @@ public class Model {
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
     public void generateAsteroid(){
-        // add asteroid to list
+       Asteroid tempAsteroid = new Asteroid();
+       asteroids.add(tempAsteroid);
+
     }
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
      */
     public void generateBullet(){
-        //stub :)
+        Bullet tempBullet = new Bullet();
+        bullets.add(tempBullet);
     }
 
 
@@ -69,7 +74,7 @@ public class Model {
      * @return Spaceship current spaceship
      */
     public Spaceship getSpaceship(){
-        return spaceship;
+        return new Spaceship();
     }
 
     /**
@@ -93,7 +98,7 @@ public class Model {
      * @return Scoreboard scoreboard
      */
     public Scoreboard getScoreboard(){
-        return scoreboard;
+        return new Scoreboard();
     }
 
     /**
