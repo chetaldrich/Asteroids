@@ -16,14 +16,14 @@ public interface BulletInterface {
 
     /**
      * setPosition -- sets position of bullet
-     * @param x New x value
-     * @param y New y value
+     * @param x Desired x value of bullet
+     * @param y Desired y value of bullet
      */
     public void setPosition(double x, double y);
     
     /**
-     * vanish -- makes bullet disappear from screen, like when it hits an asteroid
-     */
+     * vanish -- makes bullet disappear from screen, eg. when it hits an asteroid
+     */ 
     public void vanish();
     
     
