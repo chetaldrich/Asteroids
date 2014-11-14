@@ -23,7 +23,7 @@ public interface BulletInterface {
     
     /**
      * vanish -- makes bullet disappear from screen, eg. when it hits an asteroid
-     */ 
+     */
     public void vanish();
     
     
