@@ -62,6 +62,7 @@ public class SpaceshipTest {
     @Test
     public void testStep() throws Exception {
         Spaceship spaceship = new Spaceship();
+
         Point2D oldPosition = spaceship.getPosition();
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();
@@ -77,4 +78,5 @@ public class SpaceshipTest {
         assertEquals("Spaceship step Fail", newPosition, spaceship.getPosition());
 
     }
+
 }
