@@ -23,7 +23,7 @@ public class Asteroid implements AsteroidInterface{
      * @return Point2D of position
      */
     public Point2D getPosition() {
-        return this.position
+        return this.position;
     }
 
      /** setPosition -- sets position of asteroid
