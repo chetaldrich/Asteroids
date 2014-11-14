@@ -18,6 +18,7 @@ public class Spaceship implements SpaceshipInterface {
      * @return Point2D current position
      */
     public Point2D getPosition() {
+
         return new Point2D(0,0);
     }
 
@@ -25,17 +26,15 @@ public class Spaceship implements SpaceshipInterface {
      * setPosition -- sets position of spaceship in the game.
      * @param x  desired x position
      * @param y  desired y position
-     * @return  void
      */
-    public Point2D setPosition(double x, double y) {
-        return new Point2D(x,y);
+    public void setPosition(double x, double y) {
+
     }
 
     /**
-     * explode -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
-     * @return void
+     * vanish -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
      */
-    public void explode() {
+    public void vanish() {
         //stub :)
     }
 
@@ -50,8 +49,7 @@ public class Spaceship implements SpaceshipInterface {
     /**
      * setVelocity -- sets the velocity of the spaceship in the game.
      * @param x desired x velocity
-     * @param y desired y position
-     * @return Point2D type position
+     * @param y desired y velocity
      */
     public void setVelocity(double x, double y) {
 
@@ -59,7 +57,6 @@ public class Spaceship implements SpaceshipInterface {
 
     /**
      * step -- Moves the spaceship to its next Point2D position in the game.
-     * @return void
      */
     public void step() {
         //stub :)

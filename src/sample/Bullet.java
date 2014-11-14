@@ -9,11 +9,21 @@ import javafx.geometry.Point2D;
  * Methods include get/setPosition, get/setVelocity, step, vanish
  */
 public class Bullet implements BulletInterface {
+
+
+    /**
+     * Constructor
+     */
+    public Bullet(){
+
+    }
+
+
     /**
      * getPosition -- gets position of bullet
      * @return Point2D of position
      */
-    public Point2D getPosition() {
+   public Point2D getPosition() {
 
         return new Point2D(0,0);
     }
@@ -23,9 +33,8 @@ public class Bullet implements BulletInterface {
      * @param x New x value
      * @param y New y value
      */
-    public Point2D setPosition(double x, double y) {
+    public void setPosition(double x, double y) {
 
-        return new Point2D(x,y);
     }
 
     /**

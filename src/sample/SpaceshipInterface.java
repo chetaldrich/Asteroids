@@ -18,13 +18,13 @@ public interface SpaceshipInterface {
      * @param y  desired y position
      * @return  void
      */
-    public Point2D setPosition(double x, double y);
+    public void setPosition(double x, double y);
 
     /**
-     * explode -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
+     * vanish -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
      * @return void
      */
-    public void explode();
+    public void vanish();
 
     /**
      * getVelocity -- gets the current velocity of the spaceship.

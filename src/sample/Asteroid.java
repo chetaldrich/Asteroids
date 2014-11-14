@@ -53,11 +53,18 @@ public class Asteroid implements AsteroidInterface{
 
     /**
      * setVelocity --sets velocity of asteroid
-     * @param x New x velocity
-     * @param y New y velocity
+     * @param vx New x velocity
+     * @param vy New y velocity
      */
     public void setVelocity(double vx, double vy) {
         this.velocity = new Point2D(vx, vy);
+    }
+
+    /**
+     * step -- sets new position according to velocity
+     */
+    public void step() {
+        //stub :)
     }
 
 

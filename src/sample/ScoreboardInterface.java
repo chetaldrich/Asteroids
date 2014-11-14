@@ -14,7 +14,7 @@ public interface ScoreboardInterface {
 
     /**
      * setScore -- sets score of the player in the game.
-     * @return void
+     * @param score the score to set to
      */
     public void setScore(int score);
 
@@ -26,7 +26,7 @@ public interface ScoreboardInterface {
 
     /**
      * setLives -- sets number of lives for the player in the game.
-     * @return void
+     * @param lives the number of lives to set to
      */
-    public void setLives();
+    public void setLives(int lives);
 }

@@ -12,7 +12,7 @@ We also have a model and controller and main(which will be our view) class.
 Here is some ascii art have a nice weekend Jeff.
 
 				
-				   A
+				                   A
                                    M
                                    M
                                    M

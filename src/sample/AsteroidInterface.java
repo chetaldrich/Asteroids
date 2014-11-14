@@ -38,4 +38,10 @@ public interface AsteroidInterface {
      * (so like when it smashes into  the spaceship)
      */
     public void vanish();
+
+    /**
+     * step -- sets new position according to velocity
+     */
+    public void step();
+
 }
