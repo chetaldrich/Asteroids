@@ -54,7 +54,7 @@ public class Spaceship implements SpaceshipInterface {
      * @param y desired y velocity
      */
     public void setVelocity(double x, double y) {
-
+        //stub :)
     }
 
     /**
