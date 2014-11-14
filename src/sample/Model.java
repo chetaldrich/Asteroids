@@ -6,7 +6,8 @@ public class Model {
     public Model() {
 
     }
-    public void checkShipCollision(){}
+    public void checkShipAsteroidCollision(){}
+    public void checkAsteroidBulletCollision(){}
     public void Update(){
         
     }
