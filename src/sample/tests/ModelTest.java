@@ -72,19 +72,43 @@ public class ModelTest {
 
     @Test
     public void testMoveShip(){
+        Model model = new Model();
+        model.createNewShip();
+        Spaceship spaceship = model.getSpaceship();
+        Point2D spaceshipLocation = spaceship.getPosition();
+        double spaceshipLocationX = spaceshipLocation.getX();
+        double spaceshipLocationY = spaceshipLocation.getY();
+        model.moveShip();
+        Point2D spaceshipLocationNew = spaceship.getPosition();
+        double spaceshipLocationXNew = spaceshipLocation.getX();
+        double spaceshipLocationYNew = spaceshipLocation.getY();
 
+        assertFalse("Model moveShip() Fail", (spaceshipLocationY==spaceshipLocationYNew));
 
 
     }
 
     @Test
     public void testUpdateLives(){
+        Model model = new Model();
+        model.createScoreboard();
+        Scoreboard scoreboard = model.getScoreboard();
+
+        model.updateLives(2);
+        assertTrue("Model updateLives Fail", (scoreboard.getLives()==2));
+
 
     }
 
     @Test
     public void testUpdateScore(){
+        Model model = new Model();
+        model.createScoreboard();
+        Scoreboard scoreboard = model.getScoreboard();
+
+        model.updateScore(3);
+        assertTrue("Model updateScore Fail", (scoreboard.getScore()==3));
 
     }
-    
+
 }
