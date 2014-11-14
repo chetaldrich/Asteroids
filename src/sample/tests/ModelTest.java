@@ -72,7 +72,7 @@ public class ModelTest {
 
     @Test
     public void testMoveShip(){
-        
+
 
 
     }
@@ -86,5 +86,5 @@ public class ModelTest {
     public void testUpdateScore(){
 
     }
-
+    
 }

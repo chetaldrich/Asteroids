@@ -70,7 +70,7 @@ public class Model {
      * getSpaceShip -- gets the current Spaceship instance in the model.
      * @return Spaceship current spaceship
      */
-    public Spaceship getSpaceShip(){
+    public Spaceship getSpaceship(){
         return spaceship;
     }
 
