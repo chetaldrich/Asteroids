@@ -20,36 +20,30 @@ public class BulletTest {
 
     @Test
     public void testGetPosition() throws Exception {
-        Bullet bullet = new Bullet();
+        Bullet bullet = new Bullet(10,10);
         bullet.setPosition(2,2);
         assertEquals("Bullet getPosition Fail", new Point2D(2,2), bullet.getPosition());
     }
 
     @Test
     public void testSetPosition() throws Exception {
-        Bullet bullet = new Bullet();
+        Bullet bullet = new Bullet(10,10);
         bullet.setPosition(4,4);
         assertEquals("Bullet setPosition Fail", new Point2D(4,4), bullet.getPosition());
     }
 
-    @Test
-    public void testVanish() throws Exception {
-        Bullet bullet = new Bullet();
-        bullet.vanish();
-        assertNull("Bullet vanish Fail", bullet);
-
-    }
+   
 
     @Test
     public void testGetVelocity() throws Exception {
-        Bullet bullet = new Bullet();
+        Bullet bullet = new Bullet(10,10);
         bullet.setVelocity(2,2);
         assertEquals("Bullet getVelocity Fail", new Point2D(2,2), bullet.getVelocity());
     }
 
     @Test
     public void testSetVelocity() throws Exception {
-        Bullet bullet = new Bullet();
+        Bullet bullet = new Bullet(10,10);
         bullet.setVelocity(4,4);
         assertEquals("Bullet setVelocity Fail", new Point2D(4,4), bullet.getVelocity());
 
@@ -57,7 +51,7 @@ public class BulletTest {
 
     @Test
     public void testStep() throws Exception {
-        Bullet bullet = new Bullet();
+        Bullet bullet = new Bullet(10,10);
         Point2D oldPosition = bullet.getPosition();
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();

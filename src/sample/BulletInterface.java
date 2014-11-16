@@ -21,10 +21,7 @@ public interface BulletInterface {
      */
     public void setPosition(double x, double y);
     
-    /**
-     * vanish -- makes bullet disappear from screen, eg. when it hits an asteroid
-     */
-    public void vanish();
+
     
     
     /**
