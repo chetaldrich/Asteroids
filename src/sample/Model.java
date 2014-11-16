@@ -19,8 +19,8 @@ public class Model {
      * Will create a beginning game state in the absence of one.
      */
     public Model(double screenWidth, double screenHeight) {
-        bullets = new ArrayList<Bullet>();
-        asteroids= new ArrayList<Asteroid>();
+        this.bullets = new ArrayList<Bullet>();
+        this.asteroids= new ArrayList<Asteroid>();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.createScoreboard();
