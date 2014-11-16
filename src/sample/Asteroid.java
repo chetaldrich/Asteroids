@@ -57,7 +57,7 @@ public class Asteroid implements AsteroidInterface{
       * @param y  New y value
       */
     public void setPosition(double x, double y){
-        this.position= new Point2D(x,y);
+        this.position = new Point2D(x,y);
 
     }
 

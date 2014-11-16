@@ -2,15 +2,14 @@ package sample;
 
 
 import javafx.geometry.Point2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
 
-    private List asteroids;
+    private ArrayList asteroids;
     private Spaceship spaceship;
-    private List bullets;
+    private ArrayList bullets;
     private Scoreboard scoreboard;
     private double screenWidth;
     private double screenHeight;
@@ -42,6 +41,30 @@ public class Model {
      * @return boolean if there is a collision
      */
     public boolean checkAsteroidBulletCollision(){
+        int bulletListLength = bullets.size();
+        int asteroidListLength = asteroids.size();
+
+        for (int i = 0; i < bulletListLength; i++){
+            Bullet bullet = (Bullet) bullets.get(i);
+            Point2D bulletPosition = bullet.getPosition();
+
+            //TODO: adjust the asteroid radius slightly so that the spaceship doesn't get hurt at the corners of the png outside the asteroid.
+            for (int j = 0; j < asteroidListLength; j++){
+                Asteroid asteroid = (Asteroid) asteroids.get(j);
+
+                Point2D asteroidPosition = asteroid.getPosition();
+                double asteroidRadius = asteroid.getRadius();
+                double lowerXBound = asteroidPosition.getX() - asteroidRadius;
+                double upperXBound = asteroidPosition.getX() + asteroidRadius;
+                double lowerYBound = asteroidPosition.getY() - asteroidRadius;
+                double upperYBound = asteroidPosition.getY() + asteroidRadius;
+                if (lowerXBound < bulletPosition.getX() && bulletPosition.getX() < upperXBound &&
+                    lowerYBound < bulletPosition.getY() && bulletPosition.getY() < upperYBound){
+
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
