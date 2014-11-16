@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.geometry.Point2D;
+
 import java.util.List;
 
 public interface ModelInterface {
@@ -35,7 +37,7 @@ d     */
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
 d     */
-    public void moveShip();
+    public void moveShip(Point2D additionalSpeed);
 
     /**
      * getSpaceShip -- gets the current Spaceship instance in the model.

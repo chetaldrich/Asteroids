@@ -49,16 +49,16 @@ public class Model {
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
     public void generateAsteroid(){
-       Asteroid tempAsteroid = new Asteroid(screenWidth, screenHeight);
-       asteroids.add(tempAsteroid);
+       Asteroid newAsteroid = new Asteroid(screenWidth, screenHeight);
+       asteroids.add(newAsteroid);
     }
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
      */
     public void generateBullet(){
-        Bullet tempBullet = new Bullet(spaceship.getPosition());
-        bullets.add(tempBullet);
+        Bullet newBullet = new Bullet(spaceship.getPosition());
+        bullets.add(newBullet);
     }
 
 
@@ -72,9 +72,9 @@ public class Model {
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
      */
-    public void moveShip(){
-        Point2D velocity = spaceship.getVelocity()
-        spaceship.setVelocity();
+    public void moveShip(Point2D additionalSpeed){
+        Point2D velocity = spaceship.getVelocity();
+        spaceship.setVelocity(velocity.getX() + additionalSpeed.getX(), velocity.getY() + additionalSpeed.getY());
     }
 
     /**
