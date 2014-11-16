@@ -13,6 +13,8 @@ public class Spaceship implements SpaceshipInterface {
      * Constructor
      */
     public Spaceship() {
+        this.velocity = new Point2D(0,0);
+        this.position = new Point2D(100, 100);
     }
 
     /**
@@ -20,8 +22,7 @@ public class Spaceship implements SpaceshipInterface {
      * @return Point2D current position
      */
     public Point2D getPosition() {
-
-        return new Point2D(0,0);
+        return this.position;
     }
 
     /**
@@ -30,22 +31,16 @@ public class Spaceship implements SpaceshipInterface {
      * @param y  desired y position
      */
     public void setPosition(double x, double y) {
-
+        this.position = new Point2D(x, y);
     }
 
-    /**
-     * vanish -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
-     */
-    public void vanish() {
-        //stub :)
-    }
 
     /**
      * getVelocity -- gets the current velocity of the spaceship.
      * @return Point2D current velocity
      */
     public Point2D getVelocity() {
-        return new Point2D(0,0);
+        return this.velocity;
     }
 
     /**
@@ -54,14 +49,15 @@ public class Spaceship implements SpaceshipInterface {
      * @param y desired y velocity
      */
     public void setVelocity(double x, double y) {
-        //stub :)
+        this.velocity = new Point2D(x, y);
     }
 
     /**
      * step -- Moves the spaceship to its next Point2D position in the game.
      */
     public void step() {
-        //stub :)
+        Point2D position = this.getPosition();
+        this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
     }
 
 

@@ -31,13 +31,6 @@ public class SpaceshipTest {
 
     }
 
-    @Test
-    public void testVanish() throws Exception {
-        Spaceship spaceship = new Spaceship();
-        spaceship.vanish();
-        assertNull("Spaceship vanish Fail", spaceship);
-
-    }
 
     @Test
     public void testGetVelocity() throws Exception {
