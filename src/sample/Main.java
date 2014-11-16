@@ -6,18 +6,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
+    public double screenWidth;
+    public double screenHeight;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 500, 500));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = (Parent)loader.load();
+        root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
+        primaryStage.setTitle("#STELLAR");
+        this.screenWidth = 1200;
+        this.screenHeight = 800;
+        primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
         primaryStage.show();
+
+
     }
+
 
 
     public static void main(String[] args) {
-        launch(args);
+        javafx.application.Application.launch(args);
     }
 }
+

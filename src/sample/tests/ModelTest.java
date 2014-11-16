@@ -78,7 +78,7 @@ public class ModelTest {
         Point2D spaceshipLocation = spaceship.getPosition();
         double spaceshipLocationX = spaceshipLocation.getX();
         double spaceshipLocationY = spaceshipLocation.getY();
-        model.moveShip();
+        model.moveShip(new Point2D(0,2));
         Point2D spaceshipLocationNew = spaceship.getPosition();
         double spaceshipLocationXNew = spaceshipLocation.getX();
         double spaceshipLocationYNew = spaceshipLocation.getY();
