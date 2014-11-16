@@ -16,15 +16,9 @@ public interface SpaceshipInterface {
      * setPosition -- sets position of spaceship in the game.
      * @param x  desired x position
      * @param y  desired y position
-     * @return  void
      */
     public void setPosition(double x, double y);
 
-    /**
-     * vanish -- destroys the spaceship if too damaged, adds a new one if available, then deducts one life.
-     * @return void
-     */
-    public void vanish();
 
     /**
      * getVelocity -- gets the current velocity of the spaceship.
@@ -42,7 +36,6 @@ public interface SpaceshipInterface {
 
     /**
      * step -- Moves the spaceship to its next Point2D position in the game.
-     * @return void
      */
     public void step();
 
