@@ -14,9 +14,11 @@ public class Bullet implements BulletInterface {
     private Point2D position;
     /**
      * Constructor
+     * @param spaceshipPosition Point2D
      */
-    public Bullet(){
-
+    public Bullet(Point2D spaceshipPosition){
+        this.position = spaceshipPosition;
+        this.velocity = new Point2D(4, 0);
     }
 
 
@@ -26,7 +28,7 @@ public class Bullet implements BulletInterface {
      */
    public Point2D getPosition() {
 
-        return new Point2D(0,0);
+       return this.position;
     }
 
     /**
@@ -35,15 +37,10 @@ public class Bullet implements BulletInterface {
      * @param y New y value
      */
     public void setPosition(double x, double y) {
-
+        this.position = new Point2D(x,y);
     }
 
-    /**
-     * vanish -- makes bullet disappear from screen, like when it hits an asteroid
-     */
-    public void vanish() {
-        //stub :)
-    }
+
 
     /**
      * getVelocity -- gets velocity of bullet
@@ -51,7 +48,7 @@ public class Bullet implements BulletInterface {
      */
     public Point2D getVelocity() {
 
-        return new Point2D(0,0);
+        return this.velocity;
     }
     
     /**
@@ -60,6 +57,7 @@ public class Bullet implements BulletInterface {
      * @param y New y velocity
      */
     public void setVelocity(double x, double y) {
+        this.velocity = new Point2D(x,y);
 
     }
 
@@ -67,6 +65,10 @@ public class Bullet implements BulletInterface {
      * step -- sets new position according to velocity
      */
     public void step() {
-        //stub :)
+        double xPos = this.position.getX();
+        double yPos = this.position.getY();
+        double xVel = this.velocity.getX();
+        double yVel = this.velocity.getY();
+        this.setPosition(xPos+xVel, yPos+yVel);
     }
 }
