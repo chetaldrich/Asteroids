@@ -31,7 +31,6 @@ public class SpaceshipTest {
 
     }
 
-
     @Test
     public void testGetVelocity() throws Exception {
         Spaceship spaceship = new Spaceship();

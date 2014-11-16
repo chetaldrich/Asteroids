@@ -5,11 +5,15 @@ package sample;
  */
 public class Scoreboard implements ScoreboardInterface{
 
+    private int score;
+    private int lives;
+
     /**
      * Constructor
      */
     public Scoreboard(){
-
+        this.score = 0;
+        this.lives = 3;
     }
 
     /**
@@ -17,7 +21,7 @@ public class Scoreboard implements ScoreboardInterface{
      * @return int current score
      */
     public int getScore(){
-        return 0;
+        return this.score;
     }
 
     /**
@@ -25,7 +29,7 @@ public class Scoreboard implements ScoreboardInterface{
      * @param score the score to set to
      */
     public void setScore(int score){
-        //stub. :)
+        this.score = score;
     }
 
     /**
@@ -33,7 +37,7 @@ public class Scoreboard implements ScoreboardInterface{
      * @return int number of lives
      */
     public int getLives(){
-        return 0;
+       return this.lives;
     }
 
     /**
@@ -41,6 +45,6 @@ public class Scoreboard implements ScoreboardInterface{
      * @param lives the number of lives to set to
      */
     public void setLives(int lives){
-        //stub. :)
+        this.lives = lives;
     }
 }

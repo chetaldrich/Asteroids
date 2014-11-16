@@ -20,8 +20,8 @@ public class ScoreboardTest {
     @Test
     public void testGetScore() throws Exception {
         Scoreboard scoreboard = new Scoreboard();
-        scoreboard.setScore(3);
-        assertTrue("Scoreboard getScore Fail", (3 == scoreboard.getScore()));
+        scoreboard.setScore(4);
+        assertTrue("Scoreboard getScore Fail", (4 == scoreboard.getScore()));
     }
 
     @Test
