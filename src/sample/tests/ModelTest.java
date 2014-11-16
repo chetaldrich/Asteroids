@@ -16,7 +16,7 @@ public class ModelTest {
 
     @Test
     public void testCheckShipAsteroidCollision() throws Exception {
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.generateAsteroid();
         model.createNewShip();
         Spaceship spaceship = model.getSpaceship();
@@ -33,7 +33,7 @@ public class ModelTest {
 
     @Test
     public void testCheckAsteroidBulletCollision() throws Exception {
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.generateAsteroid();
         model.generateBullet();
         List<Bullet> bullets = model.getBulletList();
@@ -50,14 +50,14 @@ public class ModelTest {
 
     @Test
     public void testGenerateAsteroid(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.generateAsteroid();
         assertTrue("Model generateAsteroid() Fail", 1==model.getAsteroidList().size());
     }
 
     @Test
     public void testGenerateBullet(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.generateBullet();
         assertTrue("Model generateBullet() Fail", 1==model.getBulletList().size());
 
@@ -65,14 +65,14 @@ public class ModelTest {
 
     @Test
     public void testCreateNewShip(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.createNewShip();
         assertNotNull("Model createNewShip() Fail", model.getSpaceship());
     }
 
     @Test
     public void testMoveShip(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.createNewShip();
         Spaceship spaceship = model.getSpaceship();
         Point2D spaceshipLocation = spaceship.getPosition();
@@ -90,7 +90,7 @@ public class ModelTest {
 
     @Test
     public void testUpdateLives(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.createScoreboard();
         Scoreboard scoreboard = model.getScoreboard();
         int oldLives = scoreboard.getLives();
@@ -102,7 +102,7 @@ public class ModelTest {
 
     @Test
     public void testUpdateScore(){
-        Model model = new Model();
+        Model model = new Model(500,500);
         model.createScoreboard();
         Scoreboard scoreboard = model.getScoreboard();
         int oldScore = scoreboard.getScore();

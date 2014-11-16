@@ -10,14 +10,18 @@ public class Model {
     private Spaceship spaceship;
     private List bullets;
     private Scoreboard scoreboard;
+    private double screenWidth;
+    private double screenHeight;
 
     /**
      * Model Constructor
      * Will create a beginning game state in the absence of one.
      */
-    public Model() {
+    public Model(double screenWidth, double screenHeight) {
         bullets = new ArrayList<Bullet>();
         asteroids= new ArrayList<Asteroid>();
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
     }
 
     /**
@@ -41,7 +45,7 @@ public class Model {
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
     public void generateAsteroid(){
-       Asteroid tempAsteroid = new Asteroid();
+       Asteroid tempAsteroid = new Asteroid(screenWidth, screenHeight);
        asteroids.add(tempAsteroid);
 
     }

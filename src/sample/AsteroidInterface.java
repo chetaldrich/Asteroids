@@ -33,15 +33,27 @@ public interface AsteroidInterface {
      */
     public Point2D getVelocity();
 
-    /**
+    /*/**
      * vanish -- makes the asteroid disappear from screen
      * (so like when it smashes into  the spaceship)
      */
-    public void vanish();
+    /*public void vanish();*/
 
     /**
      * step -- sets new position according to velocity
      */
     public void step();
+
+    /**
+     * getRadius -- returns radius of asteroid
+     * @return double of radius
+     */
+    public double getRadius();
+
+    /**
+     * setRadius -- sets radius of asteroid
+     * @param newRadius of  new radius
+     */
+    public void setRadius(double newRadius);
 
 }

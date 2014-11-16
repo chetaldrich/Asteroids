@@ -18,7 +18,7 @@ public class AsteroidTest {
 
     @Test
     public void testGetPosition() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         asteroid.setPosition(2,2);
         assertEquals("Asteroid getPosition Fail", new Point2D(2,2), asteroid.getPosition());
 
@@ -26,23 +26,23 @@ public class AsteroidTest {
 
     @Test
     public void testSetPosition() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         asteroid.setPosition(4,4);
         assertEquals("Asteroid setPosition Fail", new Point2D(4,4), asteroid.getPosition());
 
     }
 
-    @Test
+    /*@Test
     public void testVanish() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         asteroid.vanish();
         assertNull("Asteroid vanish Fail", asteroid);
 
-    }
+    }*/
 
     @Test
     public void testGetVelocity() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         asteroid.setVelocity(2, 2);
         assertEquals("Asteroid getVelocity Fail", new Point2D(2,2), asteroid.getVelocity());
 
@@ -50,7 +50,7 @@ public class AsteroidTest {
 
     @Test
     public void testSetVelocity() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         asteroid.setVelocity(4, 4);
         assertEquals("Asteroid setVelocity Fail", new Point2D(4,4), asteroid.getVelocity());
 
@@ -58,7 +58,7 @@ public class AsteroidTest {
 
     @Test
     public void testStep() throws Exception {
-        Asteroid asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid(500, 500);
         Point2D oldPosition = asteroid.getPosition();
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();
