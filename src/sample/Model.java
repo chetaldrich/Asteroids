@@ -1,6 +1,8 @@
 package sample;
 
 
+import javafx.geometry.Point2D;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class Model {
         asteroids= new ArrayList<Asteroid>();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
+        this.createScoreboard();
+        
     }
 
     /**
@@ -47,14 +51,13 @@ public class Model {
     public void generateAsteroid(){
        Asteroid tempAsteroid = new Asteroid(screenWidth, screenHeight);
        asteroids.add(tempAsteroid);
-
     }
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
      */
     public void generateBullet(){
-        Bullet tempBullet = new Bullet();
+        Bullet tempBullet = new Bullet(spaceship.getPosition());
         bullets.add(tempBullet);
     }
 
@@ -63,14 +66,15 @@ public class Model {
      * createNewShip -- creates a new Spaceship instance in the event of destruction due to collision or game initialization.
      */
     public void createNewShip(){
-        //stub :)
+        spaceship = new Spaceship();
     }
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
      */
     public void moveShip(){
-        //stub :)
+        Point2D velocity = spaceship.getVelocity()
+        spaceship.setVelocity();
     }
 
     /**
@@ -102,14 +106,14 @@ public class Model {
      * @return Scoreboard scoreboard
      */
     public Scoreboard getScoreboard(){
-        return new Scoreboard();
+        return scoreboard;
     }
 
     /**
      * createScoreboard --  creates the Scoreboard.
      */
     public void createScoreboard(){
-        //stub :)
+        scoreboard = new Scoreboard();
     }
 
     /**
@@ -117,7 +121,8 @@ public class Model {
      * @param lives number of lives to add (negative values mean fewer lives)
      */
     public void updateLives(int lives){
-        //stub :)
+        int currentLives = scoreboard.getLives();
+        scoreboard.setLives(currentLives + lives);
     }
 
     /**
@@ -125,7 +130,8 @@ public class Model {
      * @param points number of points to add (negative values mean lower score)
      */
     public void updateScore(int points){
-        //stub :)
+        int currentScore = scoreboard.getScore();
+        scoreboard.setScore(currentScore + points);
     }
 
 
