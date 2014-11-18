@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.Random;
 
@@ -11,7 +13,7 @@ import java.util.Random;
 public class Asteroid extends Sprite implements AsteroidInterface{
 
     private Point2D velocity;
-    private Point2D position;
+    //private Point2D position;
     private double radius;
 
 
@@ -21,9 +23,14 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     public Asteroid(double screenWidth, double screenHeight){
         Random r = new Random();
         double yCoord = r.nextDouble()*screenHeight;
-        this.position = new Point2D(screenWidth,yCoord);
+        //this.position = new Point2D(screenWidth,yCoord);
+        this.setPosition(screenWidth, yCoord);
         this.velocity = new Point2D(-4, 0);
         this.radius = r.nextDouble()*10;
+        Image image = new Image(getClass().getResourceAsStream("/img/asteroid.png"));
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        this.getChildren().add(imageView);
 
     }
 
@@ -43,12 +50,13 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.radius = newRadius;
     }
 
-    /**
+    /*/**
      * getPosition -- gets position of asteroid
      * @return Point2D of position
      */
-    public Point2D getPosition() {
-
+    /*public Point2D getPosition() {
+        Point2D position = new Point2D(this.getLayoutX(), this.getLayoutY());
+        return position;
         return this.position;
     }
 
@@ -56,10 +64,10 @@ public class Asteroid extends Sprite implements AsteroidInterface{
       * @param x  New x value
       * @param y  New y value
       */
-    public void setPosition(double x, double y){
+    /*public void setPosition(double x, double y){
         this.position = new Point2D(x,y);
 
-    }
+    }*/
 
     /*/**
      * vanish -- makes the asteroid disappear from screen
@@ -70,11 +78,11 @@ public class Asteroid extends Sprite implements AsteroidInterface{
        //stub :)
     }*/
 
-    /**
+    /*/**
      * getVelocity -- gets velocity of asteroid
      * @return Point2D of velocity
      */
-    public Point2D getVelocity(){
+    /*public Point2D getVelocity(){
         return this.velocity;
     }
 
@@ -84,7 +92,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
      * @param vx New x velocity
      * @param vy New y velocity
      */
-    public void setVelocity(double vx, double vy) {
+    /*public void setVelocity(double vx, double vy) {
         this.velocity = new Point2D(vx,vy);
 
     }
@@ -92,13 +100,13 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     /**
      * step -- sets new position according to velocity
      */
-    public void step() {
+    /*public void step() {
         double xPos = this.position.getX();
         double yPos = this.position.getY();
         double xVel = this.velocity.getX();
         double yVel = this.velocity.getY();
         this.setPosition(xPos+xVel, yPos+yVel);
-    }
+    }*/
 
     public void makeSound(){
 

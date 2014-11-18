@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, vanish and step
@@ -15,6 +17,10 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     public Spaceship() {
         this.velocity = new Point2D(0,0);
         this.position = new Point2D(100, 100);
+        mage image = new Image(getClass().getResourceAsStream("/img/spaceship.png"));
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        this.getChildren().add(imageView);
     }
 
     /**

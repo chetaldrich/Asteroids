@@ -2,6 +2,9 @@ package sample;
 
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
 
 /** 
@@ -19,6 +22,9 @@ public class Bullet extends Sprite implements BulletInterface {
     public Bullet(Point2D spaceshipPosition){
         this.position = spaceshipPosition;
         this.velocity = new Point2D(4, 0);
+        Paint fill = Color.GRAY;
+        Circle bullet = new Circle(0, 0, 2.0,  fill);
+        this.getChildren().add(bullet);
     }
 
 
