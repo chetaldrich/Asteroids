@@ -67,6 +67,15 @@ public class Model {
         return false;
     }
 
+    private boolean collided(Sprite sprite1, Sprite sprite2){
+        Point2D sprite1Position = sprite1.getPosition();
+        Point2D sprite2Position = sprite2.getPosition();
+        if (sprite1Position.equals(sprite2Position)){
+            return true;
+        }
+        else return false;
+    }
+
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
