@@ -7,13 +7,13 @@ import java.util.List;
 public interface ModelInterface {
 
     /**
-     * checkShipAsteroidCollision -- checks for a Ship and Asteroid collision, updates Lives on collision.
-     * @return boolean if there is a collision
+     * checkGameCollisions -- checks the game for any collisions.
+     * @return List objects that have collided and need to be deleted.
      */
-    public boolean checkShipAsteroidCollision();
+    public boolean checkGameCollisions();
 
     /**
-     * checkAsteroidBulletCollision -- checks for a Ship and Asteroid collision, removes both objects from lists on collision.
+     * checkAsteroidBulletCollision -- checks for a Bullet and Asteroid collision, removes both objects from lists on collision.
      * @return boolean if there is a collision
      */
     public boolean checkAsteroidBulletCollision();
