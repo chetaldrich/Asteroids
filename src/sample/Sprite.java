@@ -1,5 +1,6 @@
 package sample;
 
+
 /**
  * Created by chetaldrich on 11/17/14.
  */
@@ -24,6 +25,7 @@ public abstract class Sprite extends Group {
     public void setName(String newName) {
         this.name = newName;
     }
+
 
     public Point2D getPosition() {
         Point2D position = new Point2D(this.getLayoutX(), this.getLayoutY());
@@ -63,8 +65,12 @@ public abstract class Sprite extends Group {
         this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
     }
 
+
+
+
     /**
      * Play a sound at collision.
      */
     abstract public void makeSound();
 }
+
