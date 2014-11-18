@@ -27,7 +27,7 @@ public class ModelTest {
 
         asteroids.get(0).setPosition(spaceshipLocationX, spaceshipLocationY);
 
-        assertTrue("Model checkShipAsteroidCollision() Fail", model.checkShipAsteroidCollision());
+        assertTrue("Model checkShipAsteroidCollision() Fail", model.checkAsteroidBulletCollision());
 
     }
 
