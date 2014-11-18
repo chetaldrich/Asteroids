@@ -23,8 +23,8 @@ public class Controller {
     public void initialize() {
         this.screenHeight = 800;
         this.screenWidth = 1200;
-        this.spaceModel = new Model(this.screenWidth, this.screenHeight);
-        spaceModel.createNewShip();
+        //this.spaceModel = new Model(this.screenWidth, this.screenHeight);
+        //spaceModel.createNewShip();
 
 
 

@@ -15,6 +15,8 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private Point2D velocity;
     //private Point2D position;
     private double radius;
+    private Image image;
+    private ImageView imageView;
 
 
     /**
@@ -27,11 +29,21 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setPosition(screenWidth, yCoord);
         this.velocity = new Point2D(-4, 0);
         this.radius = r.nextDouble()*10;
-        Image image = new Image(getClass().getResourceAsStream("/img/asteroid.png"));
-        ImageView imageView = new ImageView();
+        this.image = new Image(getClass().getResourceAsStream("/img/asteroid.png"));
+        this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
 
+    }
+
+    @Override
+    public void setSize(double width, double height) {
+        super.setSize(width, height);
+        this.getChildren().remove(imageView);
+        image = new Image(getClass().getResourceAsStream("/img/asteroid.png"), width, height, true,false);
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        this.getChildren().add(imageView);
     }
 
     /**
@@ -48,6 +60,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
      */
     public void setRadius(double newRadius){
         this.radius = newRadius;
+        this.setSize(newRadius, newRadius);
     }
 
     /*/**
@@ -107,7 +120,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         double yVel = this.velocity.getY();
         this.setPosition(xPos+xVel, yPos+yVel);
     }*/
-
+    @Override
     public void makeSound(){
 
     }

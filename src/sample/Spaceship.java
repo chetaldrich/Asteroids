@@ -17,7 +17,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     public Spaceship() {
         this.velocity = new Point2D(0,0);
         this.position = new Point2D(100, 100);
-        mage image = new Image(getClass().getResourceAsStream("/img/spaceship.png"));
+        Image image = new Image(getClass().getResourceAsStream("/img/spaceship.png"));
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
