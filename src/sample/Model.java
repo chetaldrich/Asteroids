@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Model {
 
-    private ArrayList asteroids;
-    private Spaceship spaceship;
-    private ArrayList bullets;
-    private Scoreboard scoreboard;
+    private static ArrayList asteroids;
+    private static Spaceship spaceship;
+    private static ArrayList bullets;
+    private static Scoreboard scoreboard;
     private double screenWidth;
     private double screenHeight;
 
@@ -19,8 +19,8 @@ public class Model {
      * Will create a beginning game state in the absence of one.
      */
     public Model(double screenWidth, double screenHeight) {
-        this.bullets = new ArrayList<Bullet>();
-        this.asteroids= new ArrayList<Asteroid>();
+        bullets = new ArrayList<Bullet>();
+        asteroids = new ArrayList<Asteroid>();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.createScoreboard();
@@ -28,52 +28,47 @@ public class Model {
     }
 
     /**
-     * checkShipAsteroidCollision -- checks for a Ship and Asteroid collision, updates Lives on collision.
-     * @return boolean if there is a collision
+     * checkGameCollisions -- checks for any collisions in the sprite classes.
+     * @return ArrayList of the sprites that collided
      */
-    public ArrayList checkGameCollisions(){
-        return new ArrayList();
-    }
-
-    /**
-     * checkAsteroidBulletCollision -- checks for a Ship and Asteroid collision, removes both objects from lists on collision.
-     * @return boolean if there is a collision
-     */
-    public boolean checkAsteroidBulletCollision(){
+    public ArrayList<Sprite> checkGameCollisions(){
         int bulletListLength = bullets.size();
         int asteroidListLength = asteroids.size();
 
         for (int i = 0; i < bulletListLength; i++){
             Bullet bullet = (Bullet) bullets.get(i);
-            Point2D bulletPosition = bullet.getPosition();
 
-            //TODO: adjust the asteroid radius slightly so that the spaceship doesn't get hurt at the corners of the png outside the asteroid.
+
             for (int j = 0; j < asteroidListLength; j++){
                 Asteroid asteroid = (Asteroid) asteroids.get(j);
-
-                Point2D asteroidPosition = asteroid.getPosition();
-                double asteroidRadius = asteroid.getRadius();
-                double lowerXBound = asteroidPosition.getX() - asteroidRadius;
-                double upperXBound = asteroidPosition.getX() + asteroidRadius;
-                double lowerYBound = asteroidPosition.getY() - asteroidRadius;
-                double upperYBound = asteroidPosition.getY() + asteroidRadius;
-                if (lowerXBound < bulletPosition.getX() && bulletPosition.getX() < upperXBound &&
-                    lowerYBound < bulletPosition.getY() && bulletPosition.getY() < upperYBound){
-
-                    return true;
+                if (collided(spaceship, asteroid)){
+                   ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+                   collidedSprites.add(spaceship);
+                   collidedSprites.add(asteroid);
+                   return collidedSprites;
+                }else if (collided(bullet, asteroid)){
+                    ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+                    collidedSprites.add(bullet);
+                    collidedSprites.add(asteroid);
+                    return collidedSprites;
                 }
             }
         }
-        return false;
+        //TODO: find something better than just returning an empty list, although this might be OK.
+        return new ArrayList<Sprite>();
     }
 
-    private boolean collided(Sprite sprite1, Sprite sprite2){
+    /**
+     * collided -- Checks to see if a particular two sprites collided.
+     * @param sprite1 First sprite to check
+     * @param sprite2 Second sprite to check against
+     * @return boolean true if sprites collided, false if sprites did not collide
+     * TODO: make this smarter and check based on the size of the object
+     */
+    public boolean collided(Sprite sprite1, Sprite sprite2){
         Point2D sprite1Position = sprite1.getPosition();
         Point2D sprite2Position = sprite2.getPosition();
-        if (sprite1Position.equals(sprite2Position)){
-            return true;
-        }
-        else return false;
+        return sprite1Position.equals(sprite2Position);
     }
 
     /**
@@ -165,6 +160,17 @@ public class Model {
         scoreboard.setScore(currentScore + points);
     }
 
+    /**
+     * Point2D asteroidPosition = asteroid.getPosition();
+     double asteroidRadius = asteroid.getRadius();
+     double lowerXBound = asteroidPosition.getX() - asteroidRadius;
+     double upperXBound = asteroidPosition.getX() + asteroidRadius;
+     double lowerYBound = asteroidPosition.getY() - asteroidRadius;
+     double upperYBound = asteroidPosition.getY() + asteroidRadius;
+     if (lowerXBound < bulletPosition.getX() && bulletPosition.getX() < upperXBound &&
+     lowerYBound < bulletPosition.getY() && bulletPosition.getY() < upperYBound){
+     return true;
+     */
 
 
 }

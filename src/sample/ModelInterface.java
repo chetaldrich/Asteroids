@@ -2,6 +2,7 @@ package sample;
 
 import javafx.geometry.Point2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ModelInterface {
@@ -10,13 +11,16 @@ public interface ModelInterface {
      * checkGameCollisions -- checks the game for any collisions.
      * @return List objects that have collided and need to be deleted.
      */
-    public boolean checkGameCollisions();
+    public ArrayList<Sprite> checkGameCollisions();
 
     /**
-     * checkAsteroidBulletCollision -- checks for a Bullet and Asteroid collision, removes both objects from lists on collision.
-     * @return boolean if there is a collision
+     * collided -- Checks to see if a particular two sprites collided.
+     * @param sprite1 First sprite to check
+     * @param sprite2 Second sprite to check against
+     * @return boolean true if sprites collided, false if sprites did not collide
+     * TODO: make this smarter and check based on the size of the object
      */
-    public boolean checkAsteroidBulletCollision();
+    public boolean collided(Sprite sprite1, Sprite sprite2);
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.

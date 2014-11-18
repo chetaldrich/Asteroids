@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import sample.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelTest {
@@ -20,16 +21,24 @@ public class ModelTest {
         model.generateAsteroid();
         model.createNewShip();
         Spaceship spaceship = model.getSpaceship();
-        List<Asteroid> asteroids = model.getAsteroidList();
+        List asteroids = model.getAsteroidList();
+        Asteroid asteroid = (Asteroid) asteroids.get(0);
         Point2D spaceshipLocation = spaceship.getPosition();
         double spaceshipLocationX = spaceshipLocation.getX();
         double spaceshipLocationY = spaceshipLocation.getY();
 
-        asteroids.get(0).setPosition(spaceshipLocationX, spaceshipLocationY);
+        asteroid.setPosition(spaceshipLocationX, spaceshipLocationY);
 
-        assertTrue("Model checkShipAsteroidCollision() Fail", model.checkAsteroidBulletCollision());
+
+        //builds the expected result of method run
+        ArrayList<Sprite> expected = new ArrayList<Sprite>();
+        expected.add(spaceship);
+        expected.add(asteroid);
+
+        assertEquals(expected, model.checkGameCollisions());
 
     }
+
 
     @Test
     public void testCheckAsteroidBulletCollision() throws Exception {
@@ -38,13 +47,38 @@ public class ModelTest {
         model.generateBullet();
         List<Bullet> bullets = model.getBulletList();
         List<Asteroid> asteroids = model.getAsteroidList();
+        Asteroid asteroid = asteroids.get(0);
+        Bullet bullet = bullets.get(0);
         Point2D firstBulletLocation = bullets.get(0).getPosition();
         double firstBulletLocationX = firstBulletLocation.getX();
         double firstBulletLocationY = firstBulletLocation.getY();
 
         asteroids.get(0).setPosition(firstBulletLocationX, firstBulletLocationY);
 
-        assertTrue("Model checkAsteroidBulletCollision() Fail", model.checkAsteroidBulletCollision());
+        ArrayList<Sprite> expected = new ArrayList<Sprite>();
+        expected.add(bullet);
+        expected.add(asteroid);
+
+        assertEquals(expected, model.checkGameCollisions());
+
+    }
+
+    @Test
+    public void testCollided() throws Exception {
+        Model model = new Model(500,500);
+        model.generateAsteroid();
+        model.generateBullet();
+        List<Bullet> bullets = model.getBulletList();
+        List<Asteroid> asteroids = model.getAsteroidList();
+        Asteroid asteroid = asteroids.get(0);
+        Bullet bullet = bullets.get(0);
+        Point2D firstBulletLocation = bullets.get(0).getPosition();
+        double firstBulletLocationX = firstBulletLocation.getX();
+        double firstBulletLocationY = firstBulletLocation.getY();
+
+        asteroid.setPosition(firstBulletLocationX, firstBulletLocationY);
+
+        assertTrue(model.collided(bullet, asteroid));
 
     }
 

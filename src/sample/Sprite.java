@@ -66,8 +66,6 @@ public abstract class Sprite extends Group {
     }
 
 
-
-
     /**
      * Play a sound at collision.
      */
