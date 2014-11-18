@@ -51,11 +51,17 @@ public interface AsteroidInterface {
     public double getRadius();
 
     /**
-     * setRadius -- sets radius of asteroid
+     * setRadius -- sets radius of asteroid, calls setSize
      * @param newRadius of  new radius
      */
     public void setRadius(double newRadius);
 
+    /**
+     * setSize --redraws image, called by setRadius
+     * @param width  new width
+     * @param height new height
+     */
+    public void setSize(double width, double height);
 
     public void makeSound();
 
