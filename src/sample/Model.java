@@ -31,9 +31,8 @@ public class Model {
      * checkShipAsteroidCollision -- checks for a Ship and Asteroid collision, updates Lives on collision.
      * @return boolean if there is a collision
      */
-    public boolean checkShipAsteroidCollision(){
-        return false;
-
+    public ArrayList checkGameCollisions(){
+        return new ArrayList();
     }
 
     /**

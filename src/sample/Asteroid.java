@@ -6,9 +6,9 @@ import java.util.Random;
 
 
 /**
- * Asteroid class. Constructs an asteroid for our game. Methods include get/setPosition, get/setVelocity, and vanish
+ * Asteroid class. Constructs an asteroid for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
  */
-public class Asteroid implements AsteroidInterface{
+public class Asteroid extends Sprite implements AsteroidInterface{
 
     private Point2D velocity;
     private Point2D position;
@@ -100,5 +100,7 @@ public class Asteroid implements AsteroidInterface{
         this.setPosition(xPos+xVel, yPos+yVel);
     }
 
+    public void makeSound(){
 
+    }
 }

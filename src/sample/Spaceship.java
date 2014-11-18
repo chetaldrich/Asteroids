@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 /**
  * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, vanish and step
  */
-public class Spaceship implements SpaceshipInterface {
+public class Spaceship extends Sprite implements SpaceshipInterface {
 
     private Point2D velocity;
     private Point2D position;
@@ -58,6 +58,10 @@ public class Spaceship implements SpaceshipInterface {
     public void step() {
         Point2D position = this.getPosition();
         this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
+    }
+
+    public void makeSound(){
+        //stub for the moment.
     }
 
 

@@ -8,7 +8,7 @@ import javafx.geometry.Point2D;
  * Bullet class -- the bullets that our spaceship fires at asteroids
  * Methods include get/setPosition, get/setVelocity, step, vanish
  */
-public class Bullet implements BulletInterface {
+public class Bullet extends Sprite implements BulletInterface {
 
     private Point2D velocity;
     private Point2D position;
@@ -70,5 +70,9 @@ public class Bullet implements BulletInterface {
         double xVel = this.velocity.getX();
         double yVel = this.velocity.getY();
         this.setPosition(xPos+xVel, yPos+yVel);
+    }
+
+    public void makeSound() {
+
     }
 }
