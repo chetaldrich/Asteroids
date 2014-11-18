@@ -5,8 +5,9 @@ package sample;
  */
 public interface ControllerInterface {
 
-   // /**
-     //* Initializes game elements
-     //*/
-    //public void initialize();
+   /**
+    * Initializes game elements
+    */
+    public void initialize();
+
 }
