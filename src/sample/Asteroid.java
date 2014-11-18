@@ -29,7 +29,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setPosition(screenWidth, yCoord);
         this.velocity = new Point2D(-4, 0);
         this.radius = r.nextDouble()*10;
-        this.image = new Image(getClass().getResourceAsStream("/img/asteroid.png"));
+        this.image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"));
         this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
@@ -40,7 +40,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     public void setSize(double width, double height) {
         super.setSize(width, height);
         this.getChildren().remove(imageView);
-        image = new Image(getClass().getResourceAsStream("/img/asteroid.png"), width, height, true,false);
+        image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"), width, height, true,false);
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);

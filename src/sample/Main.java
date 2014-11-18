@@ -17,6 +17,7 @@ public class Main extends Application {
         Parent root = (Parent)loader.load();
         Controller controller = loader.getController();
         // Here, call whatever methods you want to call on controller.
+
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         primaryStage.setTitle("#STELLAR");
         this.screenWidth = 1200;

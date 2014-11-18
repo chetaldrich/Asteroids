@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 public class Spaceship extends Sprite implements SpaceshipInterface {
 
     private Point2D velocity;
-    private Point2D position;
+    //private Point2D position;
     private Image image;
     private ImageView imageView;
     /**
@@ -18,8 +18,9 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
      */
     public Spaceship() {
         this.velocity = new Point2D(0,0);
-        this.position = new Point2D(100, 100);
-        image = new Image(getClass().getResourceAsStream("/img/spaceship.png"));
+        //this.position = new Point2D(100, 100);
+        this.setPosition(900, 400);
+        image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
@@ -29,7 +30,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     public void setSize(double width, double height) {
         super.setSize(width, height);
         this.getChildren().remove(imageView);
-        image = new Image(getClass().getResourceAsStream("/img/spaceship.png"), width, height, true,false);
+        image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"), width, height, true,false);
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
