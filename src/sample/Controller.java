@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -141,14 +142,14 @@ public class Controller {
         return false;
     }
 
-    public void cleanUpObjectsX(){
+    public void cleanUpObjects(){
         for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
             //asteroid.setModel(spaceModel);
-            double xVal = asteroid.getPosition().getY();
-            this.asteroidGroup.getChildren().remove(asteroid);
-
-
+            BoundingBox boundingBox = asteroid.getBounds();
+            if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth) || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)) {
+                this.asteroidGroup.getChildren().remove(asteroid);
+            }
         }
 
     }
