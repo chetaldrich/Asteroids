@@ -101,6 +101,8 @@ public class Controller {
         }
 
     }
+
+    //maybe use bouding box instead?
     private boolean isWithinYBounds(){
         double yVal = this.spaceship.getPosition().getY();
         if ((yVal>0) && (yVal<800)){
@@ -124,6 +126,31 @@ public class Controller {
             this.spaceship.step();
         }
         this.spaceship.setVelocity(0,0);
+
+    }
+    public void fireBullet(){
+        Bullet newBullet = this.spaceModel.generateBullet();
+        this.bulletGroup.getChildren().add(newBullet);
+
+    }
+
+    private boolean isWithinXBounds(){
+        double yVal = this.spaceship.getPosition().getY();
+        if ((yVal>0) && (yVal<800)){
+            return true;
+        }
+        return false;
+    }
+
+    public void cleanUpObjectsX(){
+        for (Node node: this.asteroidGroup.getChildren()){
+            Asteroid asteroid = (Asteroid) node;
+            //asteroid.setModel(spaceModel);
+            double xVal = asteroid.getPosition().getY();
+            this.asteroidGroup.getChildren().remove(asteroid);
+
+
+        }
 
     }
 

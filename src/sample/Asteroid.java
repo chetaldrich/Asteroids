@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
