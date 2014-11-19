@@ -26,6 +26,12 @@ public class Main extends Application {
                 controller.handleKeyPress(keyEvent);
             }
         });
+        root.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                controller.handleKeyRelease(keyEvent);
+            }
+        });
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         primaryStage.setTitle("#STELLAR");
         this.screenWidth = 1200;

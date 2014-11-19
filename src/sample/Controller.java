@@ -23,10 +23,12 @@ public class Controller {
     private static Model spaceModel;
     private double screenWidth;
     private double screenHeight;
-    private static Spaceship spaceShip;
+    private static Spaceship spaceship;
     private static List<Asteroid> asteroidList;
     private static List<Bullet> bulletList;
     private double framesPerSecond;
+    private boolean isMovingUp;
+    private boolean isMovingDown;
 
 
 
@@ -38,6 +40,11 @@ public class Controller {
      * Initializes game elements
      */
     public void initialize() {
+        this.isMovingDown = false;
+        this.isMovingUp = false;
+
+
+
         this.screenHeight = 800;
         this.screenWidth = 1200;
         this.framesPerSecond = 20.0;
@@ -58,20 +65,44 @@ public class Controller {
 
     public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();
-        if (code == KeyCode.UP || code == KeyCode.J) {
+        KeyCode.
+        if (code == KeyCode.UP || code == KeyCode.K) {
             //move ship up
+            this.isMovingUp = true;
             event.consume();
         }
-        else if (code == KeyCode.DOWN || code == KeyCode.K) {
+        else if (code == KeyCode.DOWN || code == KeyCode.J) {
             //move ship down
+            this.isMovingDown = true;
             event.consume();
         }
         else if (code == KeyCode.SPACE) {
-            //fire bullets
+            //fire bullet
             event.consume();
         }
 
     }
+    public void handleKeyRelease(KeyEvent event){
+        KeyCode code = event.getCode();
+        if (code == KeyCode.UP || code == KeyCode.K) {
+            //STOP move ship up
+            event.consume();
+        }
+        else if (code == KeyCode.DOWN || code == KeyCode.J) {
+            //STOP move ship down
+            event.consume();
+        }
+
+    }
+
+    public void moveShipUp(){
+        while (this.isMovingUp && !this.isMovingDown){
+            this.spaceship.step();
+        }
+
+    }
+
+
         /*this.diceModel = new DiceModel(this.diceGroup.getChildren().size());
 
         int index = 0;
