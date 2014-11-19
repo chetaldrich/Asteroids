@@ -15,7 +15,8 @@ import java.util.TimerTask;
 
 public class Controller {
     public Group spaceshipGroup;
-    public
+    public Group asteroidGroup;
+    public Group bulletGroup;
     private static Model spaceModel;
     private double screenWidth;
     private double screenHeight;
