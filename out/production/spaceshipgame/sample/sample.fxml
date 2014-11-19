@@ -4,15 +4,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.Group?>
+<?import java.util.List?>
 
 <Pane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" >
 
-<Group  fx:id = "spaceGroup">
-
-
+<Group  fx:id = "spaceshipGroup">
     <Spaceship />
+</Group>
+<Group fx:id = "asteroidGroup">
 
 </Group>
-
+<Group fx:id = "bulletGroup">
+    
+</Group>
 </Pane>
