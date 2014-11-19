@@ -162,6 +162,15 @@ public class Model {
         scoreboard.setScore(currentScore + points);
     }
 
+    public void removeAsteroid(Asteroid asteroid){
+        asteroids.remove(asteroid);
+
+    }
+    public void removeBullet(Bullet bullet){
+        bullets.remove(bullet);
+
+    }
+
     /**
      * Point2D asteroidPosition = asteroid.getPosition();
      double asteroidRadius = asteroid.getRadius();

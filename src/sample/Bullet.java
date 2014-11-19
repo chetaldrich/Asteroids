@@ -7,6 +7,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.util.Random;
+
 
 /** 
  * Bullet class -- the bullets that our spaceship fires at asteroids
@@ -17,11 +19,14 @@ public class Bullet extends Sprite implements BulletInterface {
     private Point2D velocity;
     private Point2D position;
     private double radius;
+    final private float id;
     /**
      * Constructor
      * @param spaceshipPosition Point2D
      */
     public Bullet(Point2D spaceshipPosition){
+        Random r = new Random();
+        id = r.nextFloat();
         this.position = spaceshipPosition;
         this.velocity = new Point2D(4, 0);
         Paint fill = Color.GRAY;
@@ -29,7 +34,9 @@ public class Bullet extends Sprite implements BulletInterface {
         Circle bullet = new Circle(0, 0, this.radius,  fill);
         this.getChildren().add(bullet);
     }
-
+    public float getObjId(){
+        return this.id;
+    }
 
     /**
      * getPosition -- gets position of bullet

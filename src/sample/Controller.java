@@ -25,8 +25,7 @@ public class Controller {
     final private double screenWidth = 1200;
     final private double screenHeight= 800;
     private static Spaceship spaceship;
-    private static List<Asteroid> asteroidList;
-    private static List<Bullet> bulletList;
+
     final private double framesPerSecond = 20.0;
     private boolean isMovingUp;
     private boolean isMovingDown;
@@ -82,7 +81,7 @@ public class Controller {
             event.consume();
         }
         else if (code == KeyCode.SPACE) {
-            //fire bullet
+            fireBullet();
             event.consume();
         }
 
@@ -102,7 +101,7 @@ public class Controller {
 
     }
 
-    //maybe use bouding box instead?
+
     private boolean isWithinYBounds(){
         double yVal = this.spaceship.getPosition().getY();
         if ((yVal>0) && (yVal<800)){
@@ -142,20 +141,29 @@ public class Controller {
         return false;
     }
 
+    private boolean isBoxinScreen(BoundingBox boundingBox){
+        if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth)
+                || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)){
+            return false;
+        }
+        return true;
+
+    }
+
     public void cleanUpObjects(){
         for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
-            //asteroid.setModel(spaceModel);
             BoundingBox boundingBox = asteroid.getBounds();
-            if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth) || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)) {
+            if (!isBoxinScreen(boundingBox)) {
+                this.spaceModel.removeAsteroid(asteroid);
                 this.asteroidGroup.getChildren().remove(asteroid);
             }
         }
         for (Node node: this.bulletGroup.getChildren()){
             Bullet bullet = (Bullet) node;
-            //asteroid.setModel(spaceModel);
             BoundingBox boundingBox = bullet.getBounds();
-            if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth) || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)) {
+            if (!isBoxinScreen(boundingBox)){
+                this.spaceModel.removeBullet(bullet);
                 this.bulletGroup.getChildren().remove(bullet);
             }
         }
