@@ -14,8 +14,13 @@ public abstract class Sprite extends Group {
     // and size. Those attributes are a part of the Group superclass.
     private String name;
     private Point2D velocity;
+    private Model model;
 
     public Sprite() {
+    }
+
+    public void setModel(Model model){
+        this.model = model;
     }
 
     public String getName() {

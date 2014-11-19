@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import sample.*;
 
-i
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -50,14 +50,20 @@ public class Controller {
         this.framesPerSecond = 20.0;
         this.spaceModel = new Model(this.screenWidth, this.screenHeight);
         spaceModel.createNewShip();
-        spaceModel.generateAsteroid()
+        this.spaceship = spaceModel.getSpaceship();
 
-        for (Node node: this.asteroidGroup.getChildren()){
+        spaceModel.generateAsteroid();
+
+        for (int i = 0; i < 2; i++){
+            Node node = new Node();
             Asteroid asteroid = (Asteroid) node;
-            
+            asteroid.setModel(spaceModel);
+            this.asteroidGroup.getChildren().add(asteroid);
+            System.out.println(spaceModel.getAsteroidList().size());
+
         }
-        this.asteroidGroup.getChildren().add();
-        this.spaceShip = spaceModel.getSpaceship();
+
+
 
 
         //this.setUpAnimationTimer();
@@ -65,7 +71,6 @@ public class Controller {
 
     public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();
-        KeyCode.
         if (code == KeyCode.UP || code == KeyCode.K) {
             //move ship up
             this.isMovingUp = true;
