@@ -54,8 +54,7 @@ public class Controller {
 
         spaceModel.generateAsteroid();
 
-        for (int i = 0; i < 2; i++){
-            Node node = new Node();
+        for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
             asteroid.setModel(spaceModel);
             this.asteroidGroup.getChildren().add(asteroid);
