@@ -64,6 +64,14 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setSize(newRadius, newRadius);
     }
 
+    public BoundingBox getBounds(){
+        double xval= this.getPosition().getX();
+        double yval = this.getPosition().getY();
+        double xmin = xval - this.radius;
+        double ymin = yval - this.radius;
+        double widthAndHeight = 2*this.radius;
+        return new BoundingBox(xmin, ymin, widthAndHeight, widthAndHeight);
+    }
     /*/**
      * getPosition -- gets position of asteroid
      * @return Point2D of position
