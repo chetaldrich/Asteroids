@@ -21,14 +21,15 @@ public class Controller {
     public Group asteroidGroup;
     public Group bulletGroup;
     private static Model spaceModel;
-    private double screenWidth;
-    private double screenHeight;
+    final private double screenWidth = 1200;
+    final private double screenHeight= 800;
     private static Spaceship spaceship;
     private static List<Asteroid> asteroidList;
     private static List<Bullet> bulletList;
-    private double framesPerSecond;
+    final private double framesPerSecond = 20.0;
     private boolean isMovingUp;
     private boolean isMovingDown;
+
 
 
 
@@ -45,13 +46,13 @@ public class Controller {
 
 
 
-        this.screenHeight = 800;
-        this.screenWidth = 1200;
-        this.framesPerSecond = 20.0;
+        //this.screenHeight = 800;
+        //this.screenWidth = 1200;
+        //this.framesPerSecond = 20.0;
         this.spaceModel = new Model(this.screenWidth, this.screenHeight);
         spaceModel.createNewShip();
         this.spaceship = spaceModel.getSpaceship();
-
+        this.spaceshipGroup.getChildren().add(this.spaceship);
         spaceModel.generateAsteroid();
 
         for (Node node: this.asteroidGroup.getChildren()){
@@ -70,12 +71,12 @@ public class Controller {
     public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();
         if (code == KeyCode.UP || code == KeyCode.K) {
-            //move ship up
+            moveShipUp();
             this.isMovingUp = true;
             event.consume();
         }
         else if (code == KeyCode.DOWN || code == KeyCode.J) {
-            //move ship down
+            moveShipDown();
             this.isMovingDown = true;
             event.consume();
         }
@@ -89,19 +90,39 @@ public class Controller {
         KeyCode code = event.getCode();
         if (code == KeyCode.UP || code == KeyCode.K) {
             //STOP move ship up
+            this.isMovingUp = false;
             event.consume();
         }
         else if (code == KeyCode.DOWN || code == KeyCode.J) {
             //STOP move ship down
+            this.isMovingDown = false;
             event.consume();
         }
 
     }
+    private boolean isWithinYBounds(){
+        double yVal = this.spaceship.getPosition().getY();
+        if ((yVal>0) && (yVal<800)){
+            return true;
+        }
+        return false;
+    }
 
     public void moveShipUp(){
-        while (this.isMovingUp && !this.isMovingDown){
+        this.spaceship.setVelocity(4,0);
+
+        while ((this.isMovingUp && !this.isMovingDown) && isWithinYBounds()){
             this.spaceship.step();
         }
+        this.spaceship.setVelocity(0,0);
+
+    }
+    public void moveShipDown(){
+        this.spaceship.setVelocity(-4,0);
+        while ((this.isMovingUp && !this.isMovingDown) && isWithinYBounds()){
+            this.spaceship.step();
+        }
+        this.spaceship.setVelocity(0,0);
 
     }
 
