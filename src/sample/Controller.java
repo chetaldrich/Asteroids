@@ -6,8 +6,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import sample.*;
 
+i
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -51,6 +54,23 @@ public class Controller {
 
 
         //this.setUpAnimationTimer();
+    }
+
+    public void handleKeyPress(KeyEvent event){
+        KeyCode code = event.getCode();
+        if (code == KeyCode.UP || code == KeyCode.J) {
+            //move ship up
+            event.consume();
+        }
+        else if (code == KeyCode.DOWN || code == KeyCode.K) {
+            //move ship down
+            event.consume();
+        }
+        else if (code == KeyCode.SPACE) {
+            //fire bullets
+            event.consume();
+        }
+
     }
         /*this.diceModel = new DiceModel(this.diceGroup.getChildren().size());
 
