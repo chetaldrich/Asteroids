@@ -151,6 +151,14 @@ public class Controller {
                 this.asteroidGroup.getChildren().remove(asteroid);
             }
         }
+        for (Node node: this.bulletGroup.getChildren()){
+            Bullet bullet = (Bullet) node;
+            //asteroid.setModel(spaceModel);
+            BoundingBox boundingBox = bullet.getBounds();
+            if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth) || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)) {
+                this.bulletGroup.getChildren().remove(bullet);
+            }
+        }
 
     }
 

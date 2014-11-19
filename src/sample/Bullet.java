@@ -1,6 +1,7 @@
 package sample;
 
 
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -15,6 +16,7 @@ public class Bullet extends Sprite implements BulletInterface {
 
     private Point2D velocity;
     private Point2D position;
+    private double radius;
     /**
      * Constructor
      * @param spaceshipPosition Point2D
@@ -23,7 +25,8 @@ public class Bullet extends Sprite implements BulletInterface {
         this.position = spaceshipPosition;
         this.velocity = new Point2D(4, 0);
         Paint fill = Color.GRAY;
-        Circle bullet = new Circle(0, 0, 2.0,  fill);
+        this.radius = 2.0;
+        Circle bullet = new Circle(0, 0, this.radius,  fill);
         this.getChildren().add(bullet);
     }
 
@@ -80,5 +83,13 @@ public class Bullet extends Sprite implements BulletInterface {
 
     public void makeSound() {
 
+    }
+    public BoundingBox getBounds(){
+        double xval= this.getPosition().getX();
+        double yval = this.getPosition().getY();
+        double xmin = xval - this.radius;
+        double ymin = yval - this.radius;
+        double widthAndHeight = 2*this.radius;
+        return new BoundingBox(xmin, ymin, widthAndHeight, widthAndHeight);
     }
 }
