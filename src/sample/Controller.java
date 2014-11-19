@@ -40,8 +40,15 @@ public class Controller {
         this.framesPerSecond = 20.0;
         this.spaceModel = new Model(this.screenWidth, this.screenHeight);
         spaceModel.createNewShip();
-        spaceModel.generateAsteroid();
+        spaceModel.generateAsteroid()
+
+        for (Node node: this.asteroidGroup.getChildren()){
+            Asteroid asteroid = (Asteroid) node;
+            
+        }
+        this.asteroidGroup.getChildren().add();
         this.spaceShip = spaceModel.getSpaceship();
+
 
         //this.setUpAnimationTimer();
     }
