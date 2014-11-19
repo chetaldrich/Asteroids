@@ -24,13 +24,13 @@ public interface ModelInterface {
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
-d     */
-    public void generateAsteroid();
+d    */
+    public Asteroid generateAsteroid();
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
 d     */
-    public void generateBullet();
+    public Bullet generateBullet();
 
 
     /**

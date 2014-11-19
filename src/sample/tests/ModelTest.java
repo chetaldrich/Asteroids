@@ -83,17 +83,19 @@ public class ModelTest {
     }
 
     @Test
-    public void testGenerateAsteroid(){
+    public Asteroid testGenerateAsteroid(){
         Model model = new Model(500,500);
-        model.generateAsteroid();
+        Asteroid testAsteroid = model.generateAsteroid();
         assertTrue("Model generateAsteroid() Fail", 1==model.getAsteroidList().size());
+        assertNotNull("Model generateAsteroid() return Fail", model.generateAsteroid());    
     }
 
     @Test
-    public void testGenerateBullet(){
+    public Bullet testGenerateBullet(){
         Model model = new Model(500,500);
-        model.generateBullet();
+        Bullet testBullet = model.generateBullet();
         assertTrue("Model generateBullet() Fail", 1==model.getBulletList().size());
+        assertNotNull("Model generateBullet() return Fail", model.generateBullet());
 
     }
 
