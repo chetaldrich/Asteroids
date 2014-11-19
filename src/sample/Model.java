@@ -74,17 +74,19 @@ public class Model {
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
-    public void generateAsteroid(){
+    public Asteroid generateAsteroid(){
        Asteroid newAsteroid = new Asteroid(screenWidth, screenHeight);
        asteroids.add(newAsteroid);
+       return newAsteroid;
     }
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
      */
-    public void generateBullet(){
+    public Bullet generateBullet(){
         Bullet newBullet = new Bullet(spaceship.getPosition());
         bullets.add(newBullet);
+        return newBullet;
     }
 
 

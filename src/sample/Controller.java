@@ -60,7 +60,6 @@ public class Controller {
             asteroid.setModel(spaceModel);
             this.asteroidGroup.getChildren().add(asteroid);
             System.out.println(spaceModel.getAsteroidList().size());
-
         }
 
 
