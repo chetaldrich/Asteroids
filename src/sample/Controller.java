@@ -14,13 +14,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Controller {
-    //public Group spaceGroup;
-    private Model spaceModel;
+    public Group spaceshipGroup;
+    public
+    private static Model spaceModel;
     private double screenWidth;
     private double screenHeight;
-    private Spaceship spaceShip;
-    private List<Asteroid> asteroidList;
-    private List<Bullet> bulletList;
+    private static Spaceship spaceShip;
+    private static List<Asteroid> asteroidList;
+    private static List<Bullet> bulletList;
     private double framesPerSecond;
 
 
