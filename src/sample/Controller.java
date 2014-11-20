@@ -2,6 +2,8 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -17,14 +19,14 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Controller {
+public class Controller implements EventHandler<KeyEvent> {
     public Group spaceshipGroup;
     public Group asteroidGroup;
     public Group bulletGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
     final private double screenHeight= 800;
-    private static Spaceship spaceship;
+    @FXML private Spaceship spaceship;
 
     final private double framesPerSecond = 20.0;
     private boolean isMovingUp;
@@ -45,24 +47,19 @@ public class Controller {
         this.isMovingDown = false;
         this.isMovingUp = false;
 
-
-
-        //this.screenHeight = 800;
-        //this.screenWidth = 1200;
-        //this.framesPerSecond = 20.0;
-        this.spaceModel = new Model(this.screenWidth, this.screenHeight);
-        spaceModel.createNewShip();
+        spaceModel = new Model(this.screenWidth, this.screenHeight);
+        /*spaceModel.createNewShip();
         this.spaceship = spaceModel.getSpaceship();
-        this.spaceshipGroup.getChildren().add(this.spaceship);
-        Asteroid myAsteroid = this.spaceModel.generateAsteroid();
-       // this.asteroidGroup.getChildren().add(myAsteroid);
+        this.spaceshipGroup.getChildren().add(this.spaceship);*/
+        /*Asteroid myAsteroid = this.spaceModel.generateAsteroid();
+          this.asteroidGroup.getChildren().add(myAsteroid);
 
         for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
             asteroid.setModel(spaceModel);
             this.asteroidGroup.getChildren().add(asteroid);
             System.out.println(spaceModel.getAsteroidList().size());
-        }
+        }*/
 
 
 
@@ -75,7 +72,7 @@ public class Controller {
             public void run() {
                 Platform.runLater(new Runnable() {
                     public void run() {
-                        updateAnimation();
+                            updateAnimation();
                     }
                 });
             }
@@ -89,8 +86,7 @@ public class Controller {
     }
 
     private void updateAnimation() {
-        moveShipUp();
-        moveShipDown();
+        this.spaceship.step();
 
         for (Node child : this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) child;
@@ -104,11 +100,32 @@ public class Controller {
 
         }
 
+    }
 
+    @Override
+    public void handle(KeyEvent keyEvent) {
+        KeyCode code = keyEvent.getCode();
+        double spaceshipPosition = this.spaceship.getLayoutX();
+        double stepSize = 10.0;
+        if (code == KeyCode.UP || code == KeyCode.W) {
+            // move ship up
+            if (spaceshipPosition > stepSize) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
+            } else {
+                this.spaceship.setLayoutX(0);
+            }
+        } else if (code == KeyCode.RIGHT || code == KeyCode.S) {
+            // move ship down
+            if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
+            } else {
+                this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
+            }
+        }
     }
 
 
-    public void handleKeyPress(KeyEvent event){
+    /*public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();
         if (code == KeyCode.UP || code == KeyCode.K) {
             moveShipUp();
@@ -139,15 +156,12 @@ public class Controller {
             event.consume();
         }
 
-    }
+    }*/
 
 
     private boolean isWithinYBounds(){
         double yVal = this.spaceship.getPosition().getY();
-        if ((yVal>0) && (yVal<800)){
-            return true;
-        }
-        return false;
+        return (yVal > 0) && (yVal < 800);
     }
 
     public void moveShipUp(){
@@ -168,17 +182,14 @@ public class Controller {
 
     }
     public void fireBullet(){
-        Bullet newBullet = this.spaceModel.generateBullet();
+        Bullet newBullet = spaceModel.generateBullet();
         this.bulletGroup.getChildren().add(newBullet);
 
     }
 
     private boolean isWithinXBounds(){
         double yVal = this.spaceship.getPosition().getY();
-        if ((yVal>0) && (yVal<800)){
-            return true;
-        }
-        return false;
+        return (yVal > 0) && (yVal < 800);
     }
 
     private boolean isBoxinScreen(BoundingBox boundingBox){
@@ -195,7 +206,7 @@ public class Controller {
             Asteroid asteroid = (Asteroid) node;
             BoundingBox boundingBox = asteroid.getBounds();
             if (!isBoxinScreen(boundingBox)) {
-                this.spaceModel.removeAsteroid(asteroid);
+                spaceModel.removeAsteroid(asteroid);
                 this.asteroidGroup.getChildren().remove(asteroid);
             }
         }
@@ -203,7 +214,7 @@ public class Controller {
             Bullet bullet = (Bullet) node;
             BoundingBox boundingBox = bullet.getBounds();
             if (!isBoxinScreen(boundingBox)){
-                this.spaceModel.removeBullet(bullet);
+                spaceModel.removeBullet(bullet);
                 this.bulletGroup.getChildren().remove(bullet);
             }
         }

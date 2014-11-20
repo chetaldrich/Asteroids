@@ -24,7 +24,7 @@ public class Model {
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.createScoreboard();
-        this.createNewShip();
+        //this.createNewShip();
     }
 
     /**

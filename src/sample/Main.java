@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class Main extends Application {
@@ -15,24 +17,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = (Parent)loader.load();
         final Controller controller = loader.getController();
        
         // Here, call whatever methods you want to call on controller.
+        root.setOnKeyPressed(controller);
 
-        root.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                controller.handleKeyPress(keyEvent);
-            }
-        });
-        root.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                controller.handleKeyRelease(keyEvent);
-            }
-        });
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         primaryStage.setTitle("#STELLAR");
         this.screenWidth = 1200;
@@ -46,7 +45,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        javafx.application.Application.launch(args);
+        launch(args);
     }
 }
 

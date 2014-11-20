@@ -10,7 +10,7 @@
           xmlns:fx="http://javafx.com/fxml" >
 
 <Group  fx:id = "spaceshipGroup">
-    <Spaceship />
+    <Spaceship fx:id = "spaceship"/>
 </Group>
 <Group fx:id = "asteroidGroup">
 

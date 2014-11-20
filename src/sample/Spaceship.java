@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +18,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
      * Constructor
      */
     public Spaceship() {
-        this.velocity = new Point2D(0,0);
+        this.velocity = new Point2D(2,0);
         //this.position = new Point2D(100, 100);
         this.setPosition(200, 400);
         image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));
@@ -73,10 +74,11 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     /*/**
      * step -- Moves the spaceship to its next Point2D position in the game.
      */
-    /*public void step() {
+    @Override
+    public void step() {
         Point2D position = this.getPosition();
         this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
-    }*/
+    }
 
     @Override
     public void makeSound(){
