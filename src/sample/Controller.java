@@ -30,8 +30,9 @@ public class Controller {
     private boolean isMovingUp;
     private boolean isMovingDown;
 
-
-
+    private int score;
+    private boolean paused;
+    private Timer timer;
 
     public Controller(){
 
@@ -53,7 +54,8 @@ public class Controller {
         spaceModel.createNewShip();
         this.spaceship = spaceModel.getSpaceship();
         this.spaceshipGroup.getChildren().add(this.spaceship);
-        spaceModel.generateAsteroid();
+        Asteroid myAsteroid = this.spaceModel.generateAsteroid();
+       // this.asteroidGroup.getChildren().add(myAsteroid);
 
         for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
@@ -65,8 +67,46 @@ public class Controller {
 
 
 
-        //this.setUpAnimationTimer();
+        this.setUpAnimationTimer();
     }
+
+    private void setUpAnimationTimer() {
+        TimerTask timerTask = new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        updateAnimation();
+                    }
+                });
+            }
+        };
+
+        final long startTimeInMilliseconds = 0;
+        final long repetitionPeriodInMilliseconds = 100;
+        long frameTimeInMilliseconds = (long)(1000.0 / framesPerSecond);
+        this.timer = new java.util.Timer();
+        this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
+    }
+
+    private void updateAnimation() {
+        moveShipUp();
+        moveShipDown();
+
+        for (Node child : this.asteroidGroup.getChildren()){
+            Asteroid asteroid = (Asteroid) child;
+            asteroid.step();
+
+        }
+        for (Node child : this.bulletGroup.getChildren()){
+
+            Bullet bullet = (Bullet) child;
+            bullet.step();
+
+        }
+
+
+    }
+
 
     public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();

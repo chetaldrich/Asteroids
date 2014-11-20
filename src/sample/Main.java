@@ -18,6 +18,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = (Parent)loader.load();
         final Controller controller = loader.getController();
+       
         // Here, call whatever methods you want to call on controller.
 
         root.setOnKeyPressed(new EventHandler<KeyEvent>() {
