@@ -9,6 +9,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
@@ -27,7 +28,7 @@ import java.util.TimerTask;
 
 public class Controller implements EventHandler<KeyEvent> {
     public Group spaceshipGroup;
-    public Group asteroidGroup;
+    @FXML public Group asteroidGroup;
     public Group bulletGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
@@ -96,24 +97,42 @@ public class Controller implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
+        EventType<KeyEvent> eventType = keyEvent.getEventType();
+        System.out.println("fghjhghjk");
         KeyCode code = keyEvent.getCode();
         double spaceshipPosition = this.spaceship.getLayoutX();
         double stepSize = 10.0;
-        if (code == KeyCode.UP || code == KeyCode.W) {
+        if (code == KeyCode.UP || code == KeyCode.K) {
+            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
+                moveShipUp();
+            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
+                isMovingUp = false;
+            }
             // move ship up
-            if (spaceshipPosition > stepSize) {
-                this.spaceship.setLayoutX(this.spaceship.getLayoutY() - stepSize);
+
+            /*if (spaceshipPosition > stepSize) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
             } else {
-                this.spaceship.setLayoutY(0);
+                this.spaceship.setLayoutX(0);
+            }*/
+        } else if (code == KeyCode.DOWN || code == KeyCode.J) {
+            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
+                moveShipDown();
+            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
+                isMovingDown = false;
             }
-        } else if (code == KeyCode.DOWN || code == KeyCode.S) {
             // move ship down
-            if (spaceshipPosition + this.spaceship.getSize().getY() + stepSize < this.screenHeight) {
-                this.spaceship.setLayoutY(this.spaceship.getLayoutX() + stepSize);
+            /*if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
             } else {
-                this.spaceship.setLayoutY(this.screenHeight - this.spaceship.getSize().getY());
-            }
+                this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
+            }*/
+
         }
+        else if (code == KeyCode.SPACE) {
+            fireBullet();
+        }
+
     }
 
     public void spriteRemove(Sprite sprite){
@@ -156,7 +175,10 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private boolean isWithinYBounds(){
         double yVal = this.spaceship.getPosition().getY();
-        return (yVal > 0) && (yVal < 800);
+        double size = this.spaceship.getSize().getY()/2;
+        double yMax = yVal + size;
+        double yMin = yVal - size;
+        return (yMin > 0) && (yMax < 800);
     }
 
     public void moveShipUp(){

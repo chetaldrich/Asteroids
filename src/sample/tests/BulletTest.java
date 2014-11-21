@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 import org.junit.Test;
 
 import sample.Bullet;
+import sample.Spaceship;
 
 
 import static org.junit.Assert.*;
@@ -20,14 +21,14 @@ public class BulletTest {
 
     @Test
     public void testGetPosition() throws Exception {
-        Bullet bullet = new Bullet(new Point2D(10,10));
+        Bullet bullet = new Bullet(new Spaceship());
         bullet.setPosition(2,2);
         assertEquals("Bullet getPosition Fail", new Point2D(2,2), bullet.getPosition());
     }
 
     @Test
     public void testSetPosition() throws Exception {
-        Bullet bullet = new Bullet(new Point2D(10,10));
+        Bullet bullet = new Bullet(new Spaceship());
         bullet.setPosition(4,4);
         assertEquals("Bullet setPosition Fail", new Point2D(4,4), bullet.getPosition());
     }
@@ -36,14 +37,14 @@ public class BulletTest {
 
     @Test
     public void testGetVelocity() throws Exception {
-        Bullet bullet = new Bullet(new Point2D(10,10));
+        Bullet bullet = new Bullet(new Spaceship());
         bullet.setVelocity(2,2);
         assertEquals("Bullet getVelocity Fail", new Point2D(2,2), bullet.getVelocity());
     }
 
     @Test
     public void testSetVelocity() throws Exception {
-        Bullet bullet = new Bullet(new Point2D(10,10));
+        Bullet bullet = new Bullet(new Spaceship());
         bullet.setVelocity(4,4);
         assertEquals("Bullet setVelocity Fail", new Point2D(4,4), bullet.getVelocity());
 
@@ -51,7 +52,7 @@ public class BulletTest {
 
     @Test
     public void testStep() throws Exception {
-        Bullet bullet = new Bullet(new Point2D(10,10));
+        Bullet bullet = new Bullet(new Spaceship());
         Point2D oldPosition = bullet.getPosition();
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();

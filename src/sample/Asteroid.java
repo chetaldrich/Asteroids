@@ -33,14 +33,12 @@ public class Asteroid extends Sprite implements AsteroidInterface{
      * Constructor
      */
     public Asteroid(){
-        //Random r = new Random();
-        //id = r.nextFloat();
-        //double yCoord = r.nextDouble()*screenHeight;
-        double yCoord = 400;
+        Random r = new Random();
+        id = r.nextFloat();
+        this.radius = r.nextDouble()*10;
+        double yCoord = r.nextDouble()*(screenHeight - 2*this.radius) + this.radius;
         this.setPosition(screenWidth, yCoord);
         this.velocity = new Point2D(-4, 0);
-        //this.radius = r.nextDouble()*10;
-        this.radius = 20;
         this.image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"));
         this.imageView = new ImageView();
         imageView.setImage(image);
