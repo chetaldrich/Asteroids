@@ -36,26 +36,29 @@ public class Model {
      * checkGameCollisions -- checks for any collisions in the sprite classes.
      * @return ArrayList of the sprites that collided
      */
-    public ArrayList<Sprite> checkGameCollisions(){
+    public ArrayList<Sprite> checkGameCollisions(String type){
+
         int bulletListLength = bullets.size();
         int asteroidListLength = asteroids.size();
 
-        for (int i = 0; i < bulletListLength; i++){
-            Bullet bullet = (Bullet) bullets.get(i);
-
-
-            for (int j = 0; j < asteroidListLength; j++){
-                Asteroid asteroid = (Asteroid) asteroids.get(j);
-                if (collided(spaceship, asteroid)){
-                   ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
-                   collidedSprites.add(spaceship);
-                   collidedSprites.add(asteroid);
-                   return collidedSprites;
-                }else if (collided(bullet, asteroid)){
-                   ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
-                   collidedSprites.add(bullet);
-                   collidedSprites.add(asteroid);
-                   return collidedSprites;
+        for (int i = 0; i < asteroidListLength; i++) {
+            Asteroid asteroid = (Asteroid) asteroids.get(i);
+            if (type.equals("bullet-asteroid")) {
+                for (int j = 0; j < bulletListLength; j++) {
+                    Bullet bullet = (Bullet) bullets.get(j);
+                    if (collided(asteroid, bullet)) {
+                        ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+                        collidedSprites.add(bullet);
+                        collidedSprites.add(asteroid);
+                        return collidedSprites;
+                    }
+                }
+            } else if (type.equals("spaceship-asteroid")) {
+                if (collided(this.spaceship, asteroid)) {
+                    ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+                    collidedSprites.add(this.spaceship);
+                    collidedSprites.add(asteroid);
+                    return collidedSprites;
                 }
             }
         }

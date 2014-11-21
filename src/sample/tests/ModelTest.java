@@ -35,7 +35,7 @@ public class ModelTest {
         expected.add(spaceship);
         expected.add(asteroid);
 
-        assertEquals(expected, model.checkGameCollisions());
+        assertEquals(expected, model.checkGameCollisions("spaceship-asteroid"));
 
     }
 
@@ -59,7 +59,7 @@ public class ModelTest {
         expected.add(bullet);
         expected.add(asteroid);
 
-        assertEquals(expected, model.checkGameCollisions());
+        assertEquals(expected, model.checkGameCollisions("bullet-asteroid"));
 
     }
 

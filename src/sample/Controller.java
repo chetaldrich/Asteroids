@@ -27,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Controller implements EventHandler<KeyEvent> {
-    public Group spaceshipGroup;
+    @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     public Group bulletGroup;
     public Group scoreboardGroup;
@@ -61,7 +61,9 @@ public class Controller implements EventHandler<KeyEvent> {
 
         this.setUpAnimationTimer();
     }
-
+    public Group getSpaceshipGroup(){
+        return this.spaceshipGroup;
+    }
     private void setUpAnimationTimer() {
         TimerTask timerTask = new TimerTask() {
             public void run() {
@@ -93,8 +95,23 @@ public class Controller implements EventHandler<KeyEvent> {
             bullet.step();
 
         }
-
+        ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid");
+        ArrayList collidedSAs = spaceModel.checkGameCollisions("asteroid-spaceship");
+        if (collidedBAs.size()!=0){
+            for (int i = 0; i<collidedBAs.size(); i+=2){
+                bulletGroup.getChildren().remove(collidedBAs.get(i));
+                asteroidGroup.getChildren().remove(collidedBAs.get(i + 1));
+            }
+        }
+        if (collidedSAs.size()!=0){
+            //one asteroid can only hit the ship at a time
+             spaceshipGroup.getChildren().remove(collidedBAs.get(0));
+             asteroidGroup.getChildren().remove(collidedBAs.get(1));
+        }
     }
+
+
+
 
     @Override
     public void handle(KeyEvent keyEvent) {
