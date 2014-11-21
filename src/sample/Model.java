@@ -24,7 +24,6 @@ public class Model {
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.createScoreboard();
-        //this.createNewShip();
     }
 
     /**
@@ -75,7 +74,7 @@ public class Model {
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
      */
     public Asteroid generateAsteroid(){
-       Asteroid newAsteroid = new Asteroid(screenWidth, screenHeight);
+       Asteroid newAsteroid = new Asteroid();
        asteroids.add(newAsteroid);
        return newAsteroid;
     }

@@ -13,7 +13,7 @@
     <Spaceship fx:id = "spaceship"/>
 </Group>
 <Group fx:id = "asteroidGroup">
-
+    <Asteroid fx:id = "asteroid" />
 </Group>
 <Group fx:id = "bulletGroup">
     

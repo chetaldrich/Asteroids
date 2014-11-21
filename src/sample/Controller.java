@@ -48,9 +48,8 @@ public class Controller implements EventHandler<KeyEvent> {
         this.isMovingUp = false;
 
         spaceModel = new Model(this.screenWidth, this.screenHeight);
-        /*spaceModel.createNewShip();
-        this.spaceship = spaceModel.getSpaceship();
-        this.spaceshipGroup.getChildren().add(this.spaceship);*/
+
+
         /*Asteroid myAsteroid = this.spaceModel.generateAsteroid();
           this.asteroidGroup.getChildren().add(myAsteroid);
 
@@ -59,9 +58,7 @@ public class Controller implements EventHandler<KeyEvent> {
             asteroid.setModel(spaceModel);
             this.asteroidGroup.getChildren().add(asteroid);
             System.out.println(spaceModel.getAsteroidList().size());
-        }*/
-
-
+            }*/
 
 
         this.setUpAnimationTimer();
@@ -110,16 +107,16 @@ public class Controller implements EventHandler<KeyEvent> {
         if (code == KeyCode.UP || code == KeyCode.W) {
             // move ship up
             if (spaceshipPosition > stepSize) {
-                this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
+                this.spaceship.setLayoutX(this.spaceship.getLayoutY() - stepSize);
             } else {
-                this.spaceship.setLayoutX(0);
+                this.spaceship.setLayoutY(0);
             }
-        } else if (code == KeyCode.RIGHT || code == KeyCode.S) {
+        } else if (code == KeyCode.DOWN || code == KeyCode.S) {
             // move ship down
-            if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
-                this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
+            if (spaceshipPosition + this.spaceship.getSize().getY() + stepSize < this.screenHeight) {
+                this.spaceship.setLayoutY(this.spaceship.getLayoutX() + stepSize);
             } else {
-                this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
+                this.spaceship.setLayoutY(this.screenHeight - this.spaceship.getSize().getY());
             }
         }
     }
