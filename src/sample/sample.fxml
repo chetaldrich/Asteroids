@@ -1,3 +1,5 @@
+<!--Chet Aldrich and Josie Bealle-->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.Pane?>
 <?import sample.*?>
@@ -13,7 +15,11 @@
     <Spaceship fx:id = "spaceship"/>
 </Group>
 <Group fx:id = "asteroidGroup">
-    <Asteroid fx:id = "asteroid" />
+    <Asteroid fx:id = "asteroid1"/>
+    <!--<Asteroid fx:id = "asteroid2" />
+    <Asteroid fx:id = "asteroid3"/>
+    <Asteroid fx:id = "asteroid4" />
+    <Asteroid fx:id = "asteroid5"/>-->
 </Group>
 <Group fx:id = "bulletGroup">
     

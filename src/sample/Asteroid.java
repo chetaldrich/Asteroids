@@ -1,3 +1,9 @@
+/**
+ * Asteroid.java
+ * Constructs a asteroids for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 import javafx.geometry.BoundingBox;
@@ -9,7 +15,7 @@ import java.util.Random;
 
 
 /**
- * Asteroid class. Constructs an asteroid for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
+ *
  */
 public class Asteroid extends Sprite implements AsteroidInterface{
 
@@ -20,7 +26,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private ImageView imageView;
     private int screenHeight = 800;
     private int screenWidth = 1200;
-    final private float id;
+    private float id;
 
 
     /**

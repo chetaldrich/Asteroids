@@ -1,9 +1,13 @@
+/**
+ * Sprite.java
+ * Adapted from the sprite class created by Jeff Ondich, the Sprite class provides methods to retrieve and set sprite properties in the game.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 
-/**
- * Created by chetaldrich on 11/17/14.
- */
+
 
 
 import javafx.geometry.Bounds;

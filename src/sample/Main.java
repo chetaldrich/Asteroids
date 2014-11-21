@@ -1,3 +1,9 @@
+/**
+ * Main.java
+ * Main class of our program, which launches the game and associated classes.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 import javafx.application.Application;

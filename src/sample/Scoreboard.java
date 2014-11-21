@@ -1,3 +1,4 @@
+
 package sample;
 
 //import javafx.scene.shape.*;
@@ -10,9 +11,12 @@ import java.util.Formatter;
 import java.util.Locale;
 
 
-/**
+
+ /* Scoreboard.java
  * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
+ * Chet Aldrich and Josie Bealle
  */
+
 public class Scoreboard extends Group implements ScoreboardInterface{
 
     private int score;

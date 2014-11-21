@@ -1,9 +1,13 @@
+/**
+ * SpaceshipInterface.java
+ * SpaceshipInterface: Interface for the Spaceship class, which constructs a spaceship for our game.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 import javafx.geometry.Point2D;
 
-/**
- * SpaceshipInterface: Interface for the Spaceship class, which constructs a spaceship for our game.
- */
+
 public interface SpaceshipInterface {
 
     /*/**
@@ -44,6 +48,12 @@ public interface SpaceshipInterface {
      * @param height new height
      */
     public void setSize(double width, double height);
+
+    /**
+     * getSpriteType -- returns Sprite type as
+     * @return spaceship string
+     */
+    public String getSpriteType();
 
     public void makeSound();
 

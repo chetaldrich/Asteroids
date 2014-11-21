@@ -1,3 +1,9 @@
+/**
+ * Bullet.java
+ * Bullet class -- the bullets that our spaceship fires at asteroids
+ * Methods include getBounds, makeSound, etc.
+ * Chet Aldrich and Josie Bealle
+ */
 package sample;
 
 
@@ -10,10 +16,7 @@ import javafx.scene.shape.Circle;
 import java.util.Random;
 
 
-/** 
- * Bullet class -- the bullets that our spaceship fires at asteroids
- * Methods include get/setPosition, get/setVelocity, step, vanish
- */
+
 public class Bullet extends Sprite implements BulletInterface {
 
     private Point2D velocity;

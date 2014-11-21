@@ -1,3 +1,9 @@
+/**
+ * Model.java
+ * Manages the current game state of our program, and provides information to the controller for modification.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 
@@ -46,10 +52,10 @@ public class Model {
                    collidedSprites.add(asteroid);
                    return collidedSprites;
                 }else if (collided(bullet, asteroid)){
-                    ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
-                    collidedSprites.add(bullet);
-                    collidedSprites.add(asteroid);
-                    return collidedSprites;
+                   ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+                   collidedSprites.add(bullet);
+                   collidedSprites.add(asteroid);
+                   return collidedSprites;
                 }
             }
         }

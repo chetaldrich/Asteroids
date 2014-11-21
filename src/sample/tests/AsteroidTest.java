@@ -1,3 +1,9 @@
+/**
+ * AsteroidTest.java
+ * A suite of basic unit tests for the Asteroid class.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample.tests;
 import javafx.geometry.Point2D;
 import sample.Asteroid;

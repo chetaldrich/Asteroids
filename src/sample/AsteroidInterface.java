@@ -1,10 +1,13 @@
+/**
+ * AsteroidInterface.java
+ * Asteroid interface for our asteroid class, which constructs an asteroid for our game. Methods include get/set Radius, makeSound, etc.
+ * Chet Aldrich and Josie Bealle
+ */
 package sample;
 
 import javafx.geometry.Point2D;
 
-/**
- * Asteroid class. Constructs an asteroid for our game. Methods include get/setPosition, get/setVelocity, and vanish
- */
+
 public interface AsteroidInterface {
 
     /*/**
