@@ -98,7 +98,6 @@ public class Controller implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         EventType<KeyEvent> eventType = keyEvent.getEventType();
-        System.out.println("fghjhghjk");
         KeyCode code = keyEvent.getCode();
         double spaceshipPosition = this.spaceship.getLayoutX();
         double stepSize = 10.0;
