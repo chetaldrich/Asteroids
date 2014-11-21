@@ -1,3 +1,9 @@
+/**
+ * Controller.java
+ * Manipulates and creates game elements in the Asteroids game.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 import javafx.application.Platform;
@@ -50,16 +56,6 @@ public class Controller implements EventHandler<KeyEvent> {
         spaceModel = new Model(this.screenWidth, this.screenHeight);
 
 
-        /*Asteroid myAsteroid = this.spaceModel.generateAsteroid();
-          this.asteroidGroup.getChildren().add(myAsteroid);
-
-        for (Node node: this.asteroidGroup.getChildren()){
-            Asteroid asteroid = (Asteroid) node;
-            asteroid.setModel(spaceModel);
-            this.asteroidGroup.getChildren().add(asteroid);
-            System.out.println(spaceModel.getAsteroidList().size());
-            }*/
-
 
         this.setUpAnimationTimer();
     }
@@ -91,7 +87,6 @@ public class Controller implements EventHandler<KeyEvent> {
 
         }
         for (Node child : this.bulletGroup.getChildren()){
-
             Bullet bullet = (Bullet) child;
             bullet.step();
 
@@ -121,6 +116,9 @@ public class Controller implements EventHandler<KeyEvent> {
         }
     }
 
+    public void spriteRemove(Sprite sprite){
+
+    }
 
     /*public void handleKeyPress(KeyEvent event){
         KeyCode code = event.getCode();
@@ -219,59 +217,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
 
-        /*this.diceModel = new DiceModel(this.diceGroup.getChildren().size());
 
-        int index = 0;
-        double leftEdge = 0.0;
-        final double PADDING = 15.0;
-        for (Node node : this.diceGroup.getChildren()) {
-            FourSidedDie die = (FourSidedDie)node;
-            die.setDieIndex(index);
-            die.setDiceModel(this.diceModel);
-            die.setLayoutX(leftEdge);
-            leftEdge += die.getWidth() + PADDING;
-            die.update();
-            index++;
-        }
-
-        this.updateDiceSumLabel();*/
-    /*private void setUpAnimationTimer() {
-        TimerTask timerTask = new TimerTask() {
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        updateAnimation();
-                    }
-                });
-            }
-        };
-
-        final long startTimeInMilliseconds = 0;
-        final long repetitionPeriodInMilliseconds = 100;
-        long frameTimeInMilliseconds = (long)(1000.0 / framesPerSecond);
-        Timer timer = new java.util.Timer();
-        timer.schedule(timerTask, 0, frameTimeInMilliseconds);
-    }
-
-    private void updateAnimation() {
-        for (Sprite sprite : this.asteroidList) {
-            // Change sprite's velocity to create a bounce if it has hit a wall.
-            Point2D position = sprite.getPosition();
-            Point2D size = sprite.getSize();
-            Point2D velocity = sprite.getVelocity();
-            if (position.getX() + size.getX() >= screenWidth && velocity.getX() > 0) {
-                sprite.setVelocity(-velocity.getX(), velocity.getY());
-            } else if (position.getX() < 0  && velocity.getX() < 0) {
-                sprite.setVelocity(-velocity.getX(), velocity.getY());
-            } else if (position.getY() + size.getY() >= screenHeight && velocity.getY() > 0) {
-                sprite.setVelocity(velocity.getX(), -velocity.getY());
-            } else if (position.getY() < 0 && velocity.getY() < 0) {
-                sprite.setVelocity(velocity.getX(), -velocity.getY());
-                sprite.makeSound();
-            }
-
-            // Move the sprite.
-            sprite.step();*/
 
 
 

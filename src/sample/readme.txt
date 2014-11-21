@@ -12,7 +12,6 @@ http://www.nutt.net/2013/11/25/create-scrolling-background-java/
 https://carlfx.wordpress.com/tag/collision-detection/
 
 We also have a model and controller and main class.
-Here is some ascii art have a nice weekend Jeff.
 
 				
 				                   A

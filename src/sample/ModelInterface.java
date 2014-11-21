@@ -1,3 +1,8 @@
+/**
+ * ModelInterface.java
+ * Manages the current game state of our program, and provides information to the controller for modification.
+ * Chet Aldrich and Josie Bealle
+ */
 package sample;
 
 import javafx.geometry.Point2D;

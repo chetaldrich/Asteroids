@@ -1,11 +1,15 @@
+/**
+ * BulletInterface.java
+ * Bullet interface for the bullet class, which defines the bullets that our spaceship fires at asteroids
+ * Methods include getBounds, makeSound, etc.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 import javafx.geometry.Point2D;
 
-/** 
- * Bullet Interface for our bullet class
- * Methods include get/setPosition, get/setVelocity, step, vanish
- */
+
 public interface BulletInterface {
     
     /**

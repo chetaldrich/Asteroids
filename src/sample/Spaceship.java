@@ -1,3 +1,9 @@
+/**
+ * Spaceship.java
+ * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, and step
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
 import javafx.fxml.FXML;
@@ -5,9 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/**
- * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, vanish and step
- */
+
 public class Spaceship extends Sprite implements SpaceshipInterface {
 
     private Point2D velocity;
@@ -78,6 +82,11 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     public void step() {
         Point2D position = this.getPosition();
         this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
+    }
+
+
+    public String getSpriteType(){
+        return "spaceship";
     }
 
     @Override

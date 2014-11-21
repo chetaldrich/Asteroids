@@ -1,8 +1,12 @@
+/**
+ * Scoreboard.java
+ * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
+ * Chet Aldrich and Josie Bealle
+ */
+
 package sample;
 
-/**
- * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
- */
+
 public class Scoreboard implements ScoreboardInterface{
 
     private int score;
