@@ -116,42 +116,31 @@ public class Controller implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         EventType<KeyEvent> eventType = keyEvent.getEventType();
-        System.out.println("fghjhghjk");
         KeyCode code = keyEvent.getCode();
-        double spaceshipPosition = this.spaceship.getLayoutX();
+        double spaceshipPosition = this.spaceship.getLayoutY();
         double stepSize = 10.0;
         if (code == KeyCode.UP || code == KeyCode.K) {
-            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
-                moveShipUp();
-            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
-                isMovingUp = false;
-            }
             // move ship up
-
-            /*if (spaceshipPosition > stepSize) {
-                this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
+            if (spaceshipPosition > stepSize) {
+                this.spaceship.setLayoutY(this.spaceship.getLayoutY() - stepSize);
             } else {
-                this.spaceship.setLayoutX(0);
-            }*/
-        } else if (code == KeyCode.DOWN || code == KeyCode.J) {
-            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
-                moveShipDown();
-            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
-                isMovingDown = false;
+                this.spaceship.setLayoutY(0);
             }
+
+        } else if (code == KeyCode.DOWN || code == KeyCode.J) {
             // move ship down
-            /*if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
-                this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
+            if (spaceshipPosition + this.spaceship.getSize().getY() + stepSize < this.screenHeight) {
+                this.spaceship.setLayoutY(this.spaceship.getLayoutY() + stepSize);
             } else {
-                this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
-            }*/
+                this.spaceship.setLayoutY(this.screenHeight - this.spaceship.getSize().getX());
+            }
 
-        }
-        else if (code == KeyCode.SPACE) {
+        }/*        else if (code == KeyCode.SPACE) {
             fireBullet();
-        }
-
+        }*/
     }
+
+
 
     public void spriteRemove(Sprite sprite){
 
