@@ -18,13 +18,15 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private double radius;
     private Image image;
     private ImageView imageView;
+    private int screenHeight = 800;
+    private int screenWidth = 1200;
     final private float id;
 
 
     /**
      * Constructor
      */
-    public Asteroid(double screenWidth, double screenHeight){
+    public Asteroid(){
         Random r = new Random();
         id = r.nextFloat();
         double yCoord = r.nextDouble()*screenHeight;
@@ -122,18 +124,18 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     /*public void setVelocity(double vx, double vy) {
         this.velocity = new Point2D(vx,vy);
 
-    }
+    }*/
 
     /**
      * step -- sets new position according to velocity
      */
-    /*public void step() {
-        double xPos = this.position.getX();
-        double yPos = this.position.getY();
+    public void step() {
+        double xPos = this.getPosition().getX();
+        double yPos = this.getPosition().getY();
         double xVel = this.velocity.getX();
         double yVel = this.velocity.getY();
         this.setPosition(xPos+xVel, yPos+yVel);
-    }*/
+    }
     @Override
     public void makeSound(){
 

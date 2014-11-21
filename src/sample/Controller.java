@@ -48,9 +48,8 @@ public class Controller implements EventHandler<KeyEvent> {
         this.isMovingUp = false;
 
         spaceModel = new Model(this.screenWidth, this.screenHeight);
-        /*spaceModel.createNewShip();
-        this.spaceship = spaceModel.getSpaceship();
-        this.spaceshipGroup.getChildren().add(this.spaceship);*/
+
+
         /*Asteroid myAsteroid = this.spaceModel.generateAsteroid();
           this.asteroidGroup.getChildren().add(myAsteroid);
 
@@ -59,9 +58,7 @@ public class Controller implements EventHandler<KeyEvent> {
             asteroid.setModel(spaceModel);
             this.asteroidGroup.getChildren().add(asteroid);
             System.out.println(spaceModel.getAsteroidList().size());
-        }*/
-
-
+            }*/
 
 
         this.setUpAnimationTimer();
@@ -110,6 +107,7 @@ public class Controller implements EventHandler<KeyEvent> {
         if (code == KeyCode.UP || code == KeyCode.K) {
             moveShipUp();
             // move ship up
+
             /*if (spaceshipPosition > stepSize) {
                 this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
             } else {
@@ -123,6 +121,7 @@ public class Controller implements EventHandler<KeyEvent> {
             } else {
                 this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
             }*/
+
         }
     }
 
