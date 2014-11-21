@@ -21,7 +21,7 @@ import java.util.TimerTask;
 
 public class Controller implements EventHandler<KeyEvent> {
     public Group spaceshipGroup;
-    public Group asteroidGroup;
+    @FXML public Group asteroidGroup;
     public Group bulletGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
@@ -107,20 +107,22 @@ public class Controller implements EventHandler<KeyEvent> {
         KeyCode code = keyEvent.getCode();
         double spaceshipPosition = this.spaceship.getLayoutX();
         double stepSize = 10.0;
-        if (code == KeyCode.UP || code == KeyCode.W) {
+        if (code == KeyCode.UP || code == KeyCode.K) {
+            moveShipUp();
             // move ship up
-            if (spaceshipPosition > stepSize) {
+            /*if (spaceshipPosition > stepSize) {
                 this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
             } else {
                 this.spaceship.setLayoutX(0);
-            }
-        } else if (code == KeyCode.RIGHT || code == KeyCode.S) {
+            }*/
+        } else if (code == KeyCode.DOWN || code == KeyCode.J) {
+            moveShipDown();
             // move ship down
-            if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
+            /*if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
                 this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
             } else {
                 this.spaceship.setLayoutX(this.screenHeight - this.spaceship.getSize().getX());
-            }
+            }*/
         }
     }
 
@@ -161,7 +163,10 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private boolean isWithinYBounds(){
         double yVal = this.spaceship.getPosition().getY();
-        return (yVal > 0) && (yVal < 800);
+        double size = this.spaceship.getSize().getY()/2;
+        double yMax = yVal + size;
+        double yMin = yVal - size;
+        return (yMin > 0) && (yMax < 800);
     }
 
     public void moveShipUp(){
