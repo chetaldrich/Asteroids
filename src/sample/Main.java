@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -32,12 +33,11 @@ public class Main extends Application {
         });
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = (Parent)loader.load();
+        final Parent root = (Parent)loader.load();
         Controller controller = loader.getController();
-       
-        // Here, call whatever methods you want to call on controller.
+
         root.setOnKeyPressed(controller);
-        root.setOnKeyReleased(controller);
+        root.setOnMouseClicked(me -> root.requestFocus());
 
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         primaryStage.setTitle("#STELLAR");
@@ -45,7 +45,7 @@ public class Main extends Application {
         this.screenHeight = 800;
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
         primaryStage.show();
-
+        root.requestFocus();
     }
 
 
