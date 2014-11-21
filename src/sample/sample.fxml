@@ -24,4 +24,8 @@
 <Group fx:id = "bulletGroup">
     
 </Group>
+<Group fx:id="scoreboardGroup">
+    <Scoreboard/>
+</Group>
 </Pane>
+

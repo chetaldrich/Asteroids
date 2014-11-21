@@ -1,16 +1,29 @@
-/**
- * Scoreboard.java
+
+package sample;
+
+//import javafx.scene.shape.*;
+import javafx.scene.Group;
+import javafx.scene.paint.*;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+
+import java.util.Formatter;
+import java.util.Locale;
+
+
+
+ /* Scoreboard.java
  * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
  * Chet Aldrich and Josie Bealle
  */
 
-package sample;
-
-
-public class Scoreboard implements ScoreboardInterface{
+public class Scoreboard extends Group implements ScoreboardInterface{
 
     private int score;
     private int lives;
+    private Text text;
+    private StringBuilder sb;
+    private Formatter formatter;
 
     /**
      * Constructor
@@ -18,6 +31,26 @@ public class Scoreboard implements ScoreboardInterface{
     public Scoreboard(){
         this.score = 0;
         this.lives = 3;
+        Paint fill = Color.LIGHTPINK;
+        Rectangle displayRect = new Rectangle(0, 700, 1200,100);
+        displayRect.setFill(fill);
+        sb = new StringBuilder();
+        formatter = new Formatter(sb, Locale.US);
+        formatter.format("Score: %d\nLives: %d", this.score, this.lives);
+        String scoreString = sb.toString();
+        text = new Text(0, 720, scoreString);
+        this.getChildren().add(displayRect);
+        this.getChildren().add(text);
+    }
+
+    public void updateText(){
+        this.getChildren().remove(text);
+        sb = new StringBuilder();
+        formatter = new Formatter(sb, Locale.US);
+        formatter.format("Score: %d\nLives: %d", this.score, this.lives);
+        String scoreString = sb.toString();
+        text = new Text(scoreString);
+        this.getChildren().add(text);
     }
 
     /**

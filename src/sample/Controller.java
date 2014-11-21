@@ -30,6 +30,7 @@ public class Controller implements EventHandler<KeyEvent> {
     public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     public Group bulletGroup;
+    public Group scoreboardGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
     final private double screenHeight= 800;
@@ -199,7 +200,11 @@ public class Controller implements EventHandler<KeyEvent> {
     }
     public void fireBullet(){
         Bullet newBullet = spaceModel.generateBullet();
-        this.bulletGroup.getChildren().add(newBullet);
+        double spaceshipOffset = spaceship.getSize().getX();
+        double bulletXVal = spaceship.getPosition().getX() + spaceshipOffset;
+        double bulletYVal = spaceship.getPosition().getY();
+        newBullet.setPosition(bulletXVal, bulletYVal);
+        //this.bulletGroup.getChildren().add(newBullet);   -->do i need this?
 
     }
 
