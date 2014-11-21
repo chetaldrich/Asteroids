@@ -22,12 +22,15 @@ public class Bullet extends Sprite implements BulletInterface {
     final private float id;
     /**
      * Constructor
-     * @param spaceshipPosition Point2D
+     * @param spaceship Spaceship
      */
-    public Bullet(Point2D spaceshipPosition){
+    public Bullet(Spaceship spaceship){
         Random r = new Random();
         id = r.nextFloat();
-        this.position = spaceshipPosition;
+        double spaceshipOffset = spaceship.getSize().getX();
+        double bulletXVal = spaceship.getPosition().getX() + spaceshipOffset;
+        double bulletYVal = spaceship.getPosition().getY();
+        this.position = new Point2D(bulletXVal, bulletYVal);
         this.velocity = new Point2D(4, 0);
         Paint fill = Color.GRAY;
         this.radius = 2.0;

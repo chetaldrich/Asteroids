@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
@@ -101,11 +102,17 @@ public class Controller implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
+        EventType<KeyEvent> eventType = keyEvent.getEventType();
+        System.out.println("fghjhghjk");
         KeyCode code = keyEvent.getCode();
         double spaceshipPosition = this.spaceship.getLayoutX();
         double stepSize = 10.0;
         if (code == KeyCode.UP || code == KeyCode.K) {
-            moveShipUp();
+            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
+                moveShipUp();
+            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
+                isMovingUp = false;
+            }
             // move ship up
 
             /*if (spaceshipPosition > stepSize) {
@@ -114,7 +121,11 @@ public class Controller implements EventHandler<KeyEvent> {
                 this.spaceship.setLayoutX(0);
             }*/
         } else if (code == KeyCode.DOWN || code == KeyCode.J) {
-            moveShipDown();
+            if (eventType.equals(KeyEvent.KEY_PRESSED)) {
+                moveShipDown();
+            } else if (eventType.equals(KeyEvent.KEY_RELEASED)){
+                isMovingDown = false;
+            }
             // move ship down
             /*if (spaceshipPosition + this.spaceship.getSize().getX() + stepSize < this.screenHeight) {
                 this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
@@ -123,6 +134,10 @@ public class Controller implements EventHandler<KeyEvent> {
             }*/
 
         }
+        else if (code == KeyCode.SPACE) {
+            fireBullet();
+        }
+
     }
 
 

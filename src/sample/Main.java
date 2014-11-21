@@ -31,6 +31,7 @@ public class Main extends Application {
        
         // Here, call whatever methods you want to call on controller.
         root.setOnKeyPressed(controller);
+        root.setOnKeyReleased(controller);
 
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         primaryStage.setTitle("#STELLAR");

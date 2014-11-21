@@ -83,7 +83,7 @@ public class Model {
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
      */
     public Bullet generateBullet(){
-        Bullet newBullet = new Bullet(spaceship.getPosition());
+        Bullet newBullet = new Bullet(spaceship);
         bullets.add(newBullet);
         return newBullet;
     }
