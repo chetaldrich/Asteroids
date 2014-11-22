@@ -33,7 +33,6 @@ public class Bullet extends Sprite implements BulletInterface {
         this.getChildren().add(imageView);
     }
 
-
     /**
      * step -- sets new position according to velocity
      */
