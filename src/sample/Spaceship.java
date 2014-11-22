@@ -22,7 +22,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
      * Constructor
      */
     public Spaceship() {
-        this.velocity = new Point2D(2,0);
+        this.velocity = new Point2D(0,0);
         //this.position = new Point2D(100, 100);
         this.setPosition(200, 400);
         image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));

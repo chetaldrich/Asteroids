@@ -24,7 +24,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private double radius;
     private Image image;
     private ImageView imageView;
-    private int screenHeight = 800;
+    private int screenHeight = 700;
     private int screenWidth = 1200;
     private float id;
 
@@ -38,7 +38,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
 
         this.radius = r.nextDouble()*60+60;
         double yCoord = r.nextDouble()*(screenHeight - 2*this.radius) + this.radius;
-        this.velocity = new Point2D(-4, 0);
+        this.velocity = new Point2D(-8, 0);
         this.setPosition(screenWidth, yCoord);
         this.image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"), this.radius, this.radius, true, false);
         this.imageView = new ImageView();
