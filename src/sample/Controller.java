@@ -62,8 +62,6 @@ public class Controller implements EventHandler<KeyEvent> {
 
         this.spaceModel = new Model(this.screenWidth, this.screenHeight);
 
-
-
         this.setUpAnimationTimer();
     }
 
@@ -120,6 +118,7 @@ public class Controller implements EventHandler<KeyEvent> {
         catch (Exception e){
 
         }
+
     }
 
     /**
@@ -132,7 +131,6 @@ public class Controller implements EventHandler<KeyEvent> {
             for (Node child : this.asteroidGroup.getChildren()) {
                 Asteroid asteroid = (Asteroid) child;
                 asteroid.step();
-
             }
         }
 
@@ -166,7 +164,6 @@ public class Controller implements EventHandler<KeyEvent> {
      */
     @Override
     public void handle(KeyEvent keyEvent) {
-        EventType<KeyEvent> eventType = keyEvent.getEventType();
         KeyCode code = keyEvent.getCode();
         double spaceshipPosition = this.spaceship.getLayoutY();
         double stepSize = 10.0;
@@ -197,13 +194,14 @@ public class Controller implements EventHandler<KeyEvent> {
      * fireBullet -- fires a bullet from the spaceship by creating a new Bullet instance at the location of the spaceship.
      */
     public void fireBullet(){
+        double spaceshipXOffset = spaceship.getSize().getX() - 30;
+        double spaceshipYOffset = spaceship.getSize().getY()/2;
+        double bulletXVal = spaceship.getPosition().getX() + spaceshipXOffset;
+        double bulletYVal = spaceship.getPosition().getY() + spaceshipYOffset;
         Bullet newBullet = spaceModel.generateBullet();
-        double spaceshipOffset = spaceship.getSize().getX();
-        double bulletXVal = spaceship.getPosition().getX() + spaceshipOffset;
-        double bulletYVal = spaceship.getPosition().getY();
         newBullet.setPosition(bulletXVal, bulletYVal);
         this.bulletCount+=1;
-        //this.bulletGroup.getChildren().add(newBullet);   -->do i need this?
+        this.bulletGroup.getChildren().add(newBullet);
 
     }
 
@@ -245,21 +243,21 @@ public class Controller implements EventHandler<KeyEvent> {
                 }
             }
         }
-        catch (Exception e){
-
-        }
+        catch (Exception e){}
         if (bulletCount>0) {
-            for (Node node : this.bulletGroup.getChildren()) {
-                Bullet bullet = (Bullet) node;
-                BoundingBox boundingBox = bullet.getBounds();
-                if (!isBulletInScreen(bullet)) {
-                    spaceModel.removeBullet(bullet);
-                    this.bulletGroup.getChildren().remove(bullet);
-                    bulletCount--;
-                }
-            }
+          try {
+              for (Node node : this.bulletGroup.getChildren()) {
+                  Bullet bullet = (Bullet) node;
+                  BoundingBox boundingBox = bullet.getBounds();
+                  if (!isBulletInScreen(bullet)) {
+                      spaceModel.removeBullet(bullet);
+                      this.bulletGroup.getChildren().remove(bullet);
+                      bulletCount--;
+                  }
+              }
+          }
+          catch (Exception e){}
         }
-
     }
 
 
