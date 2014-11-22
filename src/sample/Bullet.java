@@ -36,6 +36,7 @@ public class Bullet extends Sprite implements BulletInterface {
         this.getChildren().add(bullet);
     }
 
+
     /**
      * getPosition -- gets position of bullet
      * @return Point2D of position

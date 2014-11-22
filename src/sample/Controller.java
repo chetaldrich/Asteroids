@@ -35,7 +35,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenWidth = 1200;
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
-    @FXML private ArrayList<Asteroid> asteroidList;
+
 
 
     final private double framesPerSecond = 20.0;
@@ -46,6 +46,7 @@ public class Controller implements EventHandler<KeyEvent> {
     private int score;
     private boolean paused;
     private Timer timer;
+    private Timer cleanupTimer;
 
     public Controller(){
 
@@ -75,6 +76,17 @@ public class Controller implements EventHandler<KeyEvent> {
                 Platform.runLater(new Runnable() {
                     public void run() {
                             updateAnimation();
+
+                    }
+                });
+            }
+        };
+        TimerTask cleanUpTask = new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        cleanUpObjects();
+
                     }
                 });
             }
@@ -85,6 +97,7 @@ public class Controller implements EventHandler<KeyEvent> {
                     @Override
                     public void run() {
                        makeAsteroids();
+
                     }
                 });
             }
@@ -94,11 +107,20 @@ public class Controller implements EventHandler<KeyEvent> {
         final long repetitionPeriodInMilliseconds = 100;
         long frameTimeInMilliseconds = (long)(1000.0 / framesPerSecond);
         this.timer = new java.util.Timer();
+        this.cleanupTimer = new Timer();
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
+        this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
         this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 2500);
     }
     public void makeAsteroids(){
-        this.asteroidGroup.getChildren().add(this.spaceModel.generateAsteroid());
+        Asteroid newAsteroid = this.spaceModel.generateAsteroid();
+        //this.asteroidGroup.getChildren().add(newAsteroid);
+        try{
+            this.asteroidGroup.getChildren().add(newAsteroid);
+        }
+        catch (Exception e){
+
+        }
     }
 
     /**
@@ -188,13 +210,23 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
     /**
-     * isBoxinScreen -- determines whether a game object's bounding box is within the game view.
-     * @param boundingBox the bounds of a particular game object (requires boundingBox type, found with getBounds method)
-     * @return boolean whether object is inside game screen.
+     * isAsteroidInScreen -- determines whether a given asteroid is still visible.
+     * @param asteroid the asteroid we're looking at
+     * @return boolean whether asteroid is inside game screen.
      */
-    private boolean isBoxinScreen(BoundingBox boundingBox){
-        if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth)
-                || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)){
+    private boolean isAsteroidInScreen(Asteroid asteroid){
+        if (asteroid.getPosition().getX() + asteroid.getRadius() <=0){
+            return false;
+        }
+        return true;
+    }
+    /**
+     * isBulletInScreen -- determines whether a given bullet is still visible.
+     * @param bullet the bullet we're looking at
+     * @return boolean whether bullet is inside game screen.
+     */
+    private boolean isBulletInScreen(Bullet bullet){
+        if (bullet.getPosition().getX() - bullet.getSize().getX() >= this.screenWidth){
             return false;
         }
         return true;
@@ -204,21 +236,28 @@ public class Controller implements EventHandler<KeyEvent> {
      * cleanUpObjects -- removes objects that have collided with each other, and instantiates new ones if necessary.
      */
     public void cleanUpObjects(){
-        for (Node node: this.asteroidGroup.getChildren()){
-            Asteroid asteroid = (Asteroid) node;
-            BoundingBox boundingBox = asteroid.getBounds();
-            if (!isBoxinScreen(boundingBox)) {
-                spaceModel.removeAsteroid(asteroid);
-                this.asteroidGroup.getChildren().remove(asteroid);
-                this.spaceModel.generateAsteroid();
+        try {
+            for (Node node : this.asteroidGroup.getChildren()) {
+                Asteroid asteroid = (Asteroid) node;
+                if (!isAsteroidInScreen(asteroid)) {
+                    spaceModel.removeAsteroid(asteroid);
+                    this.asteroidGroup.getChildren().remove(asteroid);
+
+                }
             }
         }
-        for (Node node: this.bulletGroup.getChildren()){
-            Bullet bullet = (Bullet) node;
-            BoundingBox boundingBox = bullet.getBounds();
-            if (!isBoxinScreen(boundingBox)){
-                spaceModel.removeBullet(bullet);
-                this.bulletGroup.getChildren().remove(bullet);
+        catch (Exception e){
+
+        }
+        if (bulletCount>0) {
+            for (Node node : this.bulletGroup.getChildren()) {
+                Bullet bullet = (Bullet) node;
+                BoundingBox boundingBox = bullet.getBounds();
+                if (!isBulletInScreen(bullet)) {
+                    spaceModel.removeBullet(bullet);
+                    this.bulletGroup.getChildren().remove(bullet);
+                    bulletCount--;
+                }
             }
         }
 
