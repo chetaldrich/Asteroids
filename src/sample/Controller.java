@@ -114,7 +114,6 @@ public class Controller implements EventHandler<KeyEvent> {
     }
     public void makeAsteroids(){
         Asteroid newAsteroid = this.spaceModel.generateAsteroid();
-        //this.asteroidGroup.getChildren().add(newAsteroid);
         try{
             this.asteroidGroup.getChildren().add(newAsteroid);
         }
