@@ -39,6 +39,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double framesPerSecond = 20.0;
     private boolean isMovingUp;
     private boolean isMovingDown;
+    private int bulletCount;
 
     private int score;
     private boolean paused;
@@ -54,6 +55,7 @@ public class Controller implements EventHandler<KeyEvent> {
     public void initialize() {
         this.isMovingDown = false;
         this.isMovingUp = false;
+        this.bulletCount=0;
 
         spaceModel = new Model(this.screenWidth, this.screenHeight);
 
@@ -84,22 +86,27 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private void updateAnimation() {
         this.spaceship.step();
+        if (this.asteroidGroup.getChildren().size()>0) {
+            for (Node child : this.asteroidGroup.getChildren()) {
+                Asteroid asteroid = (Asteroid) child;
+                asteroid.step();
 
-        for (Node child : this.asteroidGroup.getChildren()){
-            Asteroid asteroid = (Asteroid) child;
-            asteroid.step();
-
+            }
         }
-        for (Node child : this.bulletGroup.getChildren()){
-            Bullet bullet = (Bullet) child;
-            bullet.step();
 
+        if (this.bulletCount>0) {
+            for (Node child : this.bulletGroup.getChildren()) {
+                Bullet bullet = (Bullet) child;
+                bullet.step();
+
+            }
         }
         ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid");
         ArrayList collidedSAs = spaceModel.checkGameCollisions("asteroid-spaceship");
         if (collidedBAs.size()!=0){
             for (int i = 0; i<collidedBAs.size(); i+=2){
                 bulletGroup.getChildren().remove(collidedBAs.get(i));
+                this.bulletCount-=1;
                 asteroidGroup.getChildren().remove(collidedBAs.get(i + 1));
             }
         }
@@ -211,6 +218,7 @@ public class Controller implements EventHandler<KeyEvent> {
         double bulletXVal = spaceship.getPosition().getX() + spaceshipOffset;
         double bulletYVal = spaceship.getPosition().getY();
         newBullet.setPosition(bulletXVal, bulletYVal);
+        this.bulletCount+=1;
         //this.bulletGroup.getChildren().add(newBullet);   -->do i need this?
 
     }
