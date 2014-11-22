@@ -43,6 +43,9 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.getChildren().add(text);
     }
 
+    /**
+     * updateText -- adds new strings that will be used to display the information called by the controller.
+     */
     public void updateText(){
         this.getChildren().remove(text);
         sb = new StringBuilder();

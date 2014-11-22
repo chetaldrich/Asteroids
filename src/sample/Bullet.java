@@ -1,6 +1,6 @@
 /**
  * Bullet.java
- * Bullet class -- the bullets that our spaceship fires at asteroids
+ * Bullet class -- holds data and constructs the bullets that our spaceship fires at asteroids
  * Methods include getBounds, makeSound, etc.
  * Chet Aldrich and Josie Bealle
  */
@@ -18,26 +18,22 @@ import java.util.Random;
 
 
 public class Bullet extends Sprite implements BulletInterface {
-
     private Point2D velocity;
     private Point2D position;
     private double radius;
     final private float id;
+
     /**
      * Constructor
      */
     public Bullet(){
         Random r = new Random();
         id = r.nextFloat();
-
         this.velocity = new Point2D(4, 0);
         Paint fill = Color.GRAY;
         this.radius = 2.0;
         Circle bullet = new Circle(0, 0, this.radius,  fill);
         this.getChildren().add(bullet);
-    }
-    public float getObjId(){
-        return this.id;
     }
 
     /**
@@ -90,9 +86,8 @@ public class Bullet extends Sprite implements BulletInterface {
         this.setPosition(xPos+xVel, yPos+yVel);
     }
 
-    public void makeSound() {
-
-    }
+    public void makeSound() {}
+    
     public BoundingBox getBounds(){
         double xval= this.getPosition().getX();
         double yval = this.getPosition().getY();

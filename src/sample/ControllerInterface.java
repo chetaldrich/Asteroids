@@ -10,21 +10,27 @@ package sample;
 public interface ControllerInterface {
 
    /**
-    * Initializes game elements
+    * initialize -- initializes game the beginning game elements and starts the animation timer.
     */
     public void initialize();
 
+    /**
+     * handle -- implements keystroke handling, including spaceship movement and bullet firing.
+     */
     public void handle();
 
-    public void spriteRemove();
+    /**
+     * fireBullet -- fires a bullet from the spaceship by creating a new Bullet instance at that location.
+     */
+    public void fireBullet();
 
+    /**
+     * cleanUpObjects -- removes objects that have collided with each other, and instantiates new ones if necessary.
+     */
     public void cleanUpObjects();
 
-    public void moveShipUp();
 
-    public void moveShipDown();
 
-    public void fireBullet();
 
 
 
