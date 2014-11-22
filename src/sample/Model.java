@@ -62,7 +62,6 @@ public class Model {
                 }
             }
         }
-        //TODO: find something better than just returning an empty list, although this might be OK.
         return new ArrayList<Sprite>();
     }
 

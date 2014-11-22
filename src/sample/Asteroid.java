@@ -35,7 +35,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     public Asteroid(){
         Random r = new Random();
         id = r.nextFloat();
-
         this.radius = r.nextDouble()*60+60;
         double yCoord = r.nextDouble()*(screenHeight - 2*this.radius) + this.radius;
         this.velocity = new Point2D(-8, 0);
@@ -78,6 +77,10 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setSize(newRadius, newRadius);
     }
 
+    /**
+     * getBounds -- gets the outer bounds of this object
+     * @return BoundingBox of this particular object (each corner of the box surrounding a game object
+     */
     public BoundingBox getBounds(){
         double xval= this.getPosition().getX();
         double yval = this.getPosition().getY();
@@ -86,52 +89,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         double widthAndHeight = 2*this.radius;
         return new BoundingBox(xmin, ymin, widthAndHeight, widthAndHeight);
     }
-    /*/**
-     * getPosition -- gets position of asteroid
-     * @return Point2D of position
-     */
-    /*public Point2D getPosition() {
-        Point2D position = new Point2D(this.getLayoutX(), this.getLayoutY());
-        return position;
-        return this.position;
-    }
-
-     /** setPosition -- sets position of asteroid
-      * @param x  New x value
-      * @param y  New y value
-      */
-    /*public void setPosition(double x, double y){
-        this.position = new Point2D(x,y);
-
-    }*/
-
-    /*/**
-     * vanish -- makes the asteroid disappear from screen
-     * (so like when it smashes into  the spaceship)
-     **/
-    /*public void vanish() {
-
-       //stub :)
-    }*/
-
-    /*/**
-     * getVelocity -- gets velocity of asteroid
-     * @return Point2D of velocity
-     */
-    /*public Point2D getVelocity(){
-        return this.velocity;
-    }
-
-
-    /**
-     * setVelocity --sets velocity of asteroid
-     * @param vx New x velocity
-     * @param vy New y velocity
-     */
-    /*public void setVelocity(double vx, double vy) {
-        this.velocity = new Point2D(vx,vy);
-
-    }*/
 
     /**
      * step -- sets new position according to velocity
@@ -143,6 +100,8 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         double yVel = this.velocity.getY();
         this.setPosition(xPos+xVel, yPos+yVel);
     }
+
+
     @Override
     public void makeSound(){
 

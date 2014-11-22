@@ -52,7 +52,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * Initializes game elements
+     * initialize -- initializes game the beginning game elements and starts the animation timer.
      */
     public void initialize() {
         this.isMovingDown = false;
@@ -65,9 +65,10 @@ public class Controller implements EventHandler<KeyEvent> {
 
         this.setUpAnimationTimer();
     }
-    public Group getSpaceshipGroup(){
-        return this.spaceshipGroup;
-    }
+
+    /**
+     * setUpAnimationTimer -- begins the timer for animations
+     */
     private void setUpAnimationTimer() {
         TimerTask timerTask = new TimerTask() {
             public void run() {
@@ -100,6 +101,10 @@ public class Controller implements EventHandler<KeyEvent> {
         this.asteroidGroup.getChildren().add(this.spaceModel.generateAsteroid());
     }
 
+    /**
+     * updateAnimation -- calls functions to handle essential animation elements.
+     * Examples include step methods for object movement in-game and collision checking.
+     */
     private void updateAnimation() {
         this.spaceship.step();
         if (this.asteroidGroup.getChildren().size()>0) {
@@ -135,7 +140,9 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
 
-
+    /**
+     * handle -- implements keystroke handling, including spaceship movement and bullet firing.
+     */
     @Override
     public void handle(KeyEvent keyEvent) {
         EventType<KeyEvent> eventType = keyEvent.getEventType();
@@ -165,56 +172,9 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
 
-
-    public void spriteRemove(Sprite sprite){
-
-    }
-
-    /*public void handleKeyPress(KeyEvent event){
-        KeyCode code = event.getCode();
-        if (code == KeyCode.UP || code == KeyCode.K) {
-            moveShipUp();
-            this.isMovingUp = true;
-            event.consume();
-        }
-        else if (code == KeyCode.DOWN || code == KeyCode.J) {
-            moveShipDown();
-            this.isMovingDown = true;
-            event.consume();
-        }
-        else if (code == KeyCode.SPACE) {
-            fireBullet();
-            event.consume();
-        }
-
-    }
-    public void handleKeyRelease(KeyEvent event){
-        KeyCode code = event.getCode();
-        if (code == KeyCode.UP || code == KeyCode.K) {
-            //STOP move ship up
-            this.isMovingUp = false;
-            event.consume();
-        }
-        else if (code == KeyCode.DOWN || code == KeyCode.J) {
-            //STOP move ship down
-            this.isMovingDown = false;
-            event.consume();
-        }
-
-    }*/
-
-
-    private boolean isWithinYBounds(){
-        double yVal = this.spaceship.getPosition().getY();
-        double size = this.spaceship.getSize().getY()/2;
-        double yMax = yVal + size;
-        double yMin = yVal - size;
-        return (yMin > 0) && (yMax < 800);
-    }
-
-
-
-
+    /**
+     * fireBullet -- fires a bullet from the spaceship by creating a new Bullet instance at the location of the spaceship.
+     */
     public void fireBullet(){
         Bullet newBullet = spaceModel.generateBullet();
         double spaceshipOffset = spaceship.getSize().getX();
@@ -226,20 +186,23 @@ public class Controller implements EventHandler<KeyEvent> {
 
     }
 
-    private boolean isWithinXBounds(){
-        double yVal = this.spaceship.getPosition().getY();
-        return (yVal > 0) && (yVal < 800);
-    }
 
+    /**
+     * isBoxinScreen -- determines whether a game object's bounding box is within the game view.
+     * @param boundingBox the bounds of a particular game object (requires boundingBox type, found with getBounds method)
+     * @return boolean whether object is inside game screen.
+     */
     private boolean isBoxinScreen(BoundingBox boundingBox){
         if ((boundingBox.getMinX() <= 0) || (boundingBox.getMaxX() >= this.screenWidth)
                 || (boundingBox.getMinY() <= 0) || (boundingBox.getMaxY() >= this.screenHeight)){
             return false;
         }
         return true;
-
     }
 
+    /**
+     * cleanUpObjects -- removes objects that have collided with each other, and instantiates new ones if necessary.
+     */
     public void cleanUpObjects(){
         for (Node node: this.asteroidGroup.getChildren()){
             Asteroid asteroid = (Asteroid) node;
