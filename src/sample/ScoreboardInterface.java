@@ -7,6 +7,8 @@
 package sample;
 
 
+import javafx.scene.control.Label;
+
 public interface ScoreboardInterface {
 
     /**
@@ -32,4 +34,8 @@ public interface ScoreboardInterface {
      * @param lives the number of lives to set to
      */
     public void setLives(int lives);
+
+    public Label getScoreLabel();
+
+    public void setScoreLabel(Label scoreLabel);
 }
