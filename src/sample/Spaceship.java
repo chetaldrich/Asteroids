@@ -32,7 +32,6 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         imageView.setImage(image);
         this.getChildren().add(imageView);
         this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
-
     }
 
     @Override

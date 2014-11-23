@@ -154,14 +154,11 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
 
-        //if (this.bulletCount>0) {
             for (Node child : this.bulletGroup.getChildren()) {
                 Bullet bullet = (Bullet) child;
                 bullet.step();
 
             }
-        //}
-        //checkGameCollisions();
 
     }
 
@@ -177,6 +174,7 @@ public class Controller implements EventHandler<KeyEvent> {
                     spaceModel.removeBullet(deadBullet);
                     this.bulletCount -= 1;
                     Asteroid deadAsteroid = (Asteroid) collidedBAs.get(i+1);
+                    deadAsteroid.makeSound();
                     asteroidGroup.getChildren().remove(deadAsteroid);
                     spaceModel.removeAsteroid(deadAsteroid);
                 }
@@ -191,11 +189,13 @@ public class Controller implements EventHandler<KeyEvent> {
 
             //TODO: MAKE EXPLOSION!!!
              Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
+             deadAsteroid.makeSound();
              asteroidGroup.getChildren().remove(deadAsteroid);
              spaceModel.removeAsteroid(deadAsteroid);
              spaceModel.updateLives(-1);
              if (spaceModel.getLives()==0){
                  spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+
                  //DIE!!!!
              }
         }
@@ -297,7 +297,6 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
         catch (Exception e){}
-        //if (bulletCount>0) {
           try {
               for (Node node : this.bulletGroup.getChildren()) {
                   Bullet bullet = (Bullet) node;
@@ -310,7 +309,7 @@ public class Controller implements EventHandler<KeyEvent> {
               }
           }
           catch (Exception e){}
-        //}
+
     }
 
 

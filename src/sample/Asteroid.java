@@ -10,6 +10,7 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private int screenHeight = 700;
     private int screenWidth = 1200;
     private float id;
+    private AudioClip audioClip;
 
 
     /**
@@ -44,6 +46,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
+        this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
 
     }
 
@@ -94,6 +97,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
 
     @Override
     public void makeSound(){
-
+        this.audioClip.play();
     }
 }

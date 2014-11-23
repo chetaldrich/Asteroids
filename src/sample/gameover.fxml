@@ -13,17 +13,6 @@
           xmlns:fx="http://javafx.com/fxml"
            prefHeight="800"
            prefWidth="1200">
-<Group  fx:id = "spaceshipGroup">
-    <Spaceship fx:id = "spaceship"/>
-</Group>
-<Group fx:id = "asteroidGroup">
 
-</Group>
-<Group fx:id = "bulletGroup">
-
-</Group>
-<Group fx:id="scoreboardGroup">
-
-</Group>
 </Pane>
 
