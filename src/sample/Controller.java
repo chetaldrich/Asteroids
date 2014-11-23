@@ -67,6 +67,7 @@ public class Controller implements EventHandler<KeyEvent> {
         spaceModel = new Model(this.screenWidth, this.screenHeight);
         this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
         this.gameMusic.play();
+        initScore();
 
 
         this.setUpAnimationTimer();
@@ -108,8 +109,6 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         };
 
-
-        //I thought we needed this, but maybe not?....
         TimerTask collisionTask = new TimerTask(){
             public void run(){
                 Platform.runLater(new Runnable() {
@@ -162,7 +161,6 @@ public class Controller implements EventHandler<KeyEvent> {
      * Examples include step methods for object movement in-game and collision checking.
      */
     private void updateAnimation() {
-        updateScore();
 
         this.spaceship.step();
         if (this.asteroidGroup.getChildren().size()>0) {
@@ -201,6 +199,7 @@ public class Controller implements EventHandler<KeyEvent> {
                     deadAsteroid.makeSound();
                     asteroidGroup.getChildren().remove(deadAsteroid);
                     spaceModel.removeAsteroid(deadAsteroid);
+                    this.updateScore(50);
                 }
             }
         } catch (Exception e) {
@@ -212,6 +211,7 @@ public class Controller implements EventHandler<KeyEvent> {
 
             //one asteroid can only hit the ship at a time
             explodeTheShip(collidedSAs);
+            updateScore(-1000);
 
 
         }
@@ -234,12 +234,19 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
 
-    private void updateScore(){
-        spaceModel.updateScore(1);
+    private void updateScore(int value){
+        spaceModel.updateScore(value);
         spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
                                                                                                  spaceModel.getScoreboard().getLives()));
         scoreboardGroup.getChildren().remove(spaceModel.getScoreboard().getScoreLabel());
         scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
+    }
+
+    private void initScore(){
+        spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
+                spaceModel.getScoreboard().getLives()));
+        scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
+
     }
 
 
@@ -249,22 +256,39 @@ public class Controller implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();
-        double spaceshipPosition = this.spaceship.getLayoutY();
+        double spaceshipYPosition = this.spaceship.getLayoutY();
+        double spaceshipXPosition = this.spaceship.getLayoutX();
         double stepSize = 10.0;
         if (code == KeyCode.UP || code == KeyCode.K) {
             // move ship up
-            if (spaceshipPosition > stepSize) {
+            if (spaceshipYPosition > stepSize) {
                 this.spaceship.setLayoutY(this.spaceship.getLayoutY() - stepSize);
             } else {
-                this.spaceship.setLayoutY(0);
+                this.spaceship.setLayoutY(this.screenHeight - this.spaceship.getSize().getY());
             }
 
         } else if (code == KeyCode.DOWN || code == KeyCode.J) {
             // move ship down
-            if (spaceshipPosition + this.spaceship.getSize().getY() + stepSize < this.screenHeight) {
+            if (spaceshipYPosition + this.spaceship.getSize().getY() + stepSize < this.screenHeight) {
                 this.spaceship.setLayoutY(this.spaceship.getLayoutY() + stepSize);
             } else {
                 this.spaceship.setLayoutY(this.screenHeight - this.spaceship.getSize().getY());
+            }
+
+        } else if (code == KeyCode.LEFT || code == KeyCode.H) {
+            // move ship left
+            if (spaceshipXPosition > stepSize) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() - stepSize);
+            } else {
+                this.spaceship.setLayoutX(0);
+            }
+
+        } else if (code == KeyCode.RIGHT || code == KeyCode.L) {
+            // move ship right
+            if (spaceshipXPosition + this.spaceship.getSize().getX() + stepSize < this.screenWidth) {
+                this.spaceship.setLayoutX(this.spaceship.getLayoutX() + stepSize);
+            } else {
+                this.spaceship.setLayoutX(this.screenWidth - this.spaceship.getSize().getX());
             }
 
         }

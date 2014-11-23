@@ -190,7 +190,12 @@ public class Model {
      */
     public void updateScore(int points){
         int currentScore = scoreboard.getScore();
-        scoreboard.setScore(currentScore + points);
+        if (currentScore + points < 0){
+            scoreboard.setScore(0);
+        }else{
+            scoreboard.setScore(currentScore + points);
+        }
+
     }
 
     public void removeAsteroid(Asteroid asteroid){
