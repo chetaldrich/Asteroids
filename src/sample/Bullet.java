@@ -11,8 +11,7 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
+import javafx.scene.media.AudioClip;
 
 
 public class Bullet extends Sprite implements BulletInterface {
@@ -20,6 +19,7 @@ public class Bullet extends Sprite implements BulletInterface {
     private double radius;
     private Image image;
     private ImageView imageView;
+    private AudioClip audioClip;
 
     /**
      * Constructor
@@ -32,6 +32,7 @@ public class Bullet extends Sprite implements BulletInterface {
         this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
+        this.audioClip = new AudioClip(getClass().getResource("/res/laser.mp3").toString());
     }
 
     /**
@@ -46,7 +47,9 @@ public class Bullet extends Sprite implements BulletInterface {
     }
 
 
-    public void makeSound() {}
+    public void makeSound() {
+        this.audioClip.play();
+    }
 
     public BoundingBox getBounds(){
         double xval= this.getPosition().getX();
