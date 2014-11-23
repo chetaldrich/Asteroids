@@ -172,6 +172,9 @@ public class Model {
         int currentLives = scoreboard.getLives();
         scoreboard.setLives(currentLives + lives);
     }
+    public int getLives(){
+        return scoreboard.getLives();
+    }
 
     /**
      * updateScore -- updates current Score based on method triggers (survival time, bullet Asteroid collision)

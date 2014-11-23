@@ -166,34 +166,39 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     public void checkGameCollisions(){
-        if (this.bulletCount>0) {
-            System.out.println(this.bulletCount);
-        }
-            try {
-                ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
+        try {
+            ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
 
 
-                if (collidedBAs.size() != 0) {
-                    for (int i = 0; i < collidedBAs.size(); i += 2) {
-                        Bullet deadBullet= (Bullet) collidedBAs.get(i);
-                        bulletGroup.getChildren().remove(deadBullet);
-                        spaceModel.removeBullet(deadBullet);
-                        this.bulletCount -= 1;
-                        Asteroid deadAsteroid = (Asteroid) collidedBAs.get(i+1);
-                        asteroidGroup.getChildren().remove(deadAsteroid);
-                        spaceModel.removeAsteroid(deadAsteroid);
-                    }
+            if (collidedBAs.size() != 0) {
+                for (int i = 0; i < collidedBAs.size(); i += 2) {
+                    Bullet deadBullet= (Bullet) collidedBAs.get(i);
+                    bulletGroup.getChildren().remove(deadBullet);
+                    spaceModel.removeBullet(deadBullet);
+                    this.bulletCount -= 1;
+                    Asteroid deadAsteroid = (Asteroid) collidedBAs.get(i+1);
+                    asteroidGroup.getChildren().remove(deadAsteroid);
+                    spaceModel.removeAsteroid(deadAsteroid);
                 }
-            } catch (Exception e) {
-
             }
-        //}
-//        ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
-//        if (collidedSAs.size()!=0){
-//            //one asteroid can only hit the ship at a time
-//             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
-//             asteroidGroup.getChildren().remove(collidedSAs.get(1));
-//        }
+        } catch (Exception e) {
+
+        }
+
+        ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
+        if (collidedSAs.size()!=0){
+            //one asteroid can only hit the ship at a time
+
+            //TODO: MAKE EXPLOSION!!!
+             Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
+             asteroidGroup.getChildren().remove(deadAsteroid);
+             spaceModel.removeAsteroid(deadAsteroid);
+             spaceModel.updateLives(-1);
+             if (spaceModel.getLives()==0){
+                 spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+                 //DIE!!!!
+             }
+        }
     }
 
     private void updateScore(){
