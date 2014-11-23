@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import sample.*;
 
 
@@ -38,6 +39,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
     @FXML private Scoreboard scoreboard;
+    private static AudioClip gameMusic;
 
 
 
@@ -63,7 +65,8 @@ public class Controller implements EventHandler<KeyEvent> {
         this.isMovingUp = false;
         this.bulletCount = 0;
         spaceModel = new Model(this.screenWidth, this.screenHeight);
-
+        this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
+        this.gameMusic.play();
 
 
         this.setUpAnimationTimer();
@@ -119,6 +122,18 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         };
 
+        TimerTask musicPlayer = new TimerTask(){
+            public void run(){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkMusic();
+
+                    }
+                });
+            }
+        };
+
 
         final long startTimeInMilliseconds = 0;
         final long repetitionPeriodInMilliseconds = 100;
@@ -128,6 +143,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(collisionTask, 10, 50);
+        this.timer.scheduleAtFixedRate(musicPlayer, 0, 10000);
         this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 2500);
     }
     public void makeAsteroids(){
@@ -162,6 +178,12 @@ public class Controller implements EventHandler<KeyEvent> {
 
             }
 
+    }
+
+    public void checkMusic(){
+        if (!this.gameMusic.isPlaying()){
+            this.gameMusic.play();
+        }
     }
 
     public void checkGameCollisions(){

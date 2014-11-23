@@ -14,8 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
 
 
 public class Main extends Application {
@@ -43,6 +45,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
         primaryStage.show();
         root.requestFocus();
+
     }
 
 
