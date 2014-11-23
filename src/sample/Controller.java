@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import sample.*;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -30,6 +31,7 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     @FXML public Group bulletGroup;
+    //@FXML public Group explosionGroup;
     public Group scoreboardGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
@@ -68,7 +70,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * setUpAnimationTimer -- begins the timer for animations
+     * setUpAnimationTimer -- begins the timers for animations
      */
     private void setUpAnimationTimer() {
         TimerTask timerTask = new TimerTask() {
@@ -189,17 +191,56 @@ public class Controller implements EventHandler<KeyEvent> {
         if (collidedSAs.size()!=0){
             //one asteroid can only hit the ship at a time
 
-            //TODO: MAKE EXPLOSION!!!
-             Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
-             asteroidGroup.getChildren().remove(deadAsteroid);
-             spaceModel.removeAsteroid(deadAsteroid);
-             spaceModel.updateLives(-1);
-             if (spaceModel.getLives()==0){
-                 spaceshipGroup.getChildren().remove(collidedSAs.get(0));
-                 //DIE!!!!
-             }
+            this.explodeTheShip(collidedSAs);
+
         }
     }
+    private void explodeTheShip(ArrayList<Sprite> collidedSAs){
+        spaceModel.updateLives(-1);
+        Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
+        asteroidGroup.getChildren().remove(deadAsteroid);
+        spaceModel.removeAsteroid(deadAsteroid);
+        if (spaceModel.getLives()>0) {
+
+            //this.makeTimedExplosion();
+
+        }
+        else{
+            spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+        }
+
+
+    }
+//    private void makeTimedExplosion(){
+//        Explosion kaboom = spaceModel.createExplosion();
+//        kaboom.setPosition(spaceship.getPosition().getX(), spaceship.getPosition().getY());
+//        this.explosionGroup.getChildren().add(kaboom);
+
+//        TimerTask explosionTask = new TimerTask() {
+//            public void run() {
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                       prolongExplosion();
+//
+//                    }
+//                });
+//            }
+//        };
+//        Timer explosionTimer = new java.util.Timer();
+
+//        explosionTimer.schedule(explosionTask, 0, 3000);
+//        this.explosionGroup.getChildren().remove(kaboom);
+//        spaceModel.removeExplosion(kaboom);
+
+    //}
+//    public void prolongExplosion(){
+//        System.out.println("sdfsdf");
+//        //just wait 3 seconds....
+//
+//
+//    }
+
 
     private void updateScore(){
         spaceModel.updateScore(1);

@@ -24,5 +24,8 @@
 <Group fx:id="scoreboardGroup">
 
 </Group>
+    <!--<Group fx:id="explosionGroup">-->
+
+    <!--</Group>-->
 </Pane>
 
