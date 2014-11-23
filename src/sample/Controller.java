@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import sample.*;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -30,6 +31,7 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     @FXML public Group bulletGroup;
+    //@FXML public Group explosionGroup;
     public Group scoreboardGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
@@ -68,7 +70,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * setUpAnimationTimer -- begins the timer for animations
+     * setUpAnimationTimer -- begins the timers for animations
      */
     private void setUpAnimationTimer() {
         TimerTask timerTask = new TimerTask() {
@@ -185,21 +187,30 @@ public class Controller implements EventHandler<KeyEvent> {
 
         ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
         if (collidedSAs.size()!=0){
+
             //one asteroid can only hit the ship at a time
+            explodeTheShip(collidedSAs);
 
-            //TODO: MAKE EXPLOSION!!!
-             Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
-             deadAsteroid.makeSound();
-             asteroidGroup.getChildren().remove(deadAsteroid);
-             spaceModel.removeAsteroid(deadAsteroid);
-             spaceModel.updateLives(-1);
-             if (spaceModel.getLives()==0){
-                 spaceshipGroup.getChildren().remove(collidedSAs.get(0));
 
-                 //DIE!!!!
-             }
         }
     }
+    private void explodeTheShip(ArrayList<Sprite> collidedSAs){
+        spaceModel.updateLives(-1);
+        Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
+        asteroidGroup.getChildren().remove(deadAsteroid);
+        spaceModel.removeAsteroid(deadAsteroid);
+        if (spaceModel.getLives()>0) {
+            //make sound explodes the ship!
+            spaceship.makeSound();
+        }
+        else{
+            spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+        }
+
+
+    }
+
+
 
     private void updateScore(){
         spaceModel.updateScore(1);

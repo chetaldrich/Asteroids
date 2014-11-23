@@ -19,6 +19,7 @@ public class Model {
     private static Spaceship spaceship;
     private static ArrayList bullets;
     private static Scoreboard scoreboard;
+    private static ArrayList explosions;
     private double screenWidth;
     private double screenHeight;
 
@@ -29,6 +30,7 @@ public class Model {
     public Model(double screenWidth, double screenHeight) {
         bullets = new ArrayList<Bullet>();
         asteroids = new ArrayList<Asteroid>();
+        explosions = new ArrayList<Explosion>();
         scoreboard = new Scoreboard();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
@@ -132,6 +134,12 @@ public class Model {
         return new Spaceship();
     }
 
+    public Explosion createExplosion(){
+        Explosion explosion = new Explosion();
+        explosions.add(explosion);
+        return explosion;
+    }
+
     /**
      * getAsteroidList -- gets the current asteroidList in the model.
      * @return List current active asteroids
@@ -192,6 +200,9 @@ public class Model {
     public void removeBullet(Bullet bullet){
         bullets.remove(bullet);
 
+    }
+    public void removeExplosion(Explosion explosion){
+        explosions.remove(explosion);
     }
 
     /**

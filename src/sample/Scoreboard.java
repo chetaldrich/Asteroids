@@ -1,16 +1,11 @@
 
 package sample;
 
-//import javafx.scene.shape.*;
-import javafx.fxml.FXML;
+
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
-import java.util.Formatter;
-import java.util.Locale;
 
 
 
