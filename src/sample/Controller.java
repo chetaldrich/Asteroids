@@ -143,7 +143,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(collisionTask, 10, 50);
         this.timer.scheduleAtFixedRate(musicPlayer, 0, 10000);
-        this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 2500);
+        this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 1000);
     }
     public void makeAsteroids(){
         Asteroid newAsteroid = this.spaceModel.generateAsteroid();
@@ -258,7 +258,7 @@ public class Controller implements EventHandler<KeyEvent> {
         KeyCode code = keyEvent.getCode();
         double spaceshipYPosition = this.spaceship.getLayoutY();
         double spaceshipXPosition = this.spaceship.getLayoutX();
-        double stepSize = 10.0;
+        double stepSize = 15.0;
         if (code == KeyCode.UP || code == KeyCode.K) {
             // move ship up
             if (spaceshipYPosition > stepSize) {

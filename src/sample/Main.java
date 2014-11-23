@@ -10,23 +10,25 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Main extends Application {
     public double screenWidth;
     public double screenHeight;
+    private Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setOnCloseRequest(t -> {
+        stage = primaryStage;
+        stage.setOnCloseRequest(t -> {
             Platform.exit();
             System.exit(0);
         });
@@ -39,15 +41,36 @@ public class Main extends Application {
         root.setOnMouseClicked(me -> root.requestFocus());
 
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
-        primaryStage.setTitle("#STELLAR");
+        stage.setTitle("#STELLAR");
         this.screenWidth = 1200;
         this.screenHeight = 800;
-        primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
-        primaryStage.show();
+        stage.setScene(new Scene(root, screenWidth, screenHeight));
+        stage.show();
         root.requestFocus();
 
     }
 
+    public void goToGameOver(){
+        try {
+            replaceSceneContent("login.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private Parent replaceSceneContent(String fxml) throws Exception {
+        Parent page = (Parent) FXMLLoader.load(Main.class.getResource(fxml), null, new JavaFXBuilderFactory());
+        Scene scene = stage.getScene();
+        if (scene == null) {
+            scene = new Scene(page, 700, 450);
+            scene.getStylesheets().add(Main.class.getResource("demo.css").toExternalForm());
+            stage.setScene(scene);
+        } else {
+            stage.getScene().setRoot(page);
+        }
+        stage.sizeToScene();
+        return page;
+    }
 
 
 
