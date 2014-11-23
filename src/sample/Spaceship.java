@@ -6,7 +6,6 @@
 
 package sample;
 
-import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +15,6 @@ import javafx.scene.media.AudioClip;
 public class Spaceship extends Sprite implements SpaceshipInterface {
 
     private Point2D velocity;
-    //private Point2D position;
     private Image image;
     private ImageView imageView;
     private AudioClip audioClip;
@@ -33,7 +31,8 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
-        this.audioClip = new AudioClip(getClass().getResource("/res/explosion.mp3").toString());
+        this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
+
     }
 
     @Override

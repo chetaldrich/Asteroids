@@ -32,7 +32,7 @@ public class Bullet extends Sprite implements BulletInterface {
         this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
-        this.audioClip = new AudioClip(getClass().getResource("/res/laser.mp3").toString());
+        this.audioClip = new AudioClip(getClass().getResource("sounds/laser.mp3").toString());
     }
 
     /**
