@@ -35,6 +35,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenWidth = 1200;
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
+    @FXML private Scoreboard scoreboard;
 
 
 
@@ -58,9 +59,10 @@ public class Controller implements EventHandler<KeyEvent> {
     public void initialize() {
         this.isMovingDown = false;
         this.isMovingUp = false;
-        this.bulletCount=0;
+        this.bulletCount = 0;
+        spaceModel = new Model(this.screenWidth, this.screenHeight);
 
-        this.spaceModel = new Model(this.screenWidth, this.screenHeight);
+
 
         this.setUpAnimationTimer();
     }
@@ -138,6 +140,8 @@ public class Controller implements EventHandler<KeyEvent> {
      * Examples include step methods for object movement in-game and collision checking.
      */
     private void updateAnimation() {
+        updateScore();
+
         this.spaceship.step();
         if (this.asteroidGroup.getChildren().size()>0) {
             for (Node child : this.asteroidGroup.getChildren()) {
@@ -181,6 +185,13 @@ public class Controller implements EventHandler<KeyEvent> {
 //        }
     }
 
+    private void updateScore(){
+        spaceModel.updateScore(1);
+        spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
+                                                                                                 spaceModel.getScoreboard().getLives()));
+        scoreboardGroup.getChildren().remove(spaceModel.getScoreboard().getScoreLabel());
+        scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
+    }
 
 
     /**

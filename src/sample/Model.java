@@ -29,9 +29,9 @@ public class Model {
     public Model(double screenWidth, double screenHeight) {
         bullets = new ArrayList<Bullet>();
         asteroids = new ArrayList<Asteroid>();
+        scoreboard = new Scoreboard();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.createScoreboard();
     }
 
     /**
@@ -165,6 +165,7 @@ public class Model {
     public void createScoreboard(){
         scoreboard = new Scoreboard();
     }
+
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.

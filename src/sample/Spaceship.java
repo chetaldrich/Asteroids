@@ -18,6 +18,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     //private Point2D position;
     private Image image;
     private ImageView imageView;
+
     /**
      * Constructor
      */
@@ -41,42 +42,8 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         imageView.setImage(image);
         this.getChildren().add(imageView);
     }
-    /*/**
-     * getPosition -- gets position of spaceship in the game.
-     * @return Point2D current position
-     */
-    /*public Point2D getPosition() {
-        return this.position;
-    }*/
 
-    /*/**
-     * setPosition -- sets position of spaceship in the game.
-     * @param x  desired x position
-     * @param y  desired y position
-     */
-    /*public void setPosition(double x, double y) {
-        this.position = new Point2D(x, y);
-    }*/
-
-
-    /*/**
-     * getVelocity -- gets the current velocity of the spaceship.
-     * @return Point2D current velocity
-     */
-    /*public Point2D getVelocity() {
-        return this.velocity;
-    }*/
-
-    /*/**
-     * setVelocity -- sets the velocity of the spaceship in the game.
-     * @param x desired x velocity
-     * @param y desired y velocity
-     */
-    /*public void setVelocity(double x, double y) {
-        this.velocity = new Point2D(x, y);
-    }*/
-
-    /*/**
+    /**
      * step -- Moves the spaceship to its next Point2D position in the game.
      */
     @Override

@@ -2,7 +2,9 @@
 package sample;
 
 //import javafx.scene.shape.*;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -21,9 +23,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
     private int score;
     private int lives;
-    private Text text;
-    private StringBuilder sb;
-    private Formatter formatter;
+    private Label scoreLabel;
 
     /**
      * Constructor
@@ -32,29 +32,17 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.score = 0;
         this.lives = 3;
         Paint fill = Color.LIGHTPINK;
-        Rectangle displayRect = new Rectangle(0, 700, 1200,100);
-        displayRect.setFill(fill);
-        sb = new StringBuilder();
-        formatter = new Formatter(sb, Locale.US);
-        formatter.format("Score: %d\nLives: %d", this.score, this.lives);
-        String scoreString = sb.toString();
-        text = new Text(0, 720, scoreString);
-        this.getChildren().add(displayRect);
-        this.getChildren().add(text);
+        //Rectangle displayRect = new Rectangle(0, 700, 1200,100);
+        //displayRect.setFill(fill);
+        //this.getChildren().add(displayRect);
+        this.scoreLabel = new Label();
+        this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
+        this.scoreLabel.setLayoutX(0);
+        this.scoreLabel.setLayoutY(720);
+        this.scoreLabel.setTextFill(Color.LIGHTGREEN);
+        this.getChildren().add(scoreLabel);
     }
 
-    /**
-     * updateText -- adds new strings that will be used to display the information called by the controller.
-     */
-    public void updateText(){
-        this.getChildren().remove(text);
-        sb = new StringBuilder();
-        formatter = new Formatter(sb, Locale.US);
-        formatter.format("Score: %d\nLives: %d", this.score, this.lives);
-        String scoreString = sb.toString();
-        text = new Text(scoreString);
-        this.getChildren().add(text);
-    }
 
     /**
      * getScore -- gets score of the player in the game.
@@ -87,4 +75,9 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     public void setLives(int lives){
         this.lives = lives;
     }
+
+    public Label getScoreLabel(){ return this.scoreLabel; }
+
+
+    public void setScoreLabel(Label scoreLabel){ this.scoreLabel = scoreLabel;}
 }
