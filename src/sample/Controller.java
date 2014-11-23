@@ -102,6 +102,9 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
+
+
+        //I thought we needed this, but maybe not?....
         TimerTask collisionTask = new TimerTask(){
             public void run(){
                 Platform.runLater(new Runnable() {
@@ -114,6 +117,7 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         };
 
+
         final long startTimeInMilliseconds = 0;
         final long repetitionPeriodInMilliseconds = 100;
         long frameTimeInMilliseconds = (long)(1000.0 / framesPerSecond);
@@ -121,7 +125,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.cleanupTimer = new Timer();
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
-        this.cleanupTimer.schedule(collisionTask, 10, frameTimeInMilliseconds);
+        this.cleanupTimer.schedule(collisionTask, 10, 50);
         this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 2500);
     }
     public void makeAsteroids(){
@@ -150,38 +154,45 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
 
-        if (this.bulletCount>0) {
+        //if (this.bulletCount>0) {
             for (Node child : this.bulletGroup.getChildren()) {
                 Bullet bullet = (Bullet) child;
                 bullet.step();
 
             }
-        }
+        //}
+        //checkGameCollisions();
 
     }
 
     public void checkGameCollisions(){
-        if (bulletCount>0) {
+        if (this.bulletCount>0) {
+            System.out.println(this.bulletCount);
+        }
             try {
                 ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
 
 
                 if (collidedBAs.size() != 0) {
                     for (int i = 0; i < collidedBAs.size(); i += 2) {
-                        bulletGroup.getChildren().remove(collidedBAs.get(i));
+                        Bullet deadBullet= (Bullet) collidedBAs.get(i);
+                        bulletGroup.getChildren().remove(deadBullet);
+                        spaceModel.removeBullet(deadBullet);
                         this.bulletCount -= 1;
-                        asteroidGroup.getChildren().remove(collidedBAs.get(i + 1));
+                        Asteroid deadAsteroid = (Asteroid) collidedBAs.get(i+1);
+                        asteroidGroup.getChildren().remove(deadAsteroid);
+                        spaceModel.removeAsteroid(deadAsteroid);
                     }
                 }
             } catch (Exception e) {
 
             }
-        }
-        //ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid");
+        //}
+//        ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
 //        if (collidedSAs.size()!=0){
 //            //one asteroid can only hit the ship at a time
-//             spaceshipGroup.getChildren().remove(collidedBAs.get(0));
-//             asteroidGroup.getChildren().remove(collidedBAs.get(1));
+//             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+//             asteroidGroup.getChildren().remove(collidedSAs.get(1));
 //        }
     }
 
@@ -279,7 +290,7 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
         catch (Exception e){}
-        if (bulletCount>0) {
+        //if (bulletCount>0) {
           try {
               for (Node node : this.bulletGroup.getChildren()) {
                   Bullet bullet = (Bullet) node;
@@ -292,7 +303,7 @@ public class Controller implements EventHandler<KeyEvent> {
               }
           }
           catch (Exception e){}
-        }
+        //}
     }
 
 

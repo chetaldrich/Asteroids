@@ -52,9 +52,12 @@ public abstract class Sprite extends Group {
      * getBounds -- gets the outer bounds of this object
      * @return BoundingBox of this particular object (each corner of the box surrounding a game object
      */
-    public Bounds getBounds(){
-        Bounds bounds = this.getLayoutBounds();
-        return bounds;
+    public BoundingBox getBounds(){
+        Point2D center = this.getPosition();
+        Point2D size = this.getSize();
+        double minX = center.getX()-0.5*size.getX();
+        double minY = center.getY()-0.5*size.getY();
+        return new BoundingBox(minX, minY, size.getX(), size.getY());
     }
 
     public Point2D getVelocity() {

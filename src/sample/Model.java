@@ -42,28 +42,30 @@ public class Model {
 
         int bulletListLength = bullets.size();
         int asteroidListLength = asteroids.size();
+        ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
+        //System.out.println(bulletListLength);
         for (int i = 0; i < asteroidListLength; i++) {
             Asteroid asteroid = (Asteroid) asteroids.get(i);
             if (type.equals("bullet-asteroid")) {
+
                 for (int j = 0; j < bulletListLength; j++) {
                     Bullet bullet = (Bullet) bullets.get(j);
                     if (collided(asteroid, bullet)) {
-                        ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
                         collidedSprites.add(bullet);
                         collidedSprites.add(asteroid);
-                        return collidedSprites;
+
                     }
                 }
+
             } else if (type.equals("spaceship-asteroid")) {
                 if (collided(asteroid, instantiatedShip)) {
-                    ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
                     collidedSprites.add(instantiatedShip);
                     collidedSprites.add(asteroid);
-                    return collidedSprites;
+
                 }
             }
         }
-        return new ArrayList<Sprite>();
+        return collidedSprites;
     }
 
     /**
@@ -74,14 +76,13 @@ public class Model {
      * TODO: make this smarter and check based on the size of the object
      */
     public boolean collided(Asteroid asteroid, Sprite sprite2){
-        Bounds asteroidBounds = asteroid.getBounds();
-        Bounds sprite2Bounds = sprite2.getBounds();
+        BoundingBox asteroidBounds = asteroid.getBounds();
+        BoundingBox sprite2Bounds = sprite2.getBounds();
         BoundingBox asteroidSmallerBox = new BoundingBox (asteroidBounds.getMinX()*1.1,
-                asteroidBounds.getMinY()*1.1, asteroidBounds.getWidth()*0.9, asteroidBounds.getHeight()*0.9);
-        if (asteroidSmallerBox.contains(sprite2Bounds)){
+                asteroidBounds.getMinY()*1.1, asteroidBounds.getWidth()*.9, asteroidBounds.getHeight()*.9);
+        if (asteroidSmallerBox.intersects(sprite2Bounds)){
             return true;
         }
-
 
         return false;
 
