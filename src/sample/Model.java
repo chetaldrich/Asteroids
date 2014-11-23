@@ -42,16 +42,12 @@ public class Model {
 
         int bulletListLength = bullets.size();
         int asteroidListLength = asteroids.size();
-        System.out.println(asteroidListLength);
         for (int i = 0; i < asteroidListLength; i++) {
             Asteroid asteroid = (Asteroid) asteroids.get(i);
             if (type.equals("bullet-asteroid")) {
-                System.out.println("collided2");
-                System.out.println(bulletListLength);
                 for (int j = 0; j < bulletListLength; j++) {
                     Bullet bullet = (Bullet) bullets.get(j);
                     if (collided(asteroid, bullet)) {
-                        System.out.println("KABOOM");
                         ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
                         collidedSprites.add(bullet);
                         collidedSprites.add(asteroid);
