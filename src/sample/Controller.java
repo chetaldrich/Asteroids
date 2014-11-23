@@ -156,15 +156,11 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
 
-        //if (this.bulletCount>0) {
             for (Node child : this.bulletGroup.getChildren()) {
                 Bullet bullet = (Bullet) child;
                 bullet.step();
 
             }
-        //}
-        //checkGameCollisions();
-
     }
 
     public void checkGameCollisions(){
@@ -189,9 +185,9 @@ public class Controller implements EventHandler<KeyEvent> {
 
         ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
         if (collidedSAs.size()!=0){
-            //one asteroid can only hit the ship at a time
 
-            this.explodeTheShip(collidedSAs);
+            //one asteroid can only hit the ship at a time
+            explodeTheShip(collidedSAs);
 
         }
     }
@@ -201,9 +197,8 @@ public class Controller implements EventHandler<KeyEvent> {
         asteroidGroup.getChildren().remove(deadAsteroid);
         spaceModel.removeAsteroid(deadAsteroid);
         if (spaceModel.getLives()>0) {
-
-            //this.makeTimedExplosion();
-
+            //make sound explodes the ship!
+            spaceship.makeSound();
         }
         else{
             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
@@ -211,35 +206,7 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
     }
-//    private void makeTimedExplosion(){
-//        Explosion kaboom = spaceModel.createExplosion();
-//        kaboom.setPosition(spaceship.getPosition().getX(), spaceship.getPosition().getY());
-//        this.explosionGroup.getChildren().add(kaboom);
 
-//        TimerTask explosionTask = new TimerTask() {
-//            public void run() {
-//                Platform.runLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                       prolongExplosion();
-//
-//                    }
-//                });
-//            }
-//        };
-//        Timer explosionTimer = new java.util.Timer();
-
-//        explosionTimer.schedule(explosionTask, 0, 3000);
-//        this.explosionGroup.getChildren().remove(kaboom);
-//        spaceModel.removeExplosion(kaboom);
-
-    //}
-//    public void prolongExplosion(){
-//        System.out.println("sdfsdf");
-//        //just wait 3 seconds....
-//
-//
-//    }
 
 
     private void updateScore(){
@@ -338,7 +305,6 @@ public class Controller implements EventHandler<KeyEvent> {
             }
         }
         catch (Exception e){}
-        //if (bulletCount>0) {
           try {
               for (Node node : this.bulletGroup.getChildren()) {
                   Bullet bullet = (Bullet) node;
@@ -351,7 +317,7 @@ public class Controller implements EventHandler<KeyEvent> {
               }
           }
           catch (Exception e){}
-        //}
+
     }
 
 

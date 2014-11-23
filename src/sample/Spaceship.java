@@ -18,6 +18,8 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     private Image image;
     private ImageView imageView;
     private AudioClip audioClip;
+    private boolean isSpaceshipImage;
+    private Point2D oldPosition;
 
     /**
      * Constructor
@@ -32,6 +34,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         imageView.setImage(image);
         this.getChildren().add(imageView);
         this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
+        isSpaceshipImage = true;
 
     }
 
@@ -50,11 +53,24 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
      */
     @Override
     public void step() {
-        Point2D position = this.getPosition();
-        this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
+
+
+        if (this.audioClip.isPlaying()) {
+            if (isSpaceshipImage){
+                setImagetoExplosion();
+            }
+        }
+        else {
+            Point2D position = this.getPosition();
+            this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
+            if (!isSpaceshipImage){
+                setImagetoSpaceship();
+            }
+        }
     }
 
-    //is this ever called?????
+    //is this even called????
+    //TODO: GET RID OF THIS IN SPRITE CLASS!
     public String getSpriteType(){
         return "spaceship";
     }
@@ -62,6 +78,32 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     @Override
     public void makeSound(){
         this.audioClip.play();
+    }
+    
+    private void setImagetoExplosion() {
+        this.isSpaceshipImage = false;
+        oldPosition = this.getPosition();
+        double newPosX = this.getPosition().getX()+this.getSize().getX()/2-150;
+        double newPosY = this.getPosition().getY()+this.getSize().getY()/2-150;
+        this.getChildren().remove(imageView);
+        image = new Image(getClass().getResourceAsStream("/sample/img/explosion.gif"), 300, 300, true, false);
+        imageView = new ImageView();
+        imageView.setImage(image);
+        this.getChildren().clear();
+        this.setPosition(newPosX, newPosY);
+        this.getChildren().add(imageView);
+
+    }
+
+    private void setImagetoSpaceship() {
+        this.isSpaceshipImage = true;
+        this.getChildren().remove(imageView);
+        image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));
+        imageView = new ImageView();
+        imageView.setImage(image);
+        this.setPosition(oldPosition.getX(), oldPosition.getY());
+        this.getChildren().clear();
+        this.getChildren().add(imageView);
     }
 
 
