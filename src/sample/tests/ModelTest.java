@@ -35,7 +35,7 @@ public class ModelTest {
         expected.add(spaceship);
         expected.add(asteroid);
 
-        assertEquals(expected, model.checkGameCollisions("spaceship-asteroid"));
+        assertEquals(expected, model.checkGameCollisions("spaceship-asteroid", spaceship));
 
     }
 
@@ -59,7 +59,7 @@ public class ModelTest {
         expected.add(bullet);
         expected.add(asteroid);
 
-        assertEquals(expected, model.checkGameCollisions("bullet-asteroid"));
+        assertEquals(expected, model.checkGameCollisions("bullet-asteroid", new Spaceship()));
 
     }
 
@@ -78,7 +78,7 @@ public class ModelTest {
 
         asteroid.setPosition(firstBulletLocationX, firstBulletLocationY);
 
-        assertTrue(model.collided(bullet, asteroid));
+        assertTrue(model.collided(asteroid, bullet));
 
     }
 

@@ -10,6 +10,7 @@ package sample;
 
 
 
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -45,6 +46,15 @@ public abstract class Sprite extends Group {
     public void setPosition(double x, double y) {
         this.setLayoutX(x);
         this.setLayoutY(y);
+    }
+
+    /**
+     * getBounds -- gets the outer bounds of this object
+     * @return BoundingBox of this particular object (each corner of the box surrounding a game object
+     */
+    public Bounds getBounds(){
+        Bounds bounds = this.getLayoutBounds();
+        return bounds;
     }
 
     public Point2D getVelocity() {
