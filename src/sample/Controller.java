@@ -100,6 +100,17 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
+        TimerTask collisionTask = new TimerTask(){
+            public void run(){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkGameCollisions();
+
+                    }
+                });
+            }
+        };
 
         final long startTimeInMilliseconds = 0;
         final long repetitionPeriodInMilliseconds = 100;
@@ -108,6 +119,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.cleanupTimer = new Timer();
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
+        this.cleanupTimer.schedule(collisionTask, 10, frameTimeInMilliseconds);
         this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 2500);
     }
     public void makeAsteroids(){
@@ -141,20 +153,32 @@ public class Controller implements EventHandler<KeyEvent> {
 
             }
         }
-        ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid");
-        ArrayList collidedSAs = spaceModel.checkGameCollisions("asteroid-spaceship");
-        if (collidedBAs.size()!=0){
-            for (int i = 0; i<collidedBAs.size(); i+=2){
-                bulletGroup.getChildren().remove(collidedBAs.get(i));
-                this.bulletCount-=1;
-                asteroidGroup.getChildren().remove(collidedBAs.get(i + 1));
+
+    }
+
+    public void checkGameCollisions(){
+        if (bulletCount>0) {
+            try {
+                ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
+
+
+                if (collidedBAs.size() != 0) {
+                    for (int i = 0; i < collidedBAs.size(); i += 2) {
+                        bulletGroup.getChildren().remove(collidedBAs.get(i));
+                        this.bulletCount -= 1;
+                        asteroidGroup.getChildren().remove(collidedBAs.get(i + 1));
+                    }
+                }
+            } catch (Exception e) {
+
             }
         }
-        if (collidedSAs.size()!=0){
-            //one asteroid can only hit the ship at a time
-             spaceshipGroup.getChildren().remove(collidedBAs.get(0));
-             asteroidGroup.getChildren().remove(collidedBAs.get(1));
-        }
+        //ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid");
+//        if (collidedSAs.size()!=0){
+//            //one asteroid can only hit the ship at a time
+//             spaceshipGroup.getChildren().remove(collidedBAs.get(0));
+//             asteroidGroup.getChildren().remove(collidedBAs.get(1));
+//        }
     }
 
 

@@ -22,6 +22,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
      * Constructor
      */
     public Spaceship() {
+        this.setName("spaceship");
         this.velocity = new Point2D(0,0);
         //this.position = new Point2D(100, 100);
         this.setPosition(200, 400);
@@ -84,7 +85,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         this.setPosition(position.getX() + this.velocity.getX(), position.getY() + this.velocity.getY());
     }
 
-
+    //is this ever called?????
     public String getSpriteType(){
         return "spaceship";
     }

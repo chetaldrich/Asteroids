@@ -25,6 +25,7 @@ public class Bullet extends Sprite implements BulletInterface {
      * Constructor
      */
     public Bullet(){
+        this.setName("bullet");
         this.velocity = new Point2D(8, 0);
         this.radius = 10.0;
         this.image = new Image(getClass().getResourceAsStream("/sample/img/laserbeam.png"), this.radius, this.radius, true, false);

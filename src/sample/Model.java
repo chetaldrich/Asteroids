@@ -7,6 +7,8 @@
 package sample;
 
 
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +38,20 @@ public class Model {
      * checkGameCollisions -- checks for any collisions in the sprite classes.
      * @return ArrayList of the sprites that collided
      */
-    public ArrayList<Sprite> checkGameCollisions(String type){
+    public ArrayList<Sprite> checkGameCollisions(String type, Spaceship instantiatedShip){
 
         int bulletListLength = bullets.size();
         int asteroidListLength = asteroids.size();
-
+        System.out.println(asteroidListLength);
         for (int i = 0; i < asteroidListLength; i++) {
             Asteroid asteroid = (Asteroid) asteroids.get(i);
             if (type.equals("bullet-asteroid")) {
+                System.out.println("collided2");
+                System.out.println(bulletListLength);
                 for (int j = 0; j < bulletListLength; j++) {
                     Bullet bullet = (Bullet) bullets.get(j);
                     if (collided(asteroid, bullet)) {
+                        System.out.println("KABOOM");
                         ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
                         collidedSprites.add(bullet);
                         collidedSprites.add(asteroid);
@@ -54,9 +59,9 @@ public class Model {
                     }
                 }
             } else if (type.equals("spaceship-asteroid")) {
-                if (collided(this.spaceship, asteroid)) {
+                if (collided(asteroid, instantiatedShip)) {
                     ArrayList<Sprite> collidedSprites = new ArrayList<Sprite>();
-                    collidedSprites.add(this.spaceship);
+                    collidedSprites.add(instantiatedShip);
                     collidedSprites.add(asteroid);
                     return collidedSprites;
                 }
@@ -67,15 +72,25 @@ public class Model {
 
     /**
      * collided -- Checks to see if a particular two sprites collided.
-     * @param sprite1 First sprite to check
+     * @param asteroid First sprite to check
      * @param sprite2 Second sprite to check against
      * @return boolean true if sprites collided, false if sprites did not collide
      * TODO: make this smarter and check based on the size of the object
      */
-    public boolean collided(Sprite sprite1, Sprite sprite2){
-        Point2D sprite1Position = sprite1.getPosition();
-        Point2D sprite2Position = sprite2.getPosition();
-        return sprite1Position.equals(sprite2Position);
+    public boolean collided(Asteroid asteroid, Sprite sprite2){
+        Bounds asteroidBounds = asteroid.getBounds();
+        Bounds sprite2Bounds = sprite2.getBounds();
+        BoundingBox asteroidSmallerBox = new BoundingBox (asteroidBounds.getMinX()*1.1,
+                asteroidBounds.getMinY()*1.1, asteroidBounds.getWidth()*0.9, asteroidBounds.getHeight()*0.9);
+        if (asteroidSmallerBox.contains(sprite2Bounds)){
+            return true;
+        }
+
+
+        return false;
+
+
+
     }
 
     /**

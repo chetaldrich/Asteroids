@@ -33,6 +33,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
      * Constructor
      */
     public Asteroid(){
+        this.setName("asteroid");
         Random r = new Random();
         id = r.nextFloat();
         this.radius = r.nextDouble()*60+60;
@@ -77,18 +78,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setSize(newRadius, newRadius);
     }
 
-    /**
-     * getBounds -- gets the outer bounds of this object
-     * @return BoundingBox of this particular object (each corner of the box surrounding a game object
-     */
-    public BoundingBox getBounds(){
-        double xval= this.getPosition().getX();
-        double yval = this.getPosition().getY();
-        double xmin = xval - this.radius;
-        double ymin = yval - this.radius;
-        double widthAndHeight = 2*this.radius;
-        return new BoundingBox(xmin, ymin, widthAndHeight, widthAndHeight);
-    }
+
 
     /**
      * step -- sets new position according to velocity
