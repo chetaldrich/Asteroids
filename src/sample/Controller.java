@@ -293,7 +293,9 @@ public class Controller implements EventHandler<KeyEvent> {
         Bullet newBullet = spaceModel.generateBullet();
         newBullet.setPosition(bulletXVal, bulletYVal);
         this.bulletCount+=1;
+        newBullet.makeSound();
         this.bulletGroup.getChildren().add(newBullet);
+
 
     }
 
