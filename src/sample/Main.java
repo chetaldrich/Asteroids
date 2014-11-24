@@ -7,21 +7,10 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Main extends Application {
@@ -31,28 +20,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        stage = primaryStage;
-        stage.setOnCloseRequest(t -> {
-            Platform.exit();
-            System.exit(0);
-        });
+        MenuController.setCurrentStage(primaryStage);
+        primaryStage.setTitle("Asteroids Menu");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        final Parent root = (Parent)loader.load();
-        Controller controller = loader.getController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
 
-        root.setOnKeyPressed(controller);
-        root.setOnMouseClicked(me -> root.requestFocus());
+        Pane myPane = (Pane) loader.load();
 
-        root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
-        stage.setTitle("#STELLAR");
-        this.screenWidth = 1200;
-        this.screenHeight = 800;
-        stage.setScene(new Scene(root, screenWidth, screenHeight));
-        stage.show();
-        root.requestFocus();
+        MenuController controller = (MenuController) loader.getController();
+
+        myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
+
+        controller.setCurrentStage(primaryStage);
+
+        Scene myScene = new Scene(myPane);
+
+        primaryStage.setScene(myScene);
+        primaryStage.show();
 
     }
+
 
 
 

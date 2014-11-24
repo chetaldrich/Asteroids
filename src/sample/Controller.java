@@ -7,19 +7,23 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
-
-
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -34,8 +38,11 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
     @FXML private Scoreboard scoreboard;
-    @FXML private Button musicButton;
+
     private static AudioClip gameMusic;
+
+    private static Stage previousStage;
+    private static Stage currentStage;
 
 
 
@@ -66,11 +73,45 @@ public class Controller implements EventHandler<KeyEvent> {
         this.invincible=false;
 
 
+
         initScore();
         this.setUpAnimationTimer();
     }
 
+    public static void setPreviousStage(Stage stage){
+        previousStage = stage;
+    }
 
+    public static Stage getCurrentStage(){
+        return currentStage;
+    }
+
+    public static void setCurrentStage(Stage stage){
+        currentStage = stage;
+    }
+
+    public void gotoMenu() throws IOException {
+        MenuController.setPreviousStage(currentStage);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Asteroids Menu");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+
+        Pane myPane = (Pane)loader.load();
+        MenuController controller = (MenuController) loader.getController();
+
+        myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
+
+        controller.setPreviousStage(primaryStage);
+
+        Scene myScene = new Scene(myPane);
+        primaryStage.setScene(myScene);
+
+        previousStage.close();
+        MenuController.setCurrentStage(primaryStage);
+
+        primaryStage.show();
+    }
 
     /**
      * setUpAnimationTimer -- begins the timers for animations
@@ -264,9 +305,15 @@ public class Controller implements EventHandler<KeyEvent> {
             //make sound explodes the ship!
             spaceship.makeSound();
         }
-        else{
+        else if (spaceModel.getLives()==0){
             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
-//            Main.goToGameOver();
+            try{
+                this.gameMusic.stop();
+                this.timer.cancel();
+                this.cleanupTimer.cancel();
+                gotoMenu();
+            }catch (IOException exception){}
+
         }
 
     }
