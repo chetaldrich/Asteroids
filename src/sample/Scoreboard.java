@@ -2,9 +2,12 @@
 package sample;
 
 
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,7 +25,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     private int score;
     private int lives;
     private Text scoreLabel;
-    private Button musicButton;
+
+
 
 
     /**
@@ -40,11 +44,6 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.scoreLabel.setLineSpacing(5);
         this.scoreLabel.setFill(Color.LIGHTGREEN);
         this.getChildren().add(scoreLabel);
-
-        this.musicButton = new Button();
-
-
-
     }
 
 

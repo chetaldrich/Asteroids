@@ -7,14 +7,19 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
+
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,6 +34,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
     @FXML private Scoreboard scoreboard;
+    @FXML private Button musicButton;
     private static AudioClip gameMusic;
 
 
@@ -58,6 +64,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.gameMusic.play();
         this.wantMusicOn=true;
         this.invincible=false;
+
 
         initScore();
         this.setUpAnimationTimer();
@@ -182,6 +189,17 @@ public class Controller implements EventHandler<KeyEvent> {
      */
     private void checkMusic(){
         if (!this.gameMusic.isPlaying()&& this.wantMusicOn){
+            this.gameMusic.play();
+        }
+    }
+
+    public void toggleMusic(){
+        if (this.gameMusic.isPlaying()){
+            this.wantMusicOn=false;
+            this.gameMusic.stop();
+        }
+        else{
+            this.wantMusicOn=true;
             this.gameMusic.play();
         }
     }
@@ -318,7 +336,11 @@ public class Controller implements EventHandler<KeyEvent> {
         else if (code == KeyCode.SPACE) {
             fireBullet();
         }
+
     }
+
+
+
 
 
     /**
