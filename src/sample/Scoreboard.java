@@ -36,6 +36,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     public Scoreboard(){
         this.score = 0;
         this.lives = 3;
+
+        //formatting for the score and lives in the game view.
         this.scoreLabel=new Text();
         this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
         Font myFont = new Font("Lucida Console", 18);
@@ -46,6 +48,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.scoreLabel.setFill(Color.LIGHTGREEN);
         this.getChildren().add(scoreLabel);
 
+        //formatting for the controls in the game view.
         this.instructions=new Text();
         this.instructions.setText(String.format("Controls:\n" +
                 "Arrow Keys and" +
@@ -58,6 +61,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.instructions.setLayoutY(650);
         this.instructions.setLineSpacing(5);
         this.instructions.setFill(Color.LIGHTGREEN);
+
+        
         this.getChildren().add(instructions);
     }
 
@@ -88,14 +93,21 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
     /**
      * setLives -- sets number of lives for the player in the game.
-     * @param lives the number of lives to set to
+     * @param lives the desired number of lives
      */
     public void setLives(int lives){
         this.lives = lives;
     }
 
+    /**
+     * getScoreLabel -- returns the label that provides scores and lives on the view.
+     * @return Text the formatted result of the text generated in the constructor
+     */
     public Text getScoreLabel(){ return this.scoreLabel; }
 
-
+    /**
+     * setScoreLabel -- sets the label in this class to one assigned.
+     * @param scoreLabel the intended result scoreLabel
+     */
     public void setScoreLabel(Text scoreLabel){ this.scoreLabel = scoreLabel;}
 }
