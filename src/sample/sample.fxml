@@ -1,18 +1,11 @@
 <!--Chet Aldrich and Josie Bealle
-    init FXML file-->
+    game view FXML file
+    How can something so short cause us so much pain?-->
 
-<?import javafx.geometry.Insets?>
+
 <?import javafx.scene.layout.Pane?>
 <?import sample.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.Group?>
-<?import java.util.List?>
-
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.BackgroundImage?>
 <Pane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml"
            prefHeight="800"
@@ -21,15 +14,10 @@
     <Spaceship fx:id = "spaceship"/>
 </Group>
 <Group fx:id = "asteroidGroup">
-
 </Group>
 <Group fx:id = "bulletGroup">
-
 </Group>
 <Group fx:id="scoreboardGroup">
-
 </Group>
-
-
 </Pane>
 
