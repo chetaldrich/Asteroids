@@ -20,6 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        MenuController.setCurrentStage(primaryStage);
         primaryStage.setTitle("Asteroids Menu");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
@@ -30,7 +31,6 @@ public class Main extends Application {
 
         myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
 
-        controller.setPreviousStage(primaryStage);
         controller.setCurrentStage(primaryStage);
 
         Scene myScene = new Scene(myPane);

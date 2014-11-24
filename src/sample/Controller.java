@@ -7,15 +7,19 @@
 package sample;
 
 import javafx.application.Platform;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -36,6 +40,7 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
     @FXML private Scoreboard scoreboard;
+
     private static AudioClip gameMusic;
 
     private static Stage previousStage;
@@ -69,6 +74,8 @@ public class Controller implements EventHandler<KeyEvent> {
         this.wantMusicOn=true;
         this.invincible=false;
 
+
+
         initScore();
         this.setUpAnimationTimer();
     }
@@ -76,6 +83,7 @@ public class Controller implements EventHandler<KeyEvent> {
     public static void setPreviousStage(Stage stage){
         previousStage = stage;
     }
+
 
     public static void setCurrentStage(Stage stage){
         currentStage = stage;
@@ -225,6 +233,17 @@ public class Controller implements EventHandler<KeyEvent> {
         }
     }
 
+    public void toggleMusic(){
+        if (this.gameMusic.isPlaying()){
+            this.wantMusicOn=false;
+            this.gameMusic.stop();
+        }
+        else{
+            this.wantMusicOn=true;
+            this.gameMusic.play();
+        }
+    }
+
     /**
      * checkGameCollisions -- checks the game for collisions between objects, and then calls the associated methods required for cleanup.
      */
@@ -363,7 +382,11 @@ public class Controller implements EventHandler<KeyEvent> {
         else if (code == KeyCode.SPACE) {
             fireBullet();
         }
+
     }
+
+
+
 
 
     /**
