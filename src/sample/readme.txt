@@ -16,6 +16,19 @@ and each of the controllers can initialize each other to instantiate a different
 
 Additionally, each of the core classes other than Scoreboard inherits from Sprite.
 
+TODO:
+-----------------
+0) Make asteroids more sensitive to bullets, less sensitive to spaceship.
+1) Add feature where there are simple math problems on the bottom, and user must shoot asteroid with correct answer.
+    -Minus points for hitting asteroid with wrong answer.
+2) Add a basic physics engine so that the spaceship could move more quickly and slow down when movement key is not depressed.
+3) Add visual and sound effects for when the asteroid blows up.
+4) Add high score feature.
+5) Add Game Over animations
+6) Add level system that increases difficulty as score goes up
+7) Potentially try 3D rendering at some point?
+8) FINAL ALIEN BOSS
+
 Core classes:
 Spaceship
 Asteroid
