@@ -40,25 +40,27 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
         Font myFont = new Font("Lucida Console", 18);
         this.scoreLabel.setFont(myFont);
-        this.scoreLabel.setLayoutX(0);
+        this.scoreLabel.setLayoutX(10);
         this.scoreLabel.setLayoutY(720);
-        this.scoreLabel.setLineSpacing(5);
+        this.scoreLabel.setLineSpacing(10);
         this.scoreLabel.setFill(Color.LIGHTGREEN);
-        this.getChildren().add(scoreLabel);
+        this.getChildren().add(this.scoreLabel);
+
 
         this.instructions=new Text();
-        this.instructions.setText(String.format("Controls:\n" +
-                "Arrow Keys and" +
-                "\t\tK" +
-               "\t\t\tSPACE: fire bullet" +
-                "\nH\t\tL\n\tJ" +
-                "\t\t\t\\t\\t\\tSPACE: fire bullet"));
+        this.instructions.setText(String.format(
+                "Move: Arrow Keys or\n" +
+                        "\tK\t\tSPACE: fire bullet\n"+
+                        "H\t\tL\n" +
+                        "\tJ\t\tM: toggle music"));
+
         this.instructions.setFont(myFont);
-        this.instructions.setLayoutX(800);
-        this.instructions.setLayoutY(650);
+        this.instructions.setLayoutX(720);
+        this.instructions.setLayoutY(690);
         this.instructions.setLineSpacing(5);
         this.instructions.setFill(Color.LIGHTGREEN);
-        this.getChildren().add(instructions);
+        this.getChildren().add(this.instructions);
+
     }
 
 
@@ -98,4 +100,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
 
     public void setScoreLabel(Text scoreLabel){ this.scoreLabel = scoreLabel;}
+    public void setInstructions(Text instructions){ this.instructions = instructions;}
+    public Text getInstructions(){
+        return this.instructions;
+    }
 }
