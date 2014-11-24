@@ -54,9 +54,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
 
     }
 
-    public float getObjId(){
-        return this.id;
-    }
 
     @Override
     public void setSize(double width, double height) {

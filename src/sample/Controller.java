@@ -77,13 +77,11 @@ public class Controller implements EventHandler<KeyEvent> {
     public void gotoMenu() throws IOException {
 
         Stage primaryStage = new Stage();
-
         primaryStage.setTitle("Asteroids Menu");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
 
         Pane myPane = (Pane)loader.load();
-
         MenuController controller = (MenuController) loader.getController();
 
         myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");

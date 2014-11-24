@@ -26,7 +26,7 @@ public class Bullet extends Sprite implements BulletInterface {
      */
     public Bullet(){
         this.setName("bullet");
-        this.velocity = new Point2D(8, 0);
+        this.velocity = new Point2D(12, 0);
         this.radius = 10.0;
         this.image = new Image(getClass().getResourceAsStream("/sample/img/laserbeam.png"), this.radius, this.radius, true, false);
         this.imageView = new ImageView();
@@ -46,11 +46,18 @@ public class Bullet extends Sprite implements BulletInterface {
         this.setPosition(xPos+xVel, yPos+yVel);
     }
 
-
+    /**
+     * makeSound -- make laser sound when bullets are fired from the ship.
+     */
     public void makeSound() {
         this.audioClip.play();
     }
 
+
+    /**
+     * getBounds -- generates a bounding box for the bullet, which is then used to determine collisions.
+     * @return boundingbox for the bullet object
+     */
     public BoundingBox getBounds(){
         double xval= this.getPosition().getX();
         double yval = this.getPosition().getY();
