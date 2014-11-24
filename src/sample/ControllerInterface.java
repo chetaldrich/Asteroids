@@ -24,6 +24,7 @@ public interface ControllerInterface {
      */
     public void fireBullet();
 
+
     /**
      * cleanUpObjects -- removes objects that have collided with each other, and instantiates new ones if necessary.
      */

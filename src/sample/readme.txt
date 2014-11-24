@@ -13,6 +13,9 @@ https://carlfx.wordpress.com/tag/collision-detection/
 
 We also have a model and controller and main class.
 
+Some of the pictures we used and the associated links:
+explosion: http://download.amplific.org/download/fnf001/
+
 				
 				                   A
                                    M

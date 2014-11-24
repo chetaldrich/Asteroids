@@ -10,20 +10,24 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class Main extends Application {
-    public double screenWidth;
-    public double screenHeight;
-    private Stage stage;
+    public static double screenWidth;
+    public static double screenHeight;
+    private static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -50,27 +54,8 @@ public class Main extends Application {
 
     }
 
-    public void goToGameOver(){
-        try {
-            replaceSceneContent("login.fxml");
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
-    private Parent replaceSceneContent(String fxml) throws Exception {
-        Parent page = (Parent) FXMLLoader.load(Main.class.getResource(fxml), null, new JavaFXBuilderFactory());
-        Scene scene = stage.getScene();
-        if (scene == null) {
-            scene = new Scene(page, 700, 450);
-            scene.getStylesheets().add(Main.class.getResource("demo.css").toExternalForm());
-            stage.setScene(scene);
-        } else {
-            stage.getScene().setRoot(page);
-        }
-        stage.sizeToScene();
-        return page;
-    }
+
 
 
 

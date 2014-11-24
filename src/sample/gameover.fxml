@@ -13,6 +13,6 @@
           xmlns:fx="http://javafx.com/fxml"
            prefHeight="800"
            prefWidth="1200">
-
+<Button text = "Return To Game" layoutX="600" layoutY="400"/>
 </Pane>
 
