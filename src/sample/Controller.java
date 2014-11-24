@@ -86,6 +86,8 @@ public class Controller implements EventHandler<KeyEvent> {
 
         MenuController controller = (MenuController) loader.getController();
 
+        myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
+
         controller.setPreviousStage(primaryStage);
 
         Scene myScene = new Scene(myPane);

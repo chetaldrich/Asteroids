@@ -28,6 +28,8 @@ public class Main extends Application {
 
         MenuController controller = (MenuController) loader.getController();
 
+        myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
+
         controller.setPreviousStage(primaryStage);
         controller.setCurrentStage(primaryStage);
 
