@@ -45,8 +45,11 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private int score;
     private boolean paused;
+    private boolean wantMusicOn;
     private Timer timer;
     private Timer cleanupTimer;
+    private boolean invincible;
+    private int invincibleCount;
 
     public Controller(){
 
@@ -60,6 +63,9 @@ public class Controller implements EventHandler<KeyEvent> {
         spaceModel = new Model(this.screenWidth, this.screenHeight);
         this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
         this.gameMusic.play();
+        this.wantMusicOn=true;
+        this.invincible=false;
+
         initScore();
         this.setUpAnimationTimer();
     }
@@ -200,12 +206,13 @@ public class Controller implements EventHandler<KeyEvent> {
 
     }
 
+
     /**
      * checkMusic -- function that checks the in game music and if it is not currently playing, begins play.
      * Deals with the audio clip reaching the end of the track.
      */
     private void checkMusic(){
-        if (!this.gameMusic.isPlaying()){
+        if (!this.gameMusic.isPlaying()&& this.wantMusicOn){
             this.gameMusic.play();
         }
     }
@@ -234,14 +241,23 @@ public class Controller implements EventHandler<KeyEvent> {
         } catch (Exception e) {
 
         }
+        if (!this.invincible) {
+            ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
+            if (collidedSAs.size() != 0) {
 
-        ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
-        if (collidedSAs.size()!=0){
+                //one asteroid can only hit the ship at a time
+                explodeTheShip(collidedSAs);
+                updateScore(-1000);
 
-            //one asteroid can only hit the ship at a time
-            explodeTheShip(collidedSAs);
-            updateScore(-1000);
 
+            }
+        }
+        else{
+            this.invincibleCount++;
+            if (this.invincibleCount>50){
+                this.invincible=false;
+                this.invincibleCount=0;
+            }
 
         }
     }
@@ -252,6 +268,7 @@ public class Controller implements EventHandler<KeyEvent> {
      * @param collidedSAs A list of the collided asteroids and spaceship
      */
     private void explodeTheShip(ArrayList<Sprite> collidedSAs){
+        this.invincible=true;
         spaceModel.updateLives(-1);
         Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
         asteroidGroup.getChildren().remove(deadAsteroid);

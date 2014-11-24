@@ -96,7 +96,6 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     }
 
     private void setImagetoSpaceship() {
-        this.isSpaceshipImage = true;
         this.getChildren().remove(imageView);
         image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));
         imageView = new ImageView();
@@ -104,6 +103,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         this.setPosition(oldPosition.getX(), oldPosition.getY());
         this.getChildren().clear();
         this.getChildren().add(imageView);
+        this.isSpaceshipImage = true;
     }
 
 

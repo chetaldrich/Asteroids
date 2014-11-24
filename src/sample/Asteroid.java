@@ -29,6 +29,8 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private int screenWidth = 1200;
     private float id;
     private AudioClip audioClip;
+    private boolean isAsteroidImage;
+    private Point2D oldPosition;
 
 
     /**
@@ -48,6 +50,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         imageView.setImage(image);
         this.getChildren().add(imageView);
         this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
+        isAsteroidImage = true;
 
     }
 
@@ -99,5 +102,31 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     @Override
     public void makeSound(){
         this.audioClip.play();
+    }
+
+    private void setImagetoExplosion() {
+        this.isAsteroidImage = false;
+        oldPosition = this.getPosition();
+        double newPosX = this.getPosition().getX()+this.getSize().getX()/2-100;
+        double newPosY = this.getPosition().getY()+this.getSize().getY()/2-110;
+        this.getChildren().remove(imageView);
+        image = new Image(getClass().getResourceAsStream("/sample/img/explosion.gif"), 200, 200, true, false);
+        imageView = new ImageView();
+        imageView.setImage(image);
+        this.getChildren().clear();
+        this.setPosition(newPosX, newPosY);
+        this.getChildren().add(imageView);
+
+    }
+
+    private void setImagetoAsteroid() {
+        this.isAsteroidImage = true;
+        this.getChildren().remove(imageView);
+        image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"));
+        imageView = new ImageView();
+        imageView.setImage(image);
+        this.setPosition(oldPosition.getX(), oldPosition.getY());
+        this.getChildren().clear();
+        this.getChildren().add(imageView);
     }
 }

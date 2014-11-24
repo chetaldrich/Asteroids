@@ -11,6 +11,11 @@ Links:
 http://www.nutt.net/2013/11/25/create-scrolling-background-java/
 https://carlfx.wordpress.com/tag/collision-detection/
 http://stackoverflow.com/questions/17226948/switching-scene-in-javafx
+https://www.youtube.com/watch?v=djZFHTa6TfA
+
+spaceship
+http://scratch.mit.edu/projects/2229196/
+
 
 We also have a model and controller and main class.
 
