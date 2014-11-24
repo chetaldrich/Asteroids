@@ -48,6 +48,13 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
 
         this.instructions=new Text();
+
+        /*  Displayed as:
+        Move: Arrow Keys or
+                K               SPACE: fire bullet
+        H               L
+                J               M: toggle music
+         */
         this.instructions.setText(String.format(
                 "Move: Arrow Keys or\n" +
                         "\tK\t\tSPACE: fire bullet\n"+

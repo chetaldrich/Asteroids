@@ -38,6 +38,11 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
 
     }
 
+    /**
+     * sets size of spaceship
+     * @param width new width
+     * @param height new height
+     */
     @Override
     public void setSize(double width, double height) {
         super.setSize(width, height);
@@ -50,6 +55,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
 
     /**
      * step -- Moves the spaceship to its next Point2D position in the game.
+     * if spaceship is currently exploding, prohibits movement
      */
     @Override
     public void step() {
@@ -69,17 +75,19 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         }
     }
 
-    //is this even called????
-    //TODO: GET RID OF THIS IN SPRITE CLASS!
-    public String getSpriteType(){
-        return "spaceship";
-    }
+
 
     @Override
+    /**
+     * plays explosion
+     */
     public void makeSound(){
         this.audioClip.play();
     }
-    
+
+    /**
+     *  sets image to explosion when we lose a life (temporary)
+    */
     private void setImagetoExplosion() {
         this.isSpaceshipImage = false;
         oldPosition = this.getPosition();
@@ -95,6 +103,9 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
 
     }
 
+    /**
+     * sets image back to spaceship when we lose a life
+     */
     private void setImagetoSpaceship() {
         this.getChildren().remove(imageView);
         image = new Image(getClass().getResourceAsStream("/sample/img/spaceship.png"));
