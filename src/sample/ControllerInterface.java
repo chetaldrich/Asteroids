@@ -1,8 +1,4 @@
-/**
- * ControllerInterface.java
- * Interface for the Controller class, which manipulates and creates game elements in the Asteroids game.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 
@@ -12,6 +8,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * ControllerInterface.java
+ * Interface for the Controller class, which manipulates and creates game elements in the Asteroids game.
+ * Chet Aldrich and Josie Bealle
+ */
 public interface ControllerInterface {
 
    /**

@@ -1,14 +1,14 @@
+
+package sample;
+
+import javafx.scene.text.Text;
+
 /**
  * ScoreboardInterface.java
  * ScoreboardInterface: Provides an interface for Scoreboard, which constructs a scoreboard for our game.
  * Includes the current score and lives of the player.
  * Chet Aldrich and Josie Bealle
  */
-package sample;
-
-import javafx.scene.text.Text;
-
-
 public interface ScoreboardInterface {
 
     /**

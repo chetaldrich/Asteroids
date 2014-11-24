@@ -1,12 +1,12 @@
+
+
+package sample;
+
 /**
  * SpaceshipInterface.java
  * SpaceshipInterface: Interface for the Spaceship class, which constructs a spaceship for our game.
  * Chet Aldrich and Josie Bealle
  */
-
-package sample;
-
-
 public interface SpaceshipInterface {
 
     /**

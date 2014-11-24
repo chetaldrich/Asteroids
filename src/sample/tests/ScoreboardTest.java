@@ -1,3 +1,4 @@
+
 package sample.tests;
 
 import org.junit.Test;
@@ -5,6 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import sample.Scoreboard;
 
+/**
+ * ScoreboardTest.java
+ * A suite of basic unit tests for the Scoreboard class.
+ * Chet Aldrich and Josie Bealle
+ */
 public class ScoreboardTest {
 
     public ScoreboardTest() {

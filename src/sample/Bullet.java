@@ -2,7 +2,7 @@
  * Bullet.java
  * Bullet class -- holds data and constructs the bullets that our spaceship fires at asteroids
  * Methods include getBounds, makeSound, etc.
- * Chet Aldrich and Josie Bealle
+ * Josie Bealle and Chet Aldrich
  */
 package sample;
 

@@ -8,6 +8,11 @@ import sample.Spaceship;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * SpaceshipTest.java
+ * A suite of basic unit tests for the Spaceship class.
+ * Chet Aldrich and Josie Bealle
+ */
 public class SpaceshipTest {
     public SpaceshipTest() {
 
@@ -55,12 +60,9 @@ public class SpaceshipTest {
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();
 
-        spaceship.setVelocity(2,2);
-        Point2D spaceshipVelocity = spaceship.getVelocity();
-        double xVelocity = spaceshipVelocity.getX();
-        double yVelocity = spaceshipVelocity.getY();
+        spaceship.setPosition(202, 402);
 
-        Point2D newPosition = new Point2D(xPosition + xVelocity, yPosition + yVelocity);
+        Point2D newPosition = new Point2D(202, 402);
 
         spaceship.step();
         assertEquals("Spaceship step Fail", newPosition, spaceship.getPosition());

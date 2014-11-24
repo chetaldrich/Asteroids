@@ -1,15 +1,15 @@
+
+
+package sample;
+
+import javafx.geometry.BoundingBox;
+
 /**
  * BulletInterface.java
  * Bullet interface for the bullet class, which defines the bullets that our spaceship fires at asteroids
  * Methods include getBounds, makeSound, etc.
  * Chet Aldrich and Josie Bealle
  */
-
-package sample;
-
-import javafx.geometry.BoundingBox;
-
-
 public interface BulletInterface {
 
 

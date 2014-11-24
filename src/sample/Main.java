@@ -1,8 +1,4 @@
-/**
- * Main.java
- * Main class of our program, which launches the game and associated classes.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 import javafx.application.Application;
@@ -11,7 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-
+/**
+ * Main.java
+ * Main class of our program, which launches the game and associated classes.
+ * Josie Bealle and Chet Aldrich
+ */
 public class Main extends Application {
 
     @Override

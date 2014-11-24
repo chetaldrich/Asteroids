@@ -2,7 +2,6 @@
 
 package sample;
 
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,6 +43,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         //Set a random velocity.
         double randVelocity = id * -18;
         this.velocity = new Point2D(randVelocity, 0);
+        this.setVelocity(randVelocity,0);
 
 
         this.setPosition(screenWidth, yCoord);
@@ -84,7 +84,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setSize(newRadius, newRadius);
     }
 
-
+    @Override
     /**
      * step -- sets new position according to velocity
      */

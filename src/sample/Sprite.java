@@ -1,8 +1,4 @@
-/**
- * Sprite.java
- * Adapted from the sprite class created by Jeff Ondich, the Sprite class provides methods to retrieve and set sprite properties in the game.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 
@@ -12,6 +8,11 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 
+/**
+ * Sprite.java
+ * Adapted from the sprite class created by Jeff Ondich, the Sprite class provides methods to retrieve and set sprite properties in the game.
+ * Chet Aldrich and Josie Bealle
+ */
 public abstract class Sprite extends Group {
     // In addition to name and velocity, each Sprite also has a position
     // and size. Those attributes are a part of the Group superclass.

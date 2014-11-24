@@ -1,3 +1,4 @@
+
 package sample.tests;
 
 import javafx.geometry.Point2D;
@@ -9,6 +10,11 @@ import sample.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ModelTest.java
+ * A suite of tests for the Model class.
+ * Chet Aldrich and Josie Bealle
+ */
 public class ModelTest {
 
     public ModelTest() {
@@ -106,23 +112,6 @@ public class ModelTest {
         assertNotNull("Model createNewShip() Fail", model.getSpaceship());
     }
 
-    @Test
-    public void testMoveShip(){
-        Model model = new Model(500,500);
-        model.createNewShip();
-        Spaceship spaceship = model.getSpaceship();
-        Point2D spaceshipLocation = spaceship.getPosition();
-        double spaceshipLocationX = spaceshipLocation.getX();
-        double spaceshipLocationY = spaceshipLocation.getY();
-        model.moveShip(new Point2D(0,2));
-        Point2D spaceshipLocationNew = spaceship.getPosition();
-        double spaceshipLocationXNew = spaceshipLocation.getX();
-        double spaceshipLocationYNew = spaceshipLocation.getY();
-
-        assertFalse("Model moveShip() Fail", (spaceshipLocationY==spaceshipLocationYNew));
-
-
-    }
 
     @Test
     public void testUpdateLives(){

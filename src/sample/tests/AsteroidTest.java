@@ -1,8 +1,4 @@
-/**
- * AsteroidTest.java
- * A suite of basic unit tests for the Asteroid class.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample.tests;
 import javafx.geometry.Point2D;
@@ -13,14 +9,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * AsteroidTest.java
+ * A suite of basic unit tests for the Asteroid class.
+ * Chet Aldrich and Josie Bealle
+ */
 public class AsteroidTest {
 
     public AsteroidTest() {
 
     }
-
-
 
     @Test
     public void testGetPosition() throws Exception {
@@ -62,7 +60,6 @@ public class AsteroidTest {
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();
 
-        asteroid.setVelocity(2,2);
         Point2D asteroidVelocity = asteroid.getVelocity();
         double xVelocity = asteroidVelocity.getX();
         double yVelocity = asteroidVelocity.getY();
@@ -74,3 +71,5 @@ public class AsteroidTest {
 
     }
 }
+
+

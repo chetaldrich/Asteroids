@@ -1,3 +1,4 @@
+
 package sample.tests;
 
 
@@ -10,7 +11,11 @@ import sample.Spaceship;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * BulletTest.java
+ * A suite of basic unit tests for the Bullet class.
+ * Chet Aldrich and Josie Bealle
+ */
 public class BulletTest {
     public BulletTest() {
 

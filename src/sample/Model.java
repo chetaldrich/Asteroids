@@ -1,8 +1,4 @@
-/**
- * Model.java
- * Manages the current game state of our program, and provides information to the controller for modification.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 
@@ -13,6 +9,11 @@ import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model.java
+ * Manages the current game state of our program, and provides information to the controller for modification.
+ * Chet Aldrich and Josie Bealle
+ */
 public class Model {
 
     private static ArrayList asteroids;
@@ -122,14 +123,7 @@ public class Model {
         spaceship = new Spaceship();
     }
 
-    /**
-     * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
-     * @param additionalSpeed speed to add
-     */
-    public void moveShip(Point2D additionalSpeed){
-        Point2D velocity = spaceship.getVelocity();
-        spaceship.setVelocity(velocity.getX() + additionalSpeed.getX(), velocity.getY() + additionalSpeed.getY());
-    }
+
 
     /**
      * getSpaceShip -- gets the current Spaceship instance in the model.

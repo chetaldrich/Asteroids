@@ -1,8 +1,4 @@
-/**
- * Controller.java
- * Manipulates and creates game elements in the Asteroids game.
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 
@@ -24,6 +20,11 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Controller.java
+ * Manipulates and creates game elements in the Asteroids game.
+ * Chet Aldrich and Josie Bealle
+ */
 public class Controller implements EventHandler<KeyEvent>, ControllerInterface {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
