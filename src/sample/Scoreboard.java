@@ -2,17 +2,10 @@
 package sample;
 
 
-import javafx.fxml.FXML;
 import javafx.scene.Group;
-
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-
 
 
  /** Scoreboard.java

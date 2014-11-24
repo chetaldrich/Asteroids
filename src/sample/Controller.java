@@ -23,8 +23,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -74,21 +72,30 @@ public class Controller implements EventHandler<KeyEvent> {
         this.wantMusicOn=true;
         this.invincible=false;
 
-
-
         initScore();
         this.setUpAnimationTimer();
     }
 
+    /**
+     * setPreviousStage -- sets the previous stage of the program for closing in subsequent windows.
+     * @param stage stage that was previously focused
+     */
     public static void setPreviousStage(Stage stage){
         previousStage = stage;
     }
 
-
+    /**
+     * setCurrentStage -- sets the current focused stage of the game for later closing.
+     * @param stage the current focused stage
+     */
     public static void setCurrentStage(Stage stage){
         currentStage = stage;
     }
 
+    /**
+     * gotoMenu -- goes to the game home menu when certain triggers occur (death, possibly other functions)
+     * @throws IOException
+     */
     public void gotoMenu() throws IOException {
         MenuController.setPreviousStage(currentStage);
         Stage primaryStage = new Stage();
@@ -127,6 +134,7 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
+        //sets a timer task for checking for objects to clean up.
         TimerTask cleanUpTask = new TimerTask() {
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -137,6 +145,7 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
+        //sets a timer task for generating asteroids.
         TimerTask asteroidGeneration = new TimerTask(){
             public void run(){
                 Platform.runLater(new Runnable() {
@@ -148,7 +157,7 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
-
+        //sets a timer task for checking for collisions in the game.
         TimerTask collisionTask = new TimerTask(){
             public void run(){
                 Platform.runLater(new Runnable() {
@@ -160,7 +169,7 @@ public class Controller implements EventHandler<KeyEvent> {
                 });
             }
         };
-
+        //sets a timer task to check whether the music stopped playing, if music is currently on.
         TimerTask musicPlayer = new TimerTask(){
             public void run(){
                 Platform.runLater(new Runnable() {
@@ -187,6 +196,28 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
+     * updateAnimation -- calls functions to handle essential animation elements.
+     * Examples include step methods for object movement in-game and collision checking.
+     */
+    private void updateAnimation() {
+
+        this.spaceship.step();
+        if (this.asteroidGroup.getChildren().size()>0) {
+            for (Node child : this.asteroidGroup.getChildren()) {
+                Asteroid asteroid = (Asteroid) child;
+                asteroid.step();
+            }
+        }
+
+        for (Node child : this.bulletGroup.getChildren()) {
+            Bullet bullet = (Bullet) child;
+            bullet.step();
+
+        }
+
+    }
+
+    /**
      * makeAsteroids -- generates Asteroids in the model and inserts them into the view for use in game.
      */
     public void makeAsteroids(){
@@ -201,29 +232,6 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * updateAnimation -- calls functions to handle essential animation elements.
-     * Examples include step methods for object movement in-game and collision checking.
-     */
-    private void updateAnimation() {
-
-        this.spaceship.step();
-        if (this.asteroidGroup.getChildren().size()>0) {
-            for (Node child : this.asteroidGroup.getChildren()) {
-                Asteroid asteroid = (Asteroid) child;
-                asteroid.step();
-            }
-        }
-
-            for (Node child : this.bulletGroup.getChildren()) {
-                Bullet bullet = (Bullet) child;
-                bullet.step();
-
-            }
-
-    }
-
-
-    /**
      * checkMusic -- function that checks the in game music and if it is not currently playing, begins play.
      * Deals with the audio clip reaching the end of the track.
      */
@@ -233,6 +241,9 @@ public class Controller implements EventHandler<KeyEvent> {
         }
     }
 
+    /**
+     * toggleMusic -- toggles play of music.
+     */
     public void toggleMusic(){
         if (this.gameMusic.isPlaying()){
             this.wantMusicOn=false;
@@ -251,7 +262,7 @@ public class Controller implements EventHandler<KeyEvent> {
         try {
             ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
 
-
+            //Checks for bullet asteroid collisions. If the previous function returned a collision, calls removal functions to clean up.
             if (collidedBAs.size() != 0) {
                 for (int i = 0; i < collidedBAs.size(); i += 2) {
                     Bullet deadBullet= (Bullet) collidedBAs.get(i);
@@ -268,17 +279,19 @@ public class Controller implements EventHandler<KeyEvent> {
         } catch (Exception e) {
 
         }
+
+        // if not currently invincible because of recent respawn, kills the ship and the asteroid.
         if (!this.invincible) {
             ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
             if (collidedSAs.size() != 0) {
 
-                //one asteroid can only hit the ship at a time
+                //only one asteroid can hit the ship at a time
                 explodeTheShip(collidedSAs);
-                updateScore(-1000);
-
+                updateScore(-500);
 
             }
         }
+        //if currently invincible because just after respawn, keeps asteroids from hitting the spaceship
         else{
             this.invincibleCount++;
             if (this.invincibleCount>50){
@@ -301,7 +314,7 @@ public class Controller implements EventHandler<KeyEvent> {
         asteroidGroup.getChildren().remove(deadAsteroid);
         spaceModel.removeAsteroid(deadAsteroid);
         if (spaceModel.getLives()>0) {
-            //make sound explodes the ship!
+            //exploding sound! BOOM
             spaceship.makeSound();
         }
         else if (spaceModel.getLives()==0){
@@ -329,10 +342,13 @@ public class Controller implements EventHandler<KeyEvent> {
         scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
     }
 
+    /**
+     * initScore -- initializes the score in the game view (called in initialize())
+     */
     private void initScore(){
 
         spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
-                spaceModel.getScoreboard().getLives()));
+                                                                                                 spaceModel.getScoreboard().getLives()));
         scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
         scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getInstructions());
 
@@ -389,9 +405,6 @@ public class Controller implements EventHandler<KeyEvent> {
         }
 
     }
-
-
-
 
 
     /**
@@ -464,5 +477,4 @@ public class Controller implements EventHandler<KeyEvent> {
           catch (Exception e){}
 
     }
-
 }
