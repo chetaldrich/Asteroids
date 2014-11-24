@@ -3,8 +3,11 @@ package sample;
 
 
 import javafx.scene.Group;
-import javafx.scene.control.Label;
+
+import javafx.scene.control.Button;
 import javafx.scene.paint.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 
 
@@ -18,7 +21,9 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
     private int score;
     private int lives;
-    private Label scoreLabel;
+    private Text scoreLabel;
+    private Button musicButton;
+
 
     /**
      * Constructor
@@ -26,12 +31,20 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     public Scoreboard(){
         this.score = 0;
         this.lives = 3;
-        this.scoreLabel = new Label();
-        this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
+        this.scoreLabel=new Text();
+        this.scoreLabel.setText(String.format("Score: %d\n\n\nLives: %d", this.score, this.lives));
+        Font myFont = new Font("Lucida Console", 18);
+        this.scoreLabel.setFont(myFont);
         this.scoreLabel.setLayoutX(0);
         this.scoreLabel.setLayoutY(720);
-        this.scoreLabel.setTextFill(Color.LIGHTGREEN);
+        this.scoreLabel.setLineSpacing(5);
+        this.scoreLabel.setFill(Color.LIGHTGREEN);
         this.getChildren().add(scoreLabel);
+
+        this.musicButton = new Button();
+
+
+
     }
 
 
@@ -67,8 +80,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.lives = lives;
     }
 
-    public Label getScoreLabel(){ return this.scoreLabel; }
+    public Text getScoreLabel(){ return this.scoreLabel; }
 
 
-    public void setScoreLabel(Label scoreLabel){ this.scoreLabel = scoreLabel;}
+    public void setScoreLabel(Text scoreLabel){ this.scoreLabel = scoreLabel;}
 }

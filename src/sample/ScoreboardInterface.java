@@ -6,8 +6,8 @@
  */
 package sample;
 
+import javafx.scene.text.Text;
 
-import javafx.scene.control.Label;
 
 public interface ScoreboardInterface {
 
@@ -35,7 +35,7 @@ public interface ScoreboardInterface {
      */
     public void setLives(int lives);
 
-    public Label getScoreLabel();
+    public Text getScoreLabel();
 
-    public void setScoreLabel(Label scoreLabel);
+    public void setScoreLabel(Text scoreLabel);
 }
