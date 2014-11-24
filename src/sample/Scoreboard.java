@@ -25,6 +25,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     private int score;
     private int lives;
     private Text scoreLabel;
+    private Text instructions;
 
 
 
@@ -36,7 +37,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.score = 0;
         this.lives = 3;
         this.scoreLabel=new Text();
-        this.scoreLabel.setText(String.format("Score: %d\n\n\nLives: %d", this.score, this.lives));
+        this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
         Font myFont = new Font("Lucida Console", 18);
         this.scoreLabel.setFont(myFont);
         this.scoreLabel.setLayoutX(0);
@@ -44,6 +45,20 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.scoreLabel.setLineSpacing(5);
         this.scoreLabel.setFill(Color.LIGHTGREEN);
         this.getChildren().add(scoreLabel);
+
+        this.instructions=new Text();
+        this.instructions.setText(String.format("Controls:\n" +
+                "Arrow Keys and" +
+                "\t\tK" +
+               "\t\t\tSPACE: fire bullet" +
+                "\nH\t\tL\n\tJ" +
+                "\t\t\t\\t\\t\\tSPACE: fire bullet"));
+        this.instructions.setFont(myFont);
+        this.instructions.setLayoutX(800);
+        this.instructions.setLayoutY(650);
+        this.instructions.setLineSpacing(5);
+        this.instructions.setFill(Color.LIGHTGREEN);
+        this.getChildren().add(instructions);
     }
 
 

@@ -382,6 +382,9 @@ public class Controller implements EventHandler<KeyEvent> {
         else if (code == KeyCode.SPACE) {
             fireBullet();
         }
+        else if (code == KeyCode.M){
+            toggleMusic();
+        }
 
     }
 
