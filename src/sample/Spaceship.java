@@ -39,7 +39,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     }
 
     /**
-     * sets size of spaceship
+     * setSize -- sets size of spaceship
      * @param width new width
      * @param height new height
      */
@@ -77,17 +77,18 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
 
 
 
-    @Override
+
     /**
-     * plays explosion
+     * makeSound -- plays explosion sound when the spaceship collides with an asteroid.
      */
+    @Override
     public void makeSound(){
         this.audioClip.play();
     }
 
     /**
-     *  sets image to explosion when we lose a life (temporary)
-    */
+     * setImagetoExplosion -- sets image to explosion when we lose a life (temporary)
+     */
     private void setImagetoExplosion() {
         this.isSpaceshipImage = false;
         oldPosition = this.getPosition();
@@ -104,7 +105,7 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
     }
 
     /**
-     * sets image back to spaceship when we lose a life
+     * setImagetoSpaceship -- sets image back to spaceship after an explosion.
      */
     private void setImagetoSpaceship() {
         this.getChildren().remove(imageView);
