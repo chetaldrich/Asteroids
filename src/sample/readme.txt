@@ -1,5 +1,14 @@
-SPACESHIP README!
+ASTEROIDS README!
 (by Josie Bealle and Chet Aldrich)
+
+A basic asteroids scroller-ish type  game.
+
+
+Code Structure:
+Currently, the program is structured with view fxml files + core classes (listed below). The initial menu view is launched via the Main class,
+and each of the controllers can initialize each other to instantiate a different view.
+
+Additionally, each of the core classes other than Scoreboard inherits from Sprite.
 
 Core classes:
 Spaceship
@@ -13,21 +22,18 @@ https://carlfx.wordpress.com/tag/collision-detection/
 http://stackoverflow.com/questions/17226948/switching-scene-in-javafx
 https://www.youtube.com/watch?v=djZFHTa6TfA
 
+
 spaceship:
 http://scratch.mit.edu/projects/2229196/
 Space Alien:
 https://twitter.com/8bitAlien
 Asteroid:
+http://astroempires.wikia.com/wiki/Asteroid
+SpaceBackground:
+by Chet Aldrich
+Explosion:
+http://download.amplific.org/download/fnf001/
 
-
-We also have a model and controller and main class.
-
-Some of the pictures we used and the associated links:
-explosion: http://download.amplific.org/download/fnf001/
-
-
-big red button
-http://pixgood.com/red-button.html
 
 				
 				                   A

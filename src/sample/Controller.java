@@ -192,7 +192,7 @@ public class Controller implements EventHandler<KeyEvent> {
         this.cleanupTimer.schedule(cleanUpTask, 100, frameTimeInMilliseconds);
         this.cleanupTimer.schedule(collisionTask, 10, 50);
         this.timer.scheduleAtFixedRate(musicPlayer, 0, 10000);
-        this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 1000);
+        this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 750);
     }
 
     /**
@@ -405,7 +405,6 @@ public class Controller implements EventHandler<KeyEvent> {
         }
 
     }
-
 
     /**
      * fireBullet -- fires a bullet from the spaceship by creating a new Bullet instance at the location of the spaceship.

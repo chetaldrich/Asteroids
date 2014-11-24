@@ -38,13 +38,6 @@ public class AsteroidTest {
 
     }
 
-    /*@Test
-    public void testVanish() throws Exception {
-        Asteroid asteroid = new Asteroid(500, 500);
-        asteroid.vanish();
-        assertNull("Asteroid vanish Fail", asteroid);
-
-    }*/
 
     @Test
     public void testGetVelocity() throws Exception {
