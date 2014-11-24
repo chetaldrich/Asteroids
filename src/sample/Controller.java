@@ -9,12 +9,17 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,6 +35,8 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML private Spaceship spaceship;
     @FXML private Scoreboard scoreboard;
     private static AudioClip gameMusic;
+
+    private static Stage previousStage;
 
 
 
@@ -57,7 +64,31 @@ public class Controller implements EventHandler<KeyEvent> {
         this.setUpAnimationTimer();
     }
 
+    public static void setPreviousStage(Stage stage){
+        previousStage = stage;
+    }
 
+    public void gotoMenu() throws IOException {
+
+        Stage primaryStage = new Stage();
+
+        primaryStage.setTitle("Asteroids Menu");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+
+        Pane myPane = (Pane)loader.load();
+
+        MenuController controller = (MenuController) loader.getController();
+
+        controller.setPreviousStage(primaryStage);
+
+        Scene myScene = new Scene(myPane);
+        primaryStage.setScene(myScene);
+
+        previousStage.close();
+
+        primaryStage.show();
+    }
 
     /**
      * setUpAnimationTimer -- begins the timers for animations
@@ -229,9 +260,15 @@ public class Controller implements EventHandler<KeyEvent> {
             //make sound explodes the ship!
             spaceship.makeSound();
         }
-        else{
+        else if (spaceModel.getLives()==0){
             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
-//            Main.goToGameOver();
+            try{
+                this.gameMusic.stop();
+                this.timer.cancel();
+                this.cleanupTimer.cancel();
+                gotoMenu();
+            }catch (IOException exception){}
+
         }
 
     }

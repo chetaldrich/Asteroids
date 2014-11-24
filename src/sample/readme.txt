@@ -10,6 +10,7 @@ Scoreboard
 Links:
 http://www.nutt.net/2013/11/25/create-scrolling-background-java/
 https://carlfx.wordpress.com/tag/collision-detection/
+http://stackoverflow.com/questions/17226948/switching-scene-in-javafx
 
 We also have a model and controller and main class.
 
