@@ -106,5 +106,5 @@ public class Spaceship extends Sprite implements SpaceshipInterface {
         this.isSpaceshipImage = true;
     }
 
-    
+
 }

@@ -17,6 +17,9 @@ http://scratch.mit.edu/projects/2229196/
 
 We also have a model and controller and main class.
 
+Some of the pictures we used and the associated links:
+explosion: http://download.amplific.org/download/fnf001/
+
 				
 				                   A
                                    M

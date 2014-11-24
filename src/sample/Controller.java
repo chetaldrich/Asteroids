@@ -7,24 +7,15 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.BoundingBox;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
-import sample.*;
-
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,8 +34,6 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
     final private double framesPerSecond = 20.0;
-    private boolean isMovingUp;
-    private boolean isMovingDown;
     private int bulletCount;
 
     private int score;
@@ -63,8 +52,6 @@ public class Controller implements EventHandler<KeyEvent> {
      * initialize -- initializes game the beginning game elements and starts the animation timer.
      */
     public void initialize() {
-        this.isMovingDown = false;
-        this.isMovingUp = false;
         this.bulletCount = 0;
         spaceModel = new Model(this.screenWidth, this.screenHeight);
         this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
@@ -73,13 +60,14 @@ public class Controller implements EventHandler<KeyEvent> {
         this.invincible=false;
 
         initScore();
-
-
         this.setUpAnimationTimer();
     }
 
+
+
     /**
      * setUpAnimationTimer -- begins the timers for animations
+     * Also establishes some timer tasks that will occur intermittently during the course of the game.
      */
     private void setUpAnimationTimer() {
         TimerTask timerTask = new TimerTask() {
@@ -150,6 +138,10 @@ public class Controller implements EventHandler<KeyEvent> {
         this.timer.scheduleAtFixedRate(musicPlayer, 0, 10000);
         this.timer.scheduleAtFixedRate(asteroidGeneration, 0, 1000);
     }
+
+    /**
+     * makeAsteroids -- generates Asteroids in the model and inserts them into the view for use in game.
+     */
     public void makeAsteroids(){
         Asteroid newAsteroid = this.spaceModel.generateAsteroid();
         try{
@@ -183,12 +175,20 @@ public class Controller implements EventHandler<KeyEvent> {
 
     }
 
-    public void checkMusic(){
-        if (!this.gameMusic.isPlaying() && this.wantMusicOn){
+
+    /**
+     * checkMusic -- function that checks the in game music and if it is not currently playing, begins play.
+     * Deals with the audio clip reaching the end of the track.
+     */
+    private void checkMusic(){
+        if (!this.gameMusic.isPlaying()&& this.wantMusicOn){
             this.gameMusic.play();
         }
     }
 
+    /**
+     * checkGameCollisions -- checks the game for collisions between objects, and then calls the associated methods required for cleanup.
+     */
     public void checkGameCollisions(){
         try {
             ArrayList collidedBAs = spaceModel.checkGameCollisions("bullet-asteroid", this.spaceship);
@@ -230,6 +230,12 @@ public class Controller implements EventHandler<KeyEvent> {
 
         }
     }
+
+    /**
+     * explodeTheShip -- given that the checkGameCollisions function finds that there was a collision between the spaceship and asteroid,
+     * this function updates the lives, and calls functions for associated animations and cleanup.
+     * @param collidedSAs A list of the collided asteroids and spaceship
+     */
     private void explodeTheShip(ArrayList<Sprite> collidedSAs){
         this.invincible=true;
         spaceModel.updateLives(-1);
@@ -242,13 +248,15 @@ public class Controller implements EventHandler<KeyEvent> {
         }
         else{
             spaceshipGroup.getChildren().remove(collidedSAs.get(0));
+//            Main.goToGameOver();
         }
-
 
     }
 
-
-
+    /**
+     * updateScore -- updates the score in the model and in game
+     * @param value amount by which to increase or decrease the score. Can be negative or positive.
+     */
     private void updateScore(int value){
         spaceModel.updateScore(value);
         spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
@@ -383,14 +391,5 @@ public class Controller implements EventHandler<KeyEvent> {
           catch (Exception e){}
 
     }
-
-
-
-
-
-
-
-
-
 
 }
