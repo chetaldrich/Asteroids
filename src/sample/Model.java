@@ -30,7 +30,6 @@ public class Model {
     public Model(double screenWidth, double screenHeight) {
         bullets = new ArrayList<Bullet>();
         asteroids = new ArrayList<Asteroid>();
-        explosions = new ArrayList<Explosion>();
         scoreboard = new Scoreboard();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
@@ -72,10 +71,9 @@ public class Model {
 
     /**
      * collided -- Checks to see if a particular two sprites collided.
-     * @param asteroid First sprite to check
+     * @param asteroid asteroid to check
      * @param sprite2 Second sprite to check against
      * @return boolean true if sprites collided, false if sprites did not collide
-     * TODO: make this smarter and check based on the size of the object
      */
     public boolean collided(Asteroid asteroid, Sprite sprite2){
         BoundingBox asteroidBounds = asteroid.getBounds();
@@ -94,6 +92,7 @@ public class Model {
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
+     * @return asteroid created
      */
     public Asteroid generateAsteroid(){
        Asteroid newAsteroid = new Asteroid();
@@ -103,6 +102,7 @@ public class Model {
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
+     * @return bullet created
      */
     public Bullet generateBullet(){
         Bullet newBullet = new Bullet();
@@ -120,6 +120,7 @@ public class Model {
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
+     * @param additionalSpeed speed to add
      */
     public void moveShip(Point2D additionalSpeed){
         Point2D velocity = spaceship.getVelocity();
@@ -193,28 +194,24 @@ public class Model {
         }
 
     }
-
+    /**
+     * removes an asteroid from the model
+     * @param asteroid
+     */
     public void removeAsteroid(Asteroid asteroid){
         asteroids.remove(asteroid);
 
     }
+
+    /**
+     * removes a bullet from the model
+     * @param bullet
+     */
     public void removeBullet(Bullet bullet){
         bullets.remove(bullet);
 
     }
 
-
-    /**
-     * Point2D asteroidPosition = asteroid.getPosition();
-     double asteroidRadius = asteroid.getRadius();
-     double lowerXBound = asteroidPosition.getX() - asteroidRadius;
-     double upperXBound = asteroidPosition.getX() + asteroidRadius;
-     double lowerYBound = asteroidPosition.getY() - asteroidRadius;
-     double upperYBound = asteroidPosition.getY() + asteroidRadius;
-     if (lowerXBound < bulletPosition.getX() && bulletPosition.getX() < upperXBound &&
-     lowerYBound < bulletPosition.getY() && bulletPosition.getY() < upperYBound){
-     return true;
-     */
 
 
 }

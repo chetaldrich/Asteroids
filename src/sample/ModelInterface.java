@@ -20,20 +20,21 @@ public interface ModelInterface {
 
     /**
      * collided -- Checks to see if a particular two sprites collided.
-     * @param sprite1 First sprite to check
+     * @param asteroid asteroid to check
      * @param sprite2 Second sprite to check against
      * @return boolean true if sprites collided, false if sprites did not collide
-     * TODO: make this smarter and check based on the size of the object
      */
-    public boolean collided(Sprite sprite1, Sprite sprite2);
+    public boolean collided(Asteroid asteroid, Sprite sprite2);
 
     /**
      * generateAsteroid -- creates a new Asteroid instance, and adds it to the current asteroidList.
-d    */
+     * @return asteroid created
+     */
     public Asteroid generateAsteroid();
 
     /**
      * generateBullet -- creates a new Bullet instance, and adds it to the current bulletList.
+     * @return bullet created
 d     */
     public Bullet generateBullet();
 
@@ -45,6 +46,7 @@ d     */
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
+     *   @param additionalSpeed speed to add
 d     */
     public void moveShip(Point2D additionalSpeed);
 
@@ -89,6 +91,16 @@ d     */
      */
     public void updateScore(int points);
 
+    /**
+     * removes an asteroid from the model
+     * @param asteroid
+     */
+    public void removeAsteroid(Asteroid asteroid);
 
+    /**
+     * removes a bullet from the model
+     * @param bullet
+     */
+    public void removeBullet(Bullet bullet);
 
 }

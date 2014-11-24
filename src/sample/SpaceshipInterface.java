@@ -5,7 +5,6 @@
  */
 
 package sample;
-import javafx.geometry.Point2D;
 
 
 public interface SpaceshipInterface {

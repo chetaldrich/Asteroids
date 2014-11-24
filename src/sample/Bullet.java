@@ -7,7 +7,7 @@
 package sample;
 
 
-import javafx.geometry.BoundingBox;
+
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,6 +35,7 @@ public class Bullet extends Sprite implements BulletInterface {
         this.audioClip = new AudioClip(getClass().getResource("sounds/laser.mp3").toString());
     }
 
+    @Override
     /**
      * step -- sets new position according to velocity
      */
@@ -46,24 +47,13 @@ public class Bullet extends Sprite implements BulletInterface {
         this.setPosition(xPos+xVel, yPos+yVel);
     }
 
+    @Override
     /**
+     *
      * makeSound -- make laser sound when bullets are fired from the ship.
      */
     public void makeSound() {
         this.audioClip.play();
     }
 
-
-    /**
-     * getBounds -- generates a bounding box for the bullet, which is then used to determine collisions.
-     * @return boundingbox for the bullet object
-     */
-    public BoundingBox getBounds(){
-        double xval= this.getPosition().getX();
-        double yval = this.getPosition().getY();
-        double xmin = xval - this.radius;
-        double ymin = yval - this.radius;
-        double widthAndHeight = 2*this.radius;
-        return new BoundingBox(xmin, ymin, widthAndHeight, widthAndHeight);
-    }
 }
