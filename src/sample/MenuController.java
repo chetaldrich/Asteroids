@@ -1,6 +1,7 @@
 package sample;
 
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -20,11 +21,16 @@ public class MenuController implements Initializable{
     private static double screenWidth = 1200;
     private static double screenHeight = 800;
     private Stage previousStage;
+    private Stage currentStage;
 
 
 
     public void setPreviousStage(Stage stage){
         this.previousStage = stage;
+    }
+
+    public void setCurrentStage(Stage stage){
+        this.currentStage = stage;
     }
 
     @Override
@@ -35,10 +41,10 @@ public class MenuController implements Initializable{
     public void gotoGame(ActionEvent actionEvent) throws IOException {
         Controller.setPreviousStage(new Stage());
         Stage stage = new Stage();
-//        stage.setOnCloseRequest(t -> {
-//            Platform.exit();
-//            System.exit(0);
-//        });
+        stage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         final Parent root = (Parent)loader.load();
@@ -55,5 +61,9 @@ public class MenuController implements Initializable{
         previousStage.close();
         stage.show();
         root.requestFocus();
+    }
+
+    public void close(){
+        currentStage.close();
     }
 }

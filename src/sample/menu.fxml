@@ -14,6 +14,8 @@
            prefHeight="800"
            prefWidth="1200">
 
+
 <Button text = "Play Game" layoutX="600" layoutY="400" onAction="#gotoGame"/>
+<Button text = "Quit" layoutX="600" layoutY="500" onAction="#close"/>
 </Pane>
 
