@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
 /**
  * MenuController.java
  * Chet Aldrich and Josie Bealle
- * implementation for changes between this menu and the asteroids game.
+ * Implementation for changes between this menu and the asteroids game.
  */
 public class MenuController implements Initializable{
     private static double screenWidth = 1200;
@@ -24,20 +24,36 @@ public class MenuController implements Initializable{
     private static Stage currentStage;
 
 
-
+    /**
+     * setPreviousStage -- sets the previous stage of the program for closing in subsequent windows.
+     * @param stage stage that was previously focused
+     */
     public static void setPreviousStage(Stage stage){
         previousStage = stage;
     }
 
+    /**
+     * setCurrentStage -- sets the current focused stage of the game for later closing.
+     * @param stage the current focused stage
+     */
     public static void setCurrentStage(Stage stage){
         currentStage = stage;
     }
 
+    /**
+     * initialize -- override basic method. Not required for the menu.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-
+    /**
+     * gotoGame -- goes to and initializes the asteroids game.
+     * @param actionEvent any registered mouse or keyboard event that triggers the button in fxml
+     * @throws IOException
+     */
     public void gotoGame(ActionEvent actionEvent) throws IOException {
         Controller.setPreviousStage(currentStage);
 
@@ -64,6 +80,9 @@ public class MenuController implements Initializable{
         root.requestFocus();
     }
 
+    /**
+     * close -- exits the program.
+     */
     public void close(){
         System.exit(1);
 
