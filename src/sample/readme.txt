@@ -10,6 +10,10 @@ Scoreboard
 Links:
 http://www.nutt.net/2013/11/25/create-scrolling-background-java/
 https://carlfx.wordpress.com/tag/collision-detection/
+https://www.youtube.com/watch?v=djZFHTa6TfA
+
+spaceship
+http://scratch.mit.edu/projects/2229196/
 
 We also have a model and controller and main class.
 

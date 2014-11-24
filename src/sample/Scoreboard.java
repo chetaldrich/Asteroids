@@ -26,10 +26,6 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     public Scoreboard(){
         this.score = 0;
         this.lives = 3;
-        Paint fill = Color.LIGHTPINK;
-        //Rectangle displayRect = new Rectangle(0, 700, 1200,100);
-        //displayRect.setFill(fill);
-        //this.getChildren().add(displayRect);
         this.scoreLabel = new Label();
         this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
         this.scoreLabel.setLayoutX(0);

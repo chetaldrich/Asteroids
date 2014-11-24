@@ -32,7 +32,6 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     @FXML public Group bulletGroup;
-    //@FXML public Group explosionGroup;
     public Group scoreboardGroup;
     private static Model spaceModel;
     final private double screenWidth = 1200;
@@ -50,8 +49,11 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private int score;
     private boolean paused;
+    private boolean wantMusicOn;
     private Timer timer;
     private Timer cleanupTimer;
+    private boolean invincible;
+    private int invincibleCount;
 
     public Controller(){
 
@@ -67,6 +69,9 @@ public class Controller implements EventHandler<KeyEvent> {
         spaceModel = new Model(this.screenWidth, this.screenHeight);
         this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
         this.gameMusic.play();
+        this.wantMusicOn=true;
+        this.invincible=false;
+
         initScore();
 
 
@@ -179,7 +184,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     public void checkMusic(){
-        if (!this.gameMusic.isPlaying()){
+        if (!this.gameMusic.isPlaying() && this.wantMusicOn){
             this.gameMusic.play();
         }
     }
@@ -205,18 +210,28 @@ public class Controller implements EventHandler<KeyEvent> {
         } catch (Exception e) {
 
         }
+        if (!this.invincible) {
+            ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
+            if (collidedSAs.size() != 0) {
 
-        ArrayList collidedSAs = spaceModel.checkGameCollisions("spaceship-asteroid", this.spaceship);
-        if (collidedSAs.size()!=0){
+                //one asteroid can only hit the ship at a time
+                explodeTheShip(collidedSAs);
+                updateScore(-1000);
 
-            //one asteroid can only hit the ship at a time
-            explodeTheShip(collidedSAs);
-            updateScore(-1000);
 
+            }
+        }
+        else{
+            this.invincibleCount++;
+            if (this.invincibleCount>50){
+                this.invincible=false;
+                this.invincibleCount=0;
+            }
 
         }
     }
     private void explodeTheShip(ArrayList<Sprite> collidedSAs){
+        this.invincible=true;
         spaceModel.updateLives(-1);
         Asteroid deadAsteroid = (Asteroid) collidedSAs.get(1);
         asteroidGroup.getChildren().remove(deadAsteroid);
