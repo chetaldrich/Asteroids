@@ -15,11 +15,10 @@ import javafx.scene.text.Text;
 
 
 
- /* Scoreboard.java
+ /** Scoreboard.java
  * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
  * Chet Aldrich and Josie Bealle
  */
-
 public class Scoreboard extends Group implements ScoreboardInterface{
 
     private int score;
@@ -36,6 +35,8 @@ public class Scoreboard extends Group implements ScoreboardInterface{
     public Scoreboard(){
         this.score = 0;
         this.lives = 3;
+
+        //formatting for the score and lives in the game view.
         this.scoreLabel=new Text();
         this.scoreLabel.setText(String.format("Score: %d\nLives: %d", this.score, this.lives));
         Font myFont = new Font("Lucida Console", 18);
@@ -47,6 +48,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.getChildren().add(this.scoreLabel);
 
 
+        //formatting for the controls in the game view.
         this.instructions=new Text();
 
         /*  Displayed as:
@@ -66,6 +68,7 @@ public class Scoreboard extends Group implements ScoreboardInterface{
         this.instructions.setLayoutY(690);
         this.instructions.setLineSpacing(5);
         this.instructions.setFill(Color.LIGHTGREEN);
+
         this.getChildren().add(this.instructions);
 
     }
@@ -97,17 +100,34 @@ public class Scoreboard extends Group implements ScoreboardInterface{
 
     /**
      * setLives -- sets number of lives for the player in the game.
-     * @param lives the number of lives to set to
+     * @param lives the desired number of lives
      */
     public void setLives(int lives){
         this.lives = lives;
     }
 
+    /**
+     * getScoreLabel -- returns the label that provides scores and lives on the view.
+     * @return Text the formatted result of the text generated in the constructor
+     */
     public Text getScoreLabel(){ return this.scoreLabel; }
 
-
+    /**
+     * setScoreLabel -- sets the label in this class to one assigned.
+     * @param scoreLabel the intended result scoreLabel
+     */
     public void setScoreLabel(Text scoreLabel){ this.scoreLabel = scoreLabel;}
+
+    /**
+     * setInstructions -- set the instructions for the game.
+     * @param instructions the formatted Text object to send to the game view.
+     */
     public void setInstructions(Text instructions){ this.instructions = instructions;}
+
+    /**
+     * getInstructions -- get the instructions for the game for use in the controller.
+     * @return the formatted text object for presentation.
+     */
     public Text getInstructions(){
         return this.instructions;
     }

@@ -1,8 +1,4 @@
-/**
- * Asteroid.java
- * Constructs a asteroids for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
- * Chet Aldrich and Josie Bealle
- */
+
 
 package sample;
 
@@ -16,12 +12,13 @@ import java.util.Random;
 
 
 /**
- *
+ * Asteroid.java
+ * Constructs a asteroids for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
+ * Chet Aldrich and Josie Bealle
  */
 public class Asteroid extends Sprite implements AsteroidInterface{
 
     private Point2D velocity;
-    //private Point2D position;
     private double radius;
     private Image image;
     private ImageView imageView;
@@ -29,8 +26,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
     private int screenWidth = 1200;
     private float id;
     private AudioClip audioClip;
-    private boolean isAsteroidImage;
-    private Point2D oldPosition;
 
 
     /**
@@ -38,19 +33,25 @@ public class Asteroid extends Sprite implements AsteroidInterface{
      */
     public Asteroid(){
         this.setName("asteroid");
+        //
         Random r = new Random();
         id = r.nextFloat();
+
+        //Set a random radius so asteroid size varies.
         this.radius = r.nextDouble()*60+60;
         double yCoord = r.nextDouble()*(screenHeight - 2*this.radius) + this.radius;
+
+        //Set a random velocity.
         double randVelocity = id * -18;
         this.velocity = new Point2D(randVelocity, 0);
+
+
         this.setPosition(screenWidth, yCoord);
         this.image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"), this.radius, this.radius, true, false);
         this.imageView = new ImageView();
         imageView.setImage(image);
         this.getChildren().add(imageView);
         this.audioClip = new AudioClip(getClass().getResource("sounds/explosion.mp3").toString());
-        isAsteroidImage = true;
 
     }
 
@@ -73,6 +74,7 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         return this.radius;
     }
 
+
     /**
      * setRadius -- sets radius of asteroid
      * @param newRadius of  new radius
@@ -81,7 +83,6 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.radius = newRadius;
         this.setSize(newRadius, newRadius);
     }
-
 
 
     /**
@@ -95,35 +96,14 @@ public class Asteroid extends Sprite implements AsteroidInterface{
         this.setPosition(xPos+xVel, yPos+yVel);
     }
 
-
+    /**
+     * makeSound -- make explosion sound when objects crash into this asteroid.
+     */
     @Override
     public void makeSound(){
         this.audioClip.play();
     }
 
-    private void setImagetoExplosion() {
-        this.isAsteroidImage = false;
-        oldPosition = this.getPosition();
-        double newPosX = this.getPosition().getX()+this.getSize().getX()/2-100;
-        double newPosY = this.getPosition().getY()+this.getSize().getY()/2-110;
-        this.getChildren().remove(imageView);
-        image = new Image(getClass().getResourceAsStream("/sample/img/explosion.gif"), 200, 200, true, false);
-        imageView = new ImageView();
-        imageView.setImage(image);
-        this.getChildren().clear();
-        this.setPosition(newPosX, newPosY);
-        this.getChildren().add(imageView);
 
-    }
 
-    private void setImagetoAsteroid() {
-        this.isAsteroidImage = true;
-        this.getChildren().remove(imageView);
-        image = new Image(getClass().getResourceAsStream("/sample/img/asteroid.png"));
-        imageView = new ImageView();
-        imageView.setImage(image);
-        this.setPosition(oldPosition.getX(), oldPosition.getY());
-        this.getChildren().clear();
-        this.getChildren().add(imageView);
-    }
 }
