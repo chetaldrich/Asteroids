@@ -7,6 +7,7 @@
 package sample;
 
 
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -54,8 +55,9 @@ public interface ControllerInterface {
 
     /**
      * handle -- implements keystroke handling, including spaceship movement and bullet firing.
+     * @param keyEvent the key press event
      */
-    public void handle();
+    public void handle(KeyEvent keyEvent);
 
     /**
      * fireBullet -- fires a bullet from the spaceship by creating a new Bullet instance at that location.
