@@ -134,11 +134,7 @@ public class Model {
         return new Spaceship();
     }
 
-    public Explosion createExplosion(){
-        Explosion explosion = new Explosion();
-        explosions.add(explosion);
-        return explosion;
-    }
+
 
     /**
      * getAsteroidList -- gets the current asteroidList in the model.
@@ -206,9 +202,7 @@ public class Model {
         bullets.remove(bullet);
 
     }
-    public void removeExplosion(Explosion explosion){
-        explosions.remove(explosion);
-    }
+
 
     /**
      * Point2D asteroidPosition = asteroid.getPosition();

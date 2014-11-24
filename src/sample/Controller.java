@@ -330,9 +330,11 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     private void initScore(){
+
         spaceModel.getScoreboard().getScoreLabel().setText(String.format("Score: %d\nLives: %d", spaceModel.getScoreboard().getScore(),
                 spaceModel.getScoreboard().getLives()));
         scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getScoreLabel());
+        scoreboardGroup.getChildren().add(spaceModel.getScoreboard().getInstructions());
 
     }
 
