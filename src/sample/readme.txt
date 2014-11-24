@@ -3,6 +3,12 @@ ASTEROIDS README!
 
 A basic asteroids scroller-ish type  game.
 
+Currently the game has a start menu, and then goes into a game where the player attempts to destroy the asteroids coming from the
+right side of the screen. We currently have functionality to play the game, associated sounds and music and explosions, a
+scoring mechanism , and also the ability to toggle the music if you so choose.
+
+There were some odd issues we had with timers that made it easier to add another timer inside our animation timer.
+For the most part though, the code seems to be behaving.
 
 Code Structure:
 Currently, the program is structured with view fxml files + core classes (listed below). The initial menu view is launched via the Main class,
@@ -16,8 +22,7 @@ Asteroid
 Bullet
 Scoreboard
 
-Links:
-http://www.nutt.net/2013/11/25/create-scrolling-background-java/
+Links we found helpful:
 https://carlfx.wordpress.com/tag/collision-detection/
 http://stackoverflow.com/questions/17226948/switching-scene-in-javafx
 https://www.youtube.com/watch?v=djZFHTa6TfA
