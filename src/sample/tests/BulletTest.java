@@ -57,7 +57,7 @@ public class BulletTest {
         double xPosition = oldPosition.getX();
         double yPosition = oldPosition.getY();
 
-        bullet.setVelocity(2,2);
+        bullet.setVelocity(12,0);
         Point2D bulletVelocity = bullet.getVelocity();
         double xVelocity = bulletVelocity.getX();
         double yVelocity = bulletVelocity.getY();
