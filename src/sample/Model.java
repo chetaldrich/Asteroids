@@ -37,6 +37,10 @@ public class Model {
 
     /**
      * checkGameCollisions -- checks for any collisions in the sprite classes.
+     * @param type The type of collision to check( "bullet-asteroid" or "spaceship-asteroid)
+     * @param instantiatedShip The spaceship to check collisions with, if neccessary
+     *                         because the ship is instantiated in the fxml file,
+     *                         it is neccesssary to pass it in
      * @return ArrayList of the sprites that collided
      */
     public ArrayList<Sprite> checkGameCollisions(String type, Spaceship instantiatedShip){
@@ -177,6 +181,11 @@ public class Model {
         int currentLives = scoreboard.getLives();
         scoreboard.setLives(currentLives + lives);
     }
+
+    /**
+     * getLives -- gets number of lives
+     * @return number of lives
+     */
     public int getLives(){
         return scoreboard.getLives();
     }

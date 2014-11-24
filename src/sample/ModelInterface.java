@@ -6,7 +6,6 @@
 package sample;
 
 import javafx.geometry.Point2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +45,7 @@ d     */
 
     /**
      * moveShip -- changes Ship velocity on method call (will be called from Controller on keypress).
-     *   @param additionalSpeed speed to add
+     * @param additionalSpeed speed to add
 d     */
     public void moveShip(Point2D additionalSpeed);
 
@@ -78,6 +77,12 @@ d     */
      * createScoreboard --  creates the Scoreboard.
      */
     public void createScoreboard();
+
+    /**
+     * getLives -- gets number of lives
+     * @return number of lives
+     */
+    public int getLives();
 
     /**
      * updateLives -- updates current lives based on other method triggers, e.g. collision.

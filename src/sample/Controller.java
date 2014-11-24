@@ -11,24 +11,20 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.BoundingBox;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Controller implements EventHandler<KeyEvent> {
+public class Controller implements EventHandler<KeyEvent>, ControllerInterface {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     @FXML public Group bulletGroup;
@@ -37,35 +33,31 @@ public class Controller implements EventHandler<KeyEvent> {
     final private double screenWidth = 1200;
     final private double screenHeight= 700;
     @FXML private Spaceship spaceship;
-    @FXML private Scoreboard scoreboard;
-
     private static AudioClip gameMusic;
-
     private static Stage previousStage;
     private static Stage currentStage;
 
-
-
-    final private double framesPerSecond = 20.0;
-    private int bulletCount;
-
-    private int score;
-    private boolean paused;
+    //because it can get annoying
     private boolean wantMusicOn;
+
+    //java was happier when we had two timers
     private Timer timer;
     private Timer cleanupTimer;
+
+    //because you can't die when you're blowing up
     private boolean invincible;
     private int invincibleCount;
+
+    final private double framesPerSecond = 20.0;
 
     public Controller(){
 
     }
 
     /**
-     * initialize -- initializes game the beginning game elements and starts the animation timer.
+     * initialize -- initializes game the beginning game elements, including music and starts the animation timer.
      */
     public void initialize() {
-        this.bulletCount = 0;
         spaceModel = new Model(this.screenWidth, this.screenHeight);
         this.gameMusic = new AudioClip(getClass().getResource("sounds/music.mp3").toString());
         this.gameMusic.play();
@@ -93,7 +85,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * gotoMenu -- goes to the game home menu when certain triggers occur (death, possibly other functions)
+     * gotoMenu -- goes to the game home menu when certain triggers occur (death, possibly other functions eventually)
      * @throws IOException
      */
     public void gotoMenu() throws IOException {
@@ -104,8 +96,8 @@ public class Controller implements EventHandler<KeyEvent> {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
 
-        Pane myPane = (Pane)loader.load();
-        MenuController controller = (MenuController) loader.getController();
+        Pane myPane = loader.load();
+        MenuController controller = loader.getController();
 
         myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
 
@@ -183,8 +175,6 @@ public class Controller implements EventHandler<KeyEvent> {
         };
 
 
-        final long startTimeInMilliseconds = 0;
-        final long repetitionPeriodInMilliseconds = 100;
         long frameTimeInMilliseconds = (long)(1000.0 / framesPerSecond);
         this.timer = new java.util.Timer();
         this.cleanupTimer = new Timer();
@@ -196,8 +186,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /**
-     * updateAnimation -- calls functions to handle essential animation elements.
-     * Examples include step methods for object movement in-game and collision checking.
+     * updateAnimation -- calls functions to handle step methods for object movement
      */
     private void updateAnimation() {
 
@@ -268,7 +257,6 @@ public class Controller implements EventHandler<KeyEvent> {
                     Bullet deadBullet= (Bullet) collidedBAs.get(i);
                     bulletGroup.getChildren().remove(deadBullet);
                     spaceModel.removeBullet(deadBullet);
-                    this.bulletCount -= 1;
                     Asteroid deadAsteroid = (Asteroid) collidedBAs.get(i+1);
                     deadAsteroid.makeSound();
                     asteroidGroup.getChildren().remove(deadAsteroid);
@@ -416,7 +404,6 @@ public class Controller implements EventHandler<KeyEvent> {
         double bulletYVal = spaceship.getPosition().getY() + spaceshipYOffset;
         Bullet newBullet = spaceModel.generateBullet();
         newBullet.setPosition(bulletXVal, bulletYVal);
-        this.bulletCount+=1;
         newBullet.makeSound();
         this.bulletGroup.getChildren().add(newBullet);
 
@@ -465,11 +452,9 @@ public class Controller implements EventHandler<KeyEvent> {
           try {
               for (Node node : this.bulletGroup.getChildren()) {
                   Bullet bullet = (Bullet) node;
-                  BoundingBox boundingBox = bullet.getBounds();
                   if (!isBulletInScreen(bullet)) {
                       spaceModel.removeBullet(bullet);
                       this.bulletGroup.getChildren().remove(bullet);
-                      bulletCount--;
                   }
               }
           }
