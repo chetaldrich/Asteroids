@@ -20,17 +20,17 @@ import javafx.event.ActionEvent;
 public class MenuController implements Initializable{
     private static double screenWidth = 1200;
     private static double screenHeight = 800;
-    private Stage previousStage;
-    private Stage currentStage;
+    private static Stage previousStage;
+    private static Stage currentStage;
 
 
 
-    public void setPreviousStage(Stage stage){
-        this.previousStage = stage;
+    public static void setPreviousStage(Stage stage){
+        previousStage = stage;
     }
 
-    public void setCurrentStage(Stage stage){
-        this.currentStage = stage;
+    public static void setCurrentStage(Stage stage){
+        currentStage = stage;
     }
 
     @Override
@@ -39,8 +39,9 @@ public class MenuController implements Initializable{
 
 
     public void gotoGame(ActionEvent actionEvent) throws IOException {
-        Controller.setPreviousStage(new Stage());
+        Controller.setPreviousStage(currentStage);
         Stage stage = new Stage();
+        Controller.setCurrentStage(stage);
         stage.setOnCloseRequest(t -> {
             Platform.exit();
             System.exit(0);
@@ -55,8 +56,8 @@ public class MenuController implements Initializable{
 
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         stage.setTitle("#STELLAR");
-        this.screenWidth = 1200;
-        this.screenHeight = 800;
+        screenWidth = 1200;
+        screenHeight = 800;
         stage.setScene(new Scene(root, screenWidth, screenHeight));
         previousStage.close();
         stage.show();
@@ -64,6 +65,6 @@ public class MenuController implements Initializable{
     }
 
     public void close(){
-        currentStage.close();
+        System.exit(1);
     }
 }

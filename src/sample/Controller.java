@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -37,6 +39,7 @@ public class Controller implements EventHandler<KeyEvent> {
     private static AudioClip gameMusic;
 
     private static Stage previousStage;
+    private static Stage currentStage;
 
 
 
@@ -74,9 +77,14 @@ public class Controller implements EventHandler<KeyEvent> {
         previousStage = stage;
     }
 
-    public void gotoMenu() throws IOException {
+    public static void setCurrentStage(Stage stage){
+        currentStage = stage;
+    }
 
+    public void gotoMenu() throws IOException {
+        MenuController.setPreviousStage(currentStage);
         Stage primaryStage = new Stage();
+        MenuController.setCurrentStage(primaryStage);
         primaryStage.setTitle("Asteroids Menu");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
