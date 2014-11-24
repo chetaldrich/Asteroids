@@ -56,17 +56,16 @@ public class MenuController implements Initializable{
 
         root.setStyle("-fx-background-image: url('sample/img/spaceBackground.png')");
         stage.setTitle("#STELLAR");
-        this.screenWidth = 1200;
-        this.screenHeight = 800;
+        screenWidth = 1200;
+        screenHeight = 800;
         stage.setScene(new Scene(root, screenWidth, screenHeight));
         Controller.setCurrentStage(stage);
-        previousStage.close();
         stage.show();
         root.requestFocus();
     }
 
     public void close(){
-        previousStage.close();
-        currentStage.close();
+        System.exit(1);
+
     }
 }
