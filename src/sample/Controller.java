@@ -25,7 +25,7 @@ import java.util.TimerTask;
  * Manipulates and creates game elements in the Asteroids game.
  * Chet Aldrich and Josie Bealle
  */
-public class Controller implements EventHandler<KeyEvent>, ControllerInterface {
+public class Controller implements EventHandler<KeyEvent> {
     @FXML public Group spaceshipGroup;
     @FXML public Group asteroidGroup;
     @FXML public Group bulletGroup;

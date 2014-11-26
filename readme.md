@@ -2,18 +2,6 @@ ASTEROIDS
 ==========
 (by Josie Bealle and Chet Aldrich)
 
-     |     | |
-    / \    | |
-   |--o|===|-|
-   |---|   |d|
-  /     \  |w|
- | U     | |b|
- | S     |=| |
- | A     | | |
- |_______| |_|
-  |@| |@|  | |
-___________|_|_
-
 A basic asteroids scroller-ish type  game.
 
 Currently the game has a start menu, and then goes into a game where the player attempts to destroy the asteroids coming from the
@@ -52,7 +40,8 @@ TODO:
 
 
 
-Links we found helpful:
+Links We Found Helpful
+-----------------------
 https://carlfx.wordpress.com/tag/collision-detection/
 http://stackoverflow.com/questions/17226948/switching-scene-in-javafx
 https://www.youtube.com/watch?v=djZFHTa6TfA

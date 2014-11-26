@@ -12,7 +12,7 @@ import javafx.scene.media.AudioClip;
  * Spaceship class: Constructs a spaceship for our game. Methods include get/setPosition, get/setVelocity, and step
  * Chet Aldrich and Josie Bealle
  */
-public class Spaceship extends Sprite implements SpaceshipInterface {
+public class Spaceship extends Sprite {
 
     private Point2D velocity;
     private Image image;

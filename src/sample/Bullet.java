@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 
 
-public class Bullet extends Sprite implements BulletInterface {
+public class Bullet extends Sprite {
     private Point2D velocity;
     private double radius;
     private Image image;

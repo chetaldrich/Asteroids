@@ -15,7 +15,7 @@ import java.util.Random;
  * Constructs a asteroids for our game. Methods include get/setPosition, get/setVelocity, get/setRadius
  * Chet Aldrich and Josie Bealle
  */
-public class Asteroid extends Sprite implements AsteroidInterface{
+public class Asteroid extends Sprite {
 
     private Point2D velocity;
     private double radius;

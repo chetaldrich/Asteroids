@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
  * Scoreboard: Constructs a scoreboard for our game, including the current score and lives of the player.
  * Chet Aldrich and Josie Bealle
  */
-public class Scoreboard extends Group implements ScoreboardInterface{
+public class Scoreboard extends Group {
 
     private int score;
     private int lives;
