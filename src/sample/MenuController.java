@@ -55,8 +55,7 @@ public class MenuController implements Initializable{
      * @throws IOException
      */
     public void gotoGame(ActionEvent actionEvent) throws IOException {
-        Controller.setPreviousStage(currentStage);
-
+        previousStage = currentStage;
         Stage stage = new Stage();
         stage.setOnCloseRequest(t -> {
             Platform.exit();
@@ -76,6 +75,7 @@ public class MenuController implements Initializable{
         screenHeight = 800;
         stage.setScene(new Scene(root, screenWidth, screenHeight));
         Controller.setCurrentStage(stage);
+        previousStage.close();
         stage.show();
         root.requestFocus();
     }

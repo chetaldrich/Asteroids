@@ -90,7 +90,7 @@ public class Controller implements EventHandler<KeyEvent> {
      * @throws IOException
      */
     public void gotoMenu() throws IOException {
-        MenuController.setPreviousStage(currentStage);
+        setPreviousStage(currentStage);
         Stage primaryStage = new Stage();
         MenuController.setCurrentStage(primaryStage);
         primaryStage.setTitle("Asteroids Menu");
@@ -101,8 +101,6 @@ public class Controller implements EventHandler<KeyEvent> {
         MenuController controller = loader.getController();
 
         myPane.setStyle("-fx-background-image: url('sample/img/asteroidsmenu.png')");
-
-        controller.setPreviousStage(primaryStage);
 
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);

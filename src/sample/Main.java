@@ -20,6 +20,7 @@ public class Main extends Application {
      * but why would they every quit
      */
     public void start(Stage primaryStage) throws Exception{
+        MenuController.setPreviousStage(primaryStage);
         MenuController.setCurrentStage(primaryStage);
         primaryStage.setTitle("Asteroids Menu");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
